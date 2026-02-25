@@ -1,0 +1,88 @@
+{
+    "lvl": 200,
+    "elements": [
+        "Chance"
+    ],
+    "moyenne_sort": 30,
+    "radar_stats": {
+        "timestamp": "2026-02-25T15:58:26.167Z",
+        "global_sum_score": "15.00",
+        "details": [
+            {
+                "caracteristique": "Caract\u00e9ristique(s) principale(s)",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Dommages de Pouss\u00e9e",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Critique",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "R\u00e9sistances",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Vitalit\u00e9",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "PA",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "PM",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "PO",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Invocations",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Tacle",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Fuite",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Soins",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Retrait PA",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Retrait PM",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            },
+            {
+                "caracteristique": "Initiative",
+                "pourcentage": "6.67",
+                "score_desirabilite": "1.00"
+            }
+        ]
+    }
+}

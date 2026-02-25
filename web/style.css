@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+    color: #f0f6fc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    /* On permet au body de scroller naturellement */
+    overflow-y: auto; 
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Remplacer height: 100vh par min-height */
+    min-height: 90vh; 
+    width: 100%;
+    padding: 20px 0; /* Ajoute un peu d'espace en haut et en bas */
+    box-sizing: border-box;
+}
+.export-btn {
+    padding: 12px 24px;
+    background-color: #00ffc8;
+    color: #0b0e14;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.export-btn:hover {
+    background-color: #00d4a8;
+}
+
+#chart {
+    background: #161b22;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 20px;
+}
+
+.membrane {
+    fill: rgba(0, 255, 200, 0.2);
+    stroke: #00ffc8;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 200, 0.6));
+}
+
+.grid-line {
+    stroke: #30363d;
+    fill: none;
+    stroke-width: 1;
+}
+
+.axis-line {
+    stroke: #444c56;
+    stroke-width: 1.5;
+}
+
+.label-name {
+    font-size: 11px; /* Plus petit */
+    fill: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.label-value {
+    font-size: 13px;
+    fill: #00ffc8;
+    font-weight: bold;
+}
+
+text {
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+    pointer-events: none; /* Évite que le texte bloque les interactions de souris */
+}
+
+.handle {
+    stroke: white;
+    stroke-width: 2px;
+    transition: r 0.2s;
+}
+
+.handle:hover {
+    r: 6; /* Grossit au survol */
+    fill: #ffffff;
+}
+
+.results-grid {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.result-column {
+    flex: 1;
+    background: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+}
+
+h3 { color: #00ffc8; text-align: center; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+
+.item-card {
+    background: #0d1117;
+    margin: 10px 0;
+    padding: 12px;
+    border-left: 4px solid #00ffc8;
+    border-radius: 4px;
+}
+
+.item-name { font-weight: bold; color: #f0f6fc; }
+.item-score { color: #8b949e; font-size: 0.9em; float: right; }
+.item-type { font-size: 0.8em; color: #58a6ff; display: block; }
+
+.stuff-card {
+    border-left: 4px solid #f2cf4a; /* Or pour les stuffs */
+    margin-bottom: 20px;
+}
+
+#config-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    background: #161b22;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 900px;
+    justify-content: center;
+}
+
+.config-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-list {
+    display: flex;
+    gap: 10px;
+}
+
+.checkbox-list label {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+input[type="number"] {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.lock-btn {
+    transition: fill 0.2s, r 0.2s;
+}
+.lock-btn:hover {
+    r: 6; /* Grossit un peu au survol */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Supprime les flèches pour Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}

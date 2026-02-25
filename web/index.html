@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique Membrane Radar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div id="config-bar">
+            <div class="config-group">
+                <label for="char-level">Niveau (1-200) :</label>
+                <input type="number" id="char-level" min="1" max="200" value="200">
+            </div>
+
+            <div class="config-group">
+                <label>Éléments :</label>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" class="element-check" value="Force"> Terre</label>
+                    <label><input type="checkbox" class="element-check" value="Intelligence"> Feu</label>
+                    <label><input type="checkbox" class="element-check" value="Chance"> Eau</label>
+                    <label><input type="checkbox" class="element-check" value="Agilité"> Air</label>
+                </div>
+            </div>
+
+            <div class="config-group">
+                <label for="base-damage">Moyenne des dégâts de base :</label>
+                <input type="number" id="base-damage" value="30">
+            </div>
+        </div>
+
+        <div id="chart"></div>
+    </div>
+    <div class="main-container">
+        <div id="error-msg-container" style="color: #ff4444; font-size: 13px; margin-bottom: 10px; display: none; text-align: center; font-weight: bold;">
+            <span id="error-text"></span>
+        </div>
+        <div id="controls">
+            <button id="export-btn" class="export-btn">Confirmer et Optimiser</button>
+        </div>
+
+        <div id="results-section" style="display: none;">
+            <div class="results-grid">
+                <div class="result-column">
+                    <h3>🏆 Meilleurs Items par Type</h3>
+                    <div id="top-items-list"></div>
+                </div>
+                <div class="result-column">
+                    <h3>💎 Top 3 Stuffs Complets</h3>
+                    <div id="top-stuffs-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="d3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
