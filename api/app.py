@@ -1,7 +1,7 @@
 import json
 import traceback
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import json
 import os
@@ -10,11 +10,19 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from statistiques import enrichir_base_de_donnees
 from statistiques import extraire_top_3_par_type
 from optimiseur_top3 import extraire_top_n_solutions
-app = Flask(__name__)
+app = Flask(__name__,static_folder='web')
 CORS(app)  # Autorise le frontend à parler au backend
 
 # Chemin où le fichier sera enregistré
 SAVE_PATH = "scores_personnage.json"
+
+@app.route('/')
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
 
 @app.route('/save', methods=['POST'])
 def save_data():
@@ -55,5 +63,6 @@ def get_results():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
     
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port,debug=True)
