@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function() {
             hideError();
 
             // 1. Sauvegarde
-            const saveResponse = await fetch('http://localhost:5000/save', {
+            const saveResponse = await fetch('/save', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(config),
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!saveResponse.ok) throw new Error("Erreur lors de la sauvegarde");
 
             // 2. Récupération des résultats
-            const resultsResponse = await fetch(`http://localhost:5000/get-results?lvl=${config.lvl}&t=${Date.now()}`);
+            const resultsResponse = await fetch(`/get-results?lvl=${config.lvl}&t=${Date.now()}`);
             if (!resultsResponse.ok) throw new Error("Erreur lors du calcul des résultats");
 
             const data = await resultsResponse.json();
