@@ -153,33 +153,43 @@ document.addEventListener("DOMContentLoaded", function() {
             let newValue = Math.min(30, Math.max(floor, (projectedDistance / radius) * 30));
             let delta = newValue - d.value;
 
-            // --- NOUVELLE LOGIQUE DE FILTRAGE ---
-            // On ne calcule la somme que sur les axes qui ne sont PAS l'axe actuel ET qui ne sont PAS verrouillés
+            // --- LOGIQUE DE FILTRAGE ET VÉRIFICATION ---
             let otherEligibleAxes = data.filter((el, idx) => idx !== i && !el.locked);
             let otherValuesSum = otherEligibleAxes.reduce((sum, el) => sum + el.value, 0);
 
-            // Si tous les autres axes sont verrouillés, on ne peut pas bouger celui-ci 
-            // (car la somme totale doit rester fixe)
+            // 1. Si aucun autre axe n'est déverrouillé : blocage total
             if (otherEligibleAxes.length === 0) return;
 
-            if (otherValuesSum > 0 || delta < 0) {
-                let canRedistribute = true;
-                
-                // Vérification du plafond de 20% uniquement sur les axes éligibles
-                if (delta < 0) {
-                    otherEligibleAxes.forEach(el => {
-                        let potentialValue = el.value - (delta * (el.value / otherValuesSum));
-                        if (potentialValue > 30) canRedistribute = false;
-                    });
-                }
+            // 2. Si on veut AUGMENTER l'axe actuel (delta > 0) 
+            // mais que les autres sont déjà tous à 0 : impossible de piocher dedans.
+            if (delta > 0 && otherValuesSum <= 0) return;
 
-                if (canRedistribute) {
-                    otherEligibleAxes.forEach(el => {
-                        let reduction = delta * (el.value / otherValuesSum);
-                        el.value = Math.max(0, Math.min(30, el.value - reduction));
-                    });
-                    d.value = newValue;
-                }
+            // 3. Vérification de la redistribution
+            let canRedistribute = true;
+
+            if (delta > 0) {
+                // Cas où on augmente : on vérifie juste qu'on a de la réserve (déjà fait au point 2)
+                // Mais on peut aussi vérifier si on ne descend pas sous le floor des autres si nécessaire
+            } else if (delta < 0) {
+                // Cas où on diminue l'axe : les autres vont augmenter. 
+                // On vérifie qu'aucun ne dépasse le plafond de 30.
+                otherEligibleAxes.forEach(el => {
+                    // Formule de redistribution inverse
+                    let potentialValue = el.value - (delta * (el.value / (otherValuesSum || 1))); 
+                    // Note: le || 1 évite le NaN si on part de zéro partout
+                    if (potentialValue > 30) canRedistribute = false;
+                });
+            }
+
+            // --- APPLICATION DES VALEURS ---
+            if (canRedistribute) {
+                otherEligibleAxes.forEach(el => {
+                    // On évite la division par zéro si otherValuesSum est à 0
+                    let weight = otherValuesSum > 0 ? (el.value / otherValuesSum) : (1 / otherEligibleAxes.length);
+                    let reduction = delta * weight;
+                    el.value = Math.max(0, Math.min(30, el.value - reduction));
+                });
+                d.value = newValue;
             }
 
         updateGraph();
