@@ -29,7 +29,7 @@ def save_data():
     try:
         data = request.json
         unique_id = str(uuid.uuid4())
-        filename = f"api/config_{unique_id}.json"
+        filename = f"config_{unique_id}.json"
         with open(filename, 'w') as f:
             json.dump(request.json, f, indent=4)
         
