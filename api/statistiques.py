@@ -23,8 +23,8 @@ BASE_MULTIPLIERS = {
     "coeff_pui":4
 }
 
-def extraire_donnees():
-    chemin_json = "../scores_personnage.json"
+def extraire_donnees(filename):
+    chemin_json = filename
     
     if not os.path.exists(chemin_json):
         print("Erreur : Le fichier JSON n'existe pas encore.")
@@ -40,10 +40,10 @@ def extraire_donnees():
     return desirabilite
 
 # --- 3. VOTRE LOGIQUE DE CALCUL ---
-def executer_calcul_perso(config_user=None):
+def executer_calcul_perso(config_user=None, filename=None):
     if config_user is None:
         print("Aucune configuration utilisateur fournie, utilisation des valeurs par défaut.")
-    desir= extraire_donnees()
+    desir= extraire_donnees(filename)
     if not desir: return
     lvl = config_user.get('lvl', 200)
     moyenne_sort = config_user.get('moyenne_sort', 30)
@@ -156,11 +156,11 @@ def calculer_score_stats(liste_stats, scores_finaux):
     return round(total_score, 2)
 
 
-def enrichir_base_de_donnees(input_file, output_file, config_user=None):
+def enrichir_base_de_donnees(input_file, output_file, filename, config_user=None):
     """Lit le JSON, calcule les scores et sauvegarde le résultat."""
     with open(input_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    scores_finaux = executer_calcul_perso(config_user)
+    scores_finaux = executer_calcul_perso(config_user=config_user, filename=filename)
 
     for entry in data:
         # Cas 1 : C'est un item

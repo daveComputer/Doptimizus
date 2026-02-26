@@ -1,5 +1,6 @@
 import json
 import traceback
+import uuid
 
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
@@ -14,7 +15,6 @@ app = Flask(__name__,static_folder='web')
 CORS(app)  # Autorise le frontend à parler au backend
 
 # Chemin où le fichier sera enregistré
-SAVE_PATH = "scores_personnage.json"
 
 @app.route('/')
 def serve_index():
@@ -28,14 +28,14 @@ def serve_static(path):
 def save_data():
     try:
         data = request.json
-        # 1. Sauvegarde des scores du radar
-        os.makedirs(os.path.dirname(SAVE_PATH), exist_ok=True)
-        with open(SAVE_PATH, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
+        unique_id = str(uuid.uuid4())
+        filename = f"api/config_{unique_id}.json"
+        with open(filename, 'w') as f:
+            json.dump(request.json, f, indent=4)
         
         # 2. APPEL DE LA FONCTION D'ENRICHISSEMENT
         # C'est ici que la magie opère quand on clique sur "Confirmer"
-        enrichir_base_de_donnees('database.json', 'database_scores.json', config_user=data)
+        enrichir_base_de_donnees('database.json', 'database_scores.json',filename, config_user=data)
         
         return jsonify({
             "status": "success", 

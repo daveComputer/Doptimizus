@@ -3,8 +3,7 @@ import pulp
 
 def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
     if items_exclus is None:
-        items_exclus = ["Amulette Ementaire Deluxe", "Ruskauffe","La Racine Hagogue","Amulette Ementaire","Epée Loponèze",
-                        "Anneau Aimgéroks"]
+        items_exclus = []
     
     # Chargement initial identique
     with open(json_file, 'r', encoding='utf-8') as f:
