@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Générateur de membrane
     const lineGen = d3.lineRadial()
         .angle((d, i) => i * angleStep)
-        .radius(d => (d.value / 20) * radius)
+        .radius(d => (d.value / 30) * radius)
         .curve(d3.curveCardinalClosed.tension(0));
 
     // Dessin initial de la membrane
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let projectedDistance = event.x * Math.cos(angle) + event.y * Math.sin(angle);
             let floor = getMinimumValue(d.name);
-            let newValue = Math.min(20, Math.max(floor, (projectedDistance / radius) * 20));
+            let newValue = Math.min(30, Math.max(floor, (projectedDistance / radius) * 30));
             let delta = newValue - d.value;
 
             // --- NOUVELLE LOGIQUE DE FILTRAGE ---
@@ -169,14 +169,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (delta < 0) {
                     otherEligibleAxes.forEach(el => {
                         let potentialValue = el.value - (delta * (el.value / otherValuesSum));
-                        if (potentialValue > 20) canRedistribute = false;
+                        if (potentialValue > 30) canRedistribute = false;
                     });
                 }
 
                 if (canRedistribute) {
                     otherEligibleAxes.forEach(el => {
                         let reduction = delta * (el.value / otherValuesSum);
-                        el.value = Math.max(0, Math.min(20, el.value - reduction));
+                        el.value = Math.max(0, Math.min(30, el.value - reduction));
                     });
                     d.value = newValue;
                 }
@@ -195,8 +195,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Mise à jour de toutes les poignées et de tous les textes
         svg.selectAll(".handle")
-            .attr("cx", (d, i) => Math.cos(i * angleStep - Math.PI / 2) * (d.value / 20) * radius)
-            .attr("cy", (d, i) => Math.sin(i * angleStep - Math.PI / 2) * (d.value / 20) * radius);
+            .attr("cx", (d, i) => Math.cos(i * angleStep - Math.PI / 2) * (d.value / 30) * radius)
+            .attr("cy", (d, i) => Math.sin(i * angleStep - Math.PI / 2) * (d.value / 30) * radius);
 
         data.forEach((d, i) => {
             d3.select(`#label-val-${i}`)
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // 1. On définit le plancher pour l'axe actuel
         const floor = getMinimumValue(d.name);
-        newValue = Math.max(floor, Math.min(20, newValue));
+        newValue = Math.max(floor, Math.min(30, newValue));
         
         let delta = newValue - d.value;
 
@@ -259,8 +259,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .append("circle")
         .attr("class", "handle")
         .attr("r", 4)
-        .attr("cx", (d, i) => Math.cos(i * angleStep - Math.PI / 2) * (d.value / 20) * radius)
-        .attr("cy", (d, i) => Math.sin(i * angleStep - Math.PI / 2) * (d.value / 20) * radius)
+        .attr("cx", (d, i) => Math.cos(i * angleStep - Math.PI / 2) * (d.value / 30) * radius)
+        .attr("cy", (d, i) => Math.sin(i * angleStep - Math.PI / 2) * (d.value / 30) * radius)
         .attr("fill", "#00ffc8")
         .style("cursor", "pointer")
         .call(drag);
