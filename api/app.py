@@ -13,6 +13,7 @@ from statistiques import extraire_top_3_par_type
 from optimiseur_top3 import extraire_top_n_solutions
 app = Flask(__name__,static_folder='web')
 CORS(app)  # Autorise le frontend à parler au backend
+items_exclus = []
 
 # Chemin où le fichier sera enregistré
 
@@ -51,18 +52,62 @@ def save_data():
 def get_results():
     try:
         lvl = request.args.get('lvl', default=200, type=int)
+        
+        # 1. Récupère le Top 5 par type (avec les répartitions d'items déjà incluses)
         top_items = extraire_top_3_par_type('database_scores.json', lvl)
         
-        # 2. On récupère le top 3 des stuffs (via optimiseur_top_3.py)
+        # 2. Récupère le top des stuffs (l'optimiseur calcule maintenant les % globaux)
+        # Note : On suppose que ta fonction extraire_top_n_solutions 
+        # a été mise à jour avec la logique de cumul des points.
         top_stuffs = extraire_top_n_solutions('database_scores.json', lvl, n=5)
         
+        # 3. On renvoie tout au JS
         return jsonify({
+            "status": "success",
             "top_items": top_items,
-            "top_stuffs": top_stuffs
+            "top_stuffs": top_stuffs  # Contiendra "stuff", "score" et "repartition"
         })
+        
     except Exception as e:
+        # Debug : affiche l'erreur exacte dans tes logs Render
+        print(f"Erreur optimisation : {e}")
+        traceback.print_exc()  # Affiche la trace complète de l'erreur
         return jsonify({"status": "error", "message": str(e)}), 500
     
+@app.route('/exclude-item', methods=['POST'])
+def exclude_item():
+    data = request.json
+    nom = data.get('item_nom')
+    if nom and nom not in items_exclus:
+        items_exclus.append(nom)
+        # Optionnel : sauvegarder dans un fichier pour que ça reste après un reboot
+        with open("blacklist.txt", "a") as f:
+            f.write(f"{nom}\n")
+    return jsonify({"status": "success"})
+
+@app.route('/get-blacklist', methods=['GET'])
+def get_blacklist():
+    # On renvoie la liste triée par ordre alphabétique
+    return jsonify(sorted(list(items_exclus)))
+
+@app.route('/rehabilitate-item', methods=['POST'])
+def rehabilitate_item():
+    data = request.json
+    nom = data.get('item_nom')
+    
+    if nom in items_exclus:
+        items_exclus.remove(nom)
+        # On met à jour le fichier physique pour que ce soit permanent
+        try:
+            with open("blacklist.txt", "w", encoding="utf-8") as f:
+                for item in items_exclus:
+                    f.write(f"{item}\n")
+        except Exception as e:
+            print(f"Erreur lors de la mise à jour du fichier : {e}")
+            
+    return jsonify({"status": "success"})
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port,debug=True)

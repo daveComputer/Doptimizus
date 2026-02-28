@@ -1,9 +1,20 @@
 import json
 import pulp
+import os
 
+BLACKLIST_FILE = "blacklist.txt"
+
+def charger_blacklist():
+    """Charge les noms d'items exclus depuis le fichier texte."""
+    if not os.path.exists(BLACKLIST_FILE):
+        return set() # Retourne un ensemble vide si le fichier n'existe pas encore
+    
+    with open(BLACKLIST_FILE, "r", encoding="utf-8") as f:
+        # On utilise strip() pour enlever les retours à la ligne (\n)
+        return {line.strip() for line in f if line.strip()}
+    
 def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
-    if items_exclus is None:
-        items_exclus = []
+    items_exclus = charger_blacklist()
     
     # Chargement initial identique
     with open(json_file, 'r', encoding='utf-8') as f:
@@ -25,6 +36,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
 
     set_vars = {}
     panoplie_scores = {}
+    panoplie_repartitions = {}
     for s in sets_data:
         p_name = s["nom_panoplie"].strip()
         items_dispo = [it for it in items if it.get("panoplie") == p_name]
@@ -32,6 +44,8 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             set_vars[p_name] = {}
             p_scores = {p["nombre_items"]: p.get("score", 0) for p in s["paliers"]}
             panoplie_scores[p_name] = p_scores
+            p_reps = {p["nombre_items"]: p.get("repartition_stats", {}) for p in s["paliers"]}
+            panoplie_repartitions[p_name] = p_reps
             for k in p_scores:
                 v_name = f"pano_{p_name.replace(' ', '_')}_{k}"
                 set_vars[p_name][k] = pulp.LpVariable(v_name, cat=pulp.LpBinary)
@@ -71,16 +85,86 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
         prob.solve(pulp.PULP_CBC_CMD(msg=0))
         
         if pulp.LpStatus[prob.status] == 'Optimal':
-            # 1. On récupère les items de cette solution
             stuff_actuel = [it for it in items if pulp.value(item_vars[it["_lp_var"]]) == 1]
-            score_actuel = pulp.value(prob.objective)
-            solutions_trouvees.append((stuff_actuel, score_actuel))
             
-            # 2. CONTRAINTE D'EXCLUSION : On interdit de reprendre exactement TOUS ces items
-            # La somme des variables de la solution actuelle doit être inférieure au nombre d'items choisis
+            # Somme des points réels par caractéristique
+            points_par_stat = {}
+            score_total_reel = 0 
+
+            # A. Calcul pour les Items
+            for it in stuff_actuel:
+                sc = it.get("score", 0)
+                rep = it.get("repartition_stats", {})
+                score_total_reel += sc
+                for stat, pct in rep.items():
+                    # Points = Score_Item * (%_Stat / 100)
+                    points = sc * (pct / 100)
+                    points_par_stat[stat] = points_par_stat.get(stat, 0) + points
+
+            # B. Calcul pour les Bonus de Panoplies
+            for p_name in set_vars:
+                for k in set_vars[p_name]:
+                    if pulp.value(set_vars[p_name][k]) == 1:
+                        sc = panoplie_scores[p_name][k]
+                        rep = panoplie_repartitions[p_name][k]
+                        score_total_reel += sc
+                        for stat, pct in rep.items():
+                            points = sc * (pct / 100)
+                            points_par_stat[stat] = points_par_stat.get(stat, 0) + points
+            points_par_axe = mapper_points_vers_axes(points_par_stat)
+
+            # D. Sauvegarde de la solution
+            solutions_trouvees.append({
+                "stuff": stuff_actuel,
+                "score": round(score_total_reel, 2),
+                "repartition_axes": points_par_axe
+            })
+            
+            # Contrainte d'exclusion pour trouver la solution suivante
             current_vars = [item_vars[it["_lp_var"]] for it in stuff_actuel]
             prob += pulp.lpSum(current_vars) <= len(current_vars) - 1
         else:
-            break # Plus de solution possible
-    print(f"Solutions trouvées : {len(solutions_trouvees)}")
+            break 
+
     return solutions_trouvees
+
+
+def mapper_points_vers_axes(points_par_stat):
+    """
+    Regroupe les points des caractéristiques précises vers les axes du radar
+    en utilisant un dictionnaire de mapping.
+    """
+    mapping = {
+        "Caractéristique(s) principale(s)": ["Force", "Intelligence", "Agilité", "Chance", "Dommages", "Dommages Terre", "Dommages Feu", "Dommages Eau", "Dommages Air", "Dommages Neutre", "Puissance"],
+        "Initiative": ["Initiative"],
+        "Dommages de Poussée": ["Dommages Poussée"],
+        "Soins": ["Soins"],
+        "Critique": ["Critique"],
+        "Retrait PA": ["Retrait PA"],
+        "Retrait PM": ["Retrait PM"],
+        "Résistances": ["% Rés.", "Rés. fixe"],
+        "Vitalité": ["Vitalité"],
+        "PA": ["PA", "Esquive PA"],
+        "PM": ["PM", "Esquive PM"],
+        "PO": ["PO"],
+        "Invocations": ["Invocations"],
+        "Tacle": ["Tacle"],
+        "Fuite": ["Fuite"]
+    }
+
+    # Initialisation des points par axe à 0
+    # On utilise les clés du mapping pour s'assurer que tous nos axes existent
+    points_par_axe = {axe: 0 for axe in mapping.keys()}
+
+    # Parcours des statistiques reçues
+    for stat_nom, points in points_par_stat.items():
+        trouve = False
+        
+        # On cherche à quel axe appartient la statistique 'stat_nom'
+        for axe, liste_stats_associees in mapping.items():
+            if any(substring in stat_nom for substring in liste_stats_associees):
+                points_par_axe[axe] += points
+                trouve = True
+                break # On a trouvé l'axe, on passe à la stat suivante
+    
+    return points_par_axe

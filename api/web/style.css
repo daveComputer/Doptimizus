@@ -14,13 +14,13 @@ body {
     flex-direction: column;
     align-items: center;
     /* Remplacer height: 100vh par min-height */
-    min-height: 90vh; 
+    padding: 20px 50px; /* 20px en haut/bas, 50px sur les côtés */
+    box-sizing: border-box; /* Pour que le padding ne dépasse pas de l'écran */
+    min-height: 100vh;
     width: 100%;
-    padding: 20px 0; /* Ajoute un peu d'espace en haut et en bas */
-    box-sizing: border-box;
 }
 .export-btn {
-    padding: 12px 24px;
+    padding: 12px 30px;
     background-color: #00ffc8;
     color: #0b0e14;
     border: none;
@@ -112,15 +112,27 @@ h3 { color: #00ffc8; text-align: center; border-bottom: 1px solid #30363d; paddi
     padding: 12px;
     border-left: 4px solid #00ffc8;
     border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.item-card:hover {
+    background-color: #1c2128; /* Un gris un peu plus clair */
+    border-color: #58a6ff;     /* Bordure bleue (ou celle de ton choix) */
+    transform: translateY(-2px); /* Petit soulèvement de la carte */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .item-name { font-weight: bold; color: #f0f6fc; }
-.item-score { color: #8b949e; font-size: 0.9em; float: right; }
-.item-type { font-size: 0.8em; color: #58a6ff; display: block; }
+.item-score-stuff { color: #8b949e; font-size: 0.9em; float: right; }
+.item-score { font-size: 0.8em; color: #8b949e; display: block; }
 
 .stuff-card {
     border-left: 4px solid #f2cf4a; /* Or pour les stuffs */
     margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #config-bar {
@@ -185,4 +197,255 @@ input[type=number] {
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
+}
+
+/* Animation de "glow" pour la sélection */
+.membrane-selection {
+    filter: drop-shadow(0 0 5px rgba(0, 255, 200, 0.5));
+    transition: opacity 0.3s;
+}
+
+
+.stuff-card:hover {
+    background-color: #1c2128; /* Un gris un peu plus clair */
+    border-color: #58a6ff;     /* Bordure bleue (ou celle de ton choix) */
+    transform: translateY(-2px); /* Petit soulèvement de la carte */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+/* Pour que les listes soient scrollables indépendamment */
+.scrollable-list {
+    max-height: 70vh; /* Hauteur max de la liste */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Responsive : On repasse en colonne sur mobile */
+@media (max-width: 1100px) {
+    .dashboard-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chart-panel {
+        position: static;
+        order: -1; /* Met le graphique en haut sur mobile */
+    }
+    .side-panel {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+.workspace-container {
+    display: flex;
+    justify-content: center; /* Centre le radar au début */
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    min-height: 650px;
+}
+
+.chart-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 600px;
+    position: sticky;
+    top: 20px;
+}
+
+.side-panel {
+    flex: 1;
+    max-width: 400px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.5s ease;
+}
+
+/* On cache les panneaux au début sans casser le layout */
+.hidden-initially {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+/* Classe à ajouter en JS après le calcul */
+.panel-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#error-msg-container {
+    margin: 20px 0; /* 20px en haut et en bas */
+    min-height: 20px; /* Évite que le bouton remonte trop quand il n'y a pas d'erreur */
+    color: #ff4444;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 80%;
+}
+
+#controls {
+    margin-top: 10px; /* Espace supplémentaire sous l'erreur */
+    padding-bottom: 50px; /* Pour ne pas être collé au bas de l'écran en scrollant */
+}
+
+.scrollable-list::-webkit-scrollbar {
+    width: 8px;               /* Largeur de la barre verticale */
+    height: 8px;              /* Hauteur de la barre horizontale */
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+    background: #0d1117;      /* Fond de la barre (identique au panneau) */
+    border-radius: 10px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+    background: #30363d;      /* Couleur de la poignée par défaut */
+    border-radius: 10px;
+    border: 2px solid #0d1117; /* Crée un petit espace autour de la poignée */
+}
+
+.scrollable-list::-webkit-scrollbar-thumb:hover {
+    background: #00ffc8;      /* La poignée devient Cyan au survol */
+    box-shadow: 0 0 8px rgba(0, 255, 200, 0.5); /* Petit effet de lueur */
+}
+
+/* 2. Pour Firefox (Plus limité mais propre) */
+.scrollable-list {
+    scrollbar-width: thin;          /* Barre fine */
+    scrollbar-color: #30363d #0d1117; /* Poignée / Fond */
+}
+
+.delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10; /* Pour passer au-dessus du clic de la carte */
+    padding: 5px;
+}
+
+.delete-btn:hover {
+    color: #ff4444; /* Rouge au survol */
+    transform: scale(1.2);
+}
+
+.item-card.selected {
+    border-color: #00ffc8 !important; /* Vert néon */
+    box-shadow: 0 0 12px rgba(0, 255, 200, 0.2);
+    background-color: #161b22;
+}
+
+/* Conteneur des items dans un stuff */
+.stuff-equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Badge individuel pour chaque item du stuff */
+.equipment-badge {
+    display: flex;
+    align-items: center;
+    background: #1c2128;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: #c9d1d9;
+    transition: all 0.2s ease;
+}
+
+
+/* Mini bouton de suppression dans le badge */
+.delete-mini-btn {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.delete-mini-btn:hover {
+    color: #ff4444;
+}
+
+.item-card.is-banned {
+    border-color: #ff4444 !important; /* Rouge vif */
+    box-shadow: inset 0 0 10px rgba(255, 68, 68, 0.2);
+    opacity: 0.8; /* Légère transparence pour montrer qu'il n'est plus valide */
+}
+
+.blacklist-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.blacklist-tag {
+    display: flex;
+    align-items: center;
+    background: #161b22;
+    border: 1px solid #ff4444; /* Bordure rouge pour montrer l'exclusion */
+    border-radius: 20px;
+    padding: 5px 15px;
+    color: #c9d1d9;
+    font-size: 12px;
+}
+
+.rehabilitate-btn {
+    background: transparent;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    margin-left: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.rehabilitate-btn:hover {
+    color: #00ffc8; /* Devient vert au survol pour signifier le retour */
+}
+
+/* Animation d'apparition fluide */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-visible {
+    display: block !important;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.equipment-badge.is-banned-item {
+    border-color: #ff4444 !important;
+    color: #ff4444 !important;
 }

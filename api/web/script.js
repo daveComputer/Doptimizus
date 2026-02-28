@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const radius = Math.min(width, height) / 2 - margin;
     const angleStep = (Math.PI * 2) / data.length;
     data.forEach(d => d.locked = d.locked || false);
+    const axesOrder = data.map(d => d.name);
 
     const svg = d3.select("#chart").html("")
         .append("svg")
@@ -35,14 +36,23 @@ document.addEventListener("DOMContentLoaded", function() {
         .radius(d => (d.value / 30) * radius)
         .curve(d3.curveCardinalClosed.tension(0));
 
-    // Dessin initial de la membrane
-    const blob = svg.append("path")
+    // 1. Membrane de l'utilisateur (Paramètres)
+    const inputBlob = svg.append("path")
         .datum(data)
-        .attr("class", "membrane")
+        .attr("class", "membrane-input") // Classe spécifique
         .attr("d", lineGen)
-        .attr("fill", "rgba(0, 255, 200, 0.3)")
+        .attr("fill", "rgba(255, 255, 255, 0.1)") // Blanc translucide
+        .attr("stroke", "#ccc")
+        .attr("stroke-dasharray", "4") // Pointillés pour l'input
+        .attr("stroke-width", 2);
+
+    // 2. Membrane de Sélection (Stuff/Item)
+    const selectionBlob = svg.append("path")
+        .attr("class", "membrane-selection") // Classe spécifique
+        .attr("fill", "rgba(0, 255, 200, 0.4)") // Vert/Bleu Dofus
         .attr("stroke", "#00ffc8")
-        .attr("stroke-width", 3);
+        .attr("stroke-width", 3)
+        .style("pointer-events", "none"); // Pour ne pas gêner les clics sur les axes
 
     // Création des axes et labels (statiques)
     data.forEach((d, i) => {
@@ -201,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateGraph() {
         // Mise à jour de la membrane
-        blob.attr("d", lineGen);
+        inputBlob.attr("d", lineGen);
 
         // Mise à jour de toutes les poignées et de tous les textes
         svg.selectAll(".handle")
@@ -386,9 +396,10 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Afficher la section de résultats
-        document.getElementById("results-section").style.display = "block";
-        
+        document.getElementById("left-panel").classList.add("panel-visible");
+        document.getElementById("right-panel").classList.add("panel-visible");
+        document.querySelector(".workspace-container").style.justifyContent = "space-between";
+
         // --- PARTIE 1 : TOP ITEMS PAR TYPE ---
         const itemsContainer = document.getElementById("top-items-list");
         itemsContainer.innerHTML = ""; // On vide l'ancien contenu
@@ -414,7 +425,46 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                     <div class="item-type-subtitle">${typeNom}</div>
                 `;
+                // On ajoute le HTML de l'icône (ici un SVG simple pour éviter des polices externes)
+                card.innerHTML = `
+                    <button class="delete-btn" title="Exclure cet item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                    <div class="item-card-content">
+                        <span class="item-name">${item.nom}</span>
+                        <span class="item-score">${Math.round(item.score || 0)} pts</span>
+                    </div>
+                    <div class="item-type-subtitle">${typeNom}</div>
+                `;
                 itemsContainer.appendChild(card);
+                card.addEventListener("click", () => {
+                    // Style visuel pour la sélection
+                    document.querySelectorAll('.item-card').forEach(c => c.style.borderColor = "#30363d");
+                    card.style.borderColor = "#00ffc8";
+
+                    // Appel de la mise à jour de la 2ème membrane
+                    updateSelectionMembrane(item.repartition, item.score);
+                });
+                const bin = card.querySelector(".delete-btn");
+                bin.addEventListener("click", async (e) => {
+                    e.stopPropagation(); // Empêche de cliquer sur la carte
+                    
+                    if (confirm(`Exclure "${item.nom}" des prochaines recherches ?`)) {
+                        // 1. Appel au backend pour blacklister
+                        const response = await fetch('/exclude-item', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ item_nom: item.nom })
+                        });
+
+                        if (response.ok) {
+                            // 2. Animation de disparition visuelle
+                            card.style.opacity = "0";
+                            card.style.transform = "translateX(20px)";
+                            setTimeout(() => card.remove(), 300);
+                        }
+                    }
+                });
             });
         }
 
@@ -424,11 +474,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (data.top_stuffs && data.top_stuffs.length > 0) {
             data.top_stuffs.forEach((solution, index) => {
-                // Structure attendue : solution[0] = liste items, solution[1] = score total
-                const itemsDetails = solution[0];
-                const scoreTotal = solution[1];
+                // On vérifie si c'est l'ancien format [items, score] ou le nouveau format {stuff: items, ...}
+                const itemsDetails = Array.isArray(solution) ? solution[0] : solution.stuff;
+                const scoreTotal = Array.isArray(solution) ? solution[1] : solution.score;
 
-                // On extrait les noms pour créer une liste lisible
+                // Sécurité : si itemsDetails est toujours indéfini, on arrête pour cette itération
+                if (!itemsDetails) {
+                    console.warn(`Structure de solution inconnue à l'index ${index}`, solution);
+                    return;
+                }
+
+                // Maintenant .map() ne plantera plus
                 const listeNoms = itemsDetails.map(it => it.nom || "Item inconnu").join(', ');
 
                 const stuffCard = document.createElement("div");
@@ -443,20 +499,52 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                 `;
                 stuffsContainer.appendChild(stuffCard);
+
+                stuffCard.addEventListener("click", () => {
+                    // Style visuel pour la sélection
+                    document.querySelectorAll('.stuff-card').forEach(c => c.style.borderColor = "#30363d");
+                    stuffCard.style.borderColor = "#00ffc8";
+
+                    // Appel de la mise à jour de la 2ème membrane
+                    updateSelectionMembrane(solution.repartition_axes, solution.score);
+                });
             });
         } else {
             stuffsContainer.innerHTML = "<p style='color: #8b949e; text-align: center; width: 100%;'>Aucune solution complète trouvée pour ce niveau.</p>";
         }
-        const resultsSection = document.getElementById("results-section");
-        resultsSection.style.display = "block";
         if (shouldScroll) {
-            setTimeout(() => {
-                document.getElementById("results-section").scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            }, 100);
+            window.scrollTo({ top: document.querySelector(".workspace-container").offsetTop, behavior: 'smooth' });
         }
+    }
+
+    function updateSelectionMembrane(repartitionAxes, scoreTotal) {
+        console.log("Mise à jour de la membrane de sélection avec :", repartitionAxes, "Score total :", scoreTotal);
+        if (!repartitionAxes) return;
+
+        // On transforme l'objet repartitionAxes en tableau ordonné selon axesOrder
+        const updatedData = axesOrder.map(axisName => {
+            // On récupère les points pour cet axe (ex: "Vitalité")
+            const points = repartitionAxes[axisName] || 0;
+            
+            // Calcul du pourcentage : (Points de l'axe / Score Total du stuff) * 100
+            const percentage = scoreTotal > 0 ? (points / scoreTotal) * 100 : 0;
+            
+            return { value: percentage };
+        });
+
+        // Générateur spécifique pour la sélection (échelle sur 100)
+        const lineGenSelection = d3.lineRadial()
+            .angle((d, i) => i * angleStep)
+            .radius(d => (d.value / 100) * radius) // Ici on divise par 100
+            .curve(d3.curveCardinalClosed.tension(0));
+
+        // Animation de la membrane
+        d3.select(".membrane-selection")
+            .datum(updatedData)
+            .transition()
+            .duration(600)
+            .ease(d3.easeBackOut)
+            .attr("d", lineGenSelection);
     }
 });
 
