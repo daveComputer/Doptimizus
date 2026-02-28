@@ -134,33 +134,59 @@ export function initRadar(containerId, initialData) {
             if (d.locked) return;
             const i = data.indexOf(d);
             const angle = i * angleStep - Math.PI / 2;
+
+            // 1. Calcul de la direction du mouvement (delta souhaité)
             let projectedDistance = event.x * Math.cos(angle) + event.y * Math.sin(angle);
-            let floor = getMinimumValue(d.name);
-            let newValue = Math.min(30, Math.max(floor, (projectedDistance / radius) * 30));
-            let delta = newValue - d.value;
-            let otherEligibleAxes = data.filter((el, idx) => idx !== i && !el.locked);
-            let otherValuesSum = otherEligibleAxes.reduce((sum, el) => sum + el.value, 0);
+            let myFloor = getMinimumValue(d.name);
+            let targetValue = Math.min(30, Math.max(myFloor, (projectedDistance / radius) * 30));
+            let requestedDelta = targetValue - d.value;
 
-            if (otherEligibleAxes.length === 0) return;
-            if (delta > 0 && otherValuesSum <= 0) return;
+            if (Math.abs(requestedDelta) < 0.01) return;
 
-            let canRedistribute = true;
-            if (delta > 0) { } 
-            else if (delta < 0) {
-                otherEligibleAxes.forEach(el => {
-                    let potentialValue = el.value - (delta * (el.value / (otherValuesSum || 1))); 
-                    if (potentialValue > 30) canRedistribute = false;
-                });
-            }
+            // 2. Identifier les autres axes qui PEUVENT encore bouger
+            let others = data.filter((el, idx) => idx !== i && !el.locked);
+            
+            // On filtre ceux qui ont encore de la marge dans la direction opposée au delta
+            let contributors = others.filter(el => {
+                const elFloor = getMinimumValue(el.name);
+                return requestedDelta > 0 ? el.value > elFloor : el.value < 30;
+            });
 
-            if (canRedistribute) {
-                otherEligibleAxes.forEach(el => {
-                    let weight = otherValuesSum > 0 ? (el.value / otherValuesSum) : (1 / otherEligibleAxes.length);
-                    let reduction = delta * weight;
-                    el.value = Math.max(0, Math.min(30, el.value - reduction));
-                });
-                d.value = newValue;
-            }
+            if (contributors.length === 0) return;
+
+            // 3. Calculer la capacité totale de redistribution des contributeurs
+            // (Combien de % peut-on leur prendre ou leur donner au total ?)
+            let totalCapacity = 0;
+            contributors.forEach(el => {
+                const elFloor = getMinimumValue(el.name);
+                totalCapacity += requestedDelta > 0 ? (el.value - elFloor) : (30 - el.value);
+            });
+
+            // 4. On ajuste le delta si les autres ne peuvent pas tout encaisser
+            let actualDelta = Math.min(Math.abs(requestedDelta), totalCapacity) * (requestedDelta > 0 ? 1 : -1);
+
+            // 5. Redistribution proportionnelle au "poids" de chaque contributeur
+            // Pour une augmentation : on réduit proportionnellement à leur valeur actuelle
+            // Pour une réduction : on augmente proportionnellement à l'espace vide restant
+            let sumForWeight = contributors.reduce((sum, el) => {
+                const elFloor = getMinimumValue(el.name);
+                return sum + (actualDelta > 0 ? (el.value - elFloor) : (30 - el.value));
+            }, 0);
+
+            contributors.forEach(el => {
+                const elFloor = getMinimumValue(el.name);
+                const capacity = actualDelta > 0 ? (el.value - elFloor) : (30 - el.value);
+                const weight = capacity / (sumForWeight || 1);
+                el.value -= actualDelta * weight;
+                
+                // Sécurité anti-débordement par micro-arrondi
+                el.value = Math.max(elFloor, Math.min(30, el.value));
+            });
+
+            // 6. Mise à jour de l'axe traîné
+            d.value += actualDelta;
+            d.value = Math.max(myFloor, Math.min(30, d.value));
+
             updateGraph();
         });
 
