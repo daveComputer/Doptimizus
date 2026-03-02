@@ -1,6 +1,6 @@
 export const initialData = [
     { name: 'Caractéristique(s) principale(s)', value: 100/15 },
-    { name: 'Dommages de Poussée', value: 100/15 },
+    { name: 'Dommages Poussée', value: 100/15 },
     { name: 'Critique', value: 100/15 },
     { name: 'Résistances', value: 100/15 },
     { name: 'Vitalité', value: 100/15 },

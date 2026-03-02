@@ -137,7 +137,7 @@ def mapper_points_vers_axes(points_par_stat):
     mapping = {
         "Caractéristique(s) principale(s)": ["Force", "Intelligence", "Agilité", "Chance", "Dommages", "Dommages Terre", "Dommages Feu", "Dommages Eau", "Dommages Air", "Dommages Neutre", "Puissance"],
         "Initiative": ["Initiative"],
-        "Dommages de Poussée": ["Dommages Poussée"],
+        "Dommages Poussée": ["Dommages Poussée"],
         "Soins": ["Soins"],
         "Critique": ["Critique"],
         "Retrait PA": ["Retrait PA"],
@@ -158,13 +158,9 @@ def mapper_points_vers_axes(points_par_stat):
 
     # Parcours des statistiques reçues
     for stat_nom, points in points_par_stat.items():
-        trouve = False
-        
         # On cherche à quel axe appartient la statistique 'stat_nom'
         for axe, liste_stats_associees in mapping.items():
-            if any(substring in stat_nom for substring in liste_stats_associees):
+            if stat_nom in liste_stats_associees:
                 points_par_axe[axe] += points
-                trouve = True
                 break # On a trouvé l'axe, on passe à la stat suivante
-    
     return points_par_axe

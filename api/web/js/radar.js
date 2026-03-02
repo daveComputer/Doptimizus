@@ -99,6 +99,10 @@ export function initRadar(containerId, initialData) {
                             appearance: none; /* Sécurité supplémentaire */
                             -moz-appearance: textfield;
                     ">
+                <div id="selection-val-${i}" 
+                    style="color: #00ffc8; font-size: 9px; font-weight: bold; margin-top: 2px; opacity: 0; transition: opacity 0.3s ease;">
+                    0%
+                </div>
             `);
 
         // Écouteur sur les inputs pour la saisie manuelle
@@ -254,15 +258,20 @@ function applyManualValue(index, newValue) {
 
 export function updateSelectionMembrane(repartitionAxes, scoreTotal) {
     if (!repartitionAxes) return;
-    const updatedData = axesOrder.map(axisName => {
+    const updatedData = axesOrder.map((axisName, i) => {
         const points = repartitionAxes[axisName] || 0;
         const percentage = scoreTotal > 0 ? (points / scoreTotal) * 100 : 0;
-        return { value: percentage };
+        const textElement = document.getElementById(`selection-val-${i}`);
+        if (textElement) {
+            textElement.innerText = Math.round(percentage) + "%";
+            textElement.style.opacity = "1"; // On affiche le texte
+        }
+        return { value: Math.max(0, Math.min(30, percentage)) };
     });
 
     const lineGenSelection = d3.lineRadial()
         .angle((d, i) => i * angleStep)
-        .radius(d => (d.value / 100) * radius) // Gardé en / 100 pour le stuff
+        .radius(d => (d.value / 30) * radius)
         .curve(d3.curveCardinalClosed.tension(0));
 
     d3.select(".membrane-selection")

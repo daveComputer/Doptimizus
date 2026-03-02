@@ -113,8 +113,8 @@ def executer_calcul_perso(config_user=None, filename=None):
             "Esquive PM": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10
         },
         "Dommages Critique": {
-            "Dommages": scores_finaux["Dommages"]/(scores_finaux["Dommages"]+(desir.get("Critique", 1)/10+0.2)),
-            "Critique": (desir.get("Critique", 1)/10+0.2)/(scores_finaux["Dommages"]+(desir.get("Critique", 1)/10+0.2))
+            "Dommages": scores_finaux["Dommages"] * (desir.get("Critique", 1)/10+0.2)*(0.5+(1-(desir.get("Critique", 1)/10+0.2))/2),
+            "Critique": scores_finaux["Dommages"] * (desir.get("Critique", 1)/10+0.2)*(desir.get("Critique", 1)/10+0.2)/2
         }
     }
     
@@ -174,7 +174,13 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
         elif "Dommages Critique" in nom:
             if scores_finaux.get("Critique", 0)/BASE_MULTIPLIERS["coeff_crit"] >=8:
                 categorie="Dommages"
-                points_cette_stat = val * scores_finaux.get("Dommages", 0)
+                points_cette_stat = val * scores_finaux["Dommages"]*0.5
+                total_score += points_cette_stat
+                details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+                categorie="Critique"
+                points_cette_stat = val* scores_finaux["Dommages"]*0.5
+                total_score += points_cette_stat
+                details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
             else:
                 for cat, pts in poids_details[nom].items():
                     categorie = cat
@@ -192,7 +198,7 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
                         details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
 
         # --- ACCUMULATION ---
-        if categorie and points_cette_stat != 0 and ("Dommages Critique" not in nom or scores_finaux.get("Critique", 0)/BASE_MULTIPLIERS["coeff_crit"] <8) and nom not in poids_details:
+        if categorie and points_cette_stat != 0 and "Dommages Critique" not in nom and nom not in poids_details:
             total_score += points_cette_stat
             details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
     # --- CALCUL DES POURCENTAGES ---
