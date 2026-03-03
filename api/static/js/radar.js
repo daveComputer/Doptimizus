@@ -83,10 +83,12 @@ export function initRadar(containerId, initialData) {
                     width: 100%;
                     pointer-events: none;
                 ">${d.name}</div>
-                <input type="number" 
-                    id="input-val-${i}" 
-                    value="${Math.round(d.value)}" 
-                    style="
+
+                <div style="display: flex; align-items: center; justify-content: center; gap: 2px;">
+                    <input type="number" 
+                        id="input-val-${i}" 
+                        value="${Math.round(d.value)}" 
+                        style="
                             width: 28px; 
                             background: transparent; 
                             color: #00ffc8; 
@@ -96,9 +98,12 @@ export function initRadar(containerId, initialData) {
                             font-size: 10px; 
                             padding: 2px 0;
                             outline: none;
-                            appearance: none; /* Sécurité supplémentaire */
+                            appearance: none;
                             -moz-appearance: textfield;
-                    ">
+                        ">
+                    <span style="color: #8b949e; font-size: 10px; font-weight: bold;">%</span>
+                </div>
+
                 <div id="selection-val-${i}" 
                     style="color: #00ffc8; font-size: 9px; font-weight: bold; margin-top: 2px; opacity: 0; transition: opacity 0.3s ease;">
                     0%
