@@ -449,3 +449,32 @@ input[type=number] {
     border-color: #ff4444 !important;
     color: #ff4444 !important;
 }
+
+
+.site-header {
+    background-color: #0d1117; /* Fond sombre Dofus-style */
+    border-bottom: 1px solid #30363d;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center; /* Aligne le logo et le titre verticalement au centre */
+    justify-content: center; /* Centre le tout horizontalement */
+    gap: 20px; /* Espace entre le logo et le titre */
+}
+
+.logo-mini {
+    height: 60px; /* Ajuste la taille de ton logo ici */
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 200, 0.5)); /* Rappel de la lueur verte */
+}
+
+.title-img {
+    height: 200px; /* Ajuste pour que le titre soit proportionnel au logo */
+    width: auto;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 200, 0.3));
+}

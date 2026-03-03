@@ -2,7 +2,7 @@ import json
 import traceback
 import uuid
 
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import json
 import os
@@ -11,7 +11,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from statistiques import enrichir_base_de_donnees
 from statistiques import extraire_top_3_par_type
 from optimiseur_top3 import extraire_top_n_solutions
-app = Flask(__name__,static_folder='web')
+app = Flask(__name__,template_folder='web', 
+            static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
 items_exclus = []
 
@@ -19,7 +20,7 @@ items_exclus = []
 
 @app.route('/')
 def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return render_template('index.html')
 
 @app.route('/<path:path>')
 def serve_static(path):

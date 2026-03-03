@@ -131,7 +131,9 @@ export function initRadar(containerId, initialData) {
         .on("click", function(event, d) {
             d.locked = !d.locked;
             d3.select(this).attr("fill", d.locked ? "#ff4444" : "#555");
-        });
+        })
+        .append("title")
+        .text(d => d.locked ? "Débloquer cet axe" : "Bloquer cet axe");
 
     const drag = d3.drag()
         .on("drag", function(event, d) {

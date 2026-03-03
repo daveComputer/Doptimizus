@@ -101,6 +101,6 @@ async function exportToJson(e) {
         showError("Une erreur est survenue : " + error.message);
     } finally {
         btn.disabled = false;
-        btn.innerText = "Confirmer";
+        btn.innerText = "Confirmer et Optimiser";
     }
 }
