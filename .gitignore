@@ -1,0 +1,15 @@
+# Environnements virtuels
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Données sensibles ou locales
+.env
+instance/
+.pytest_cache/
+
+# OS spécifiques
+.DS_Store
+Thumbs.db

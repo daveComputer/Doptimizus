@@ -2,25 +2,14 @@ import json
 import pulp
 import os
 
-BLACKLIST_FILE = "blacklist.txt"
 
-def charger_blacklist():
-    """Charge les noms d'items exclus depuis le fichier texte."""
-    if not os.path.exists(BLACKLIST_FILE):
-        return set() # Retourne un ensemble vide si le fichier n'existe pas encore
-    
-    with open(BLACKLIST_FILE, "r", encoding="utf-8") as f:
-        # On utilise strip() pour enlever les retours à la ligne (\n)
-        return {line.strip() for line in f if line.strip()}
     
 def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
-    items_exclus = charger_blacklist()
-    
     # Chargement initial identique
     with open(json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    blacklist = [nom.strip().lower() for nom in items_exclus]
+    blacklist = {nom.strip().lower() for nom in items_exclus} if items_exclus else set()    
     items = [it for it in data if "stats" in it and it.get("niveau", 0) <= lvl_max and it.get("nom", "").strip().lower() not in blacklist]
     sets_data = [s for s in data if s.get("type") == "bonus_panoplie"]
     TYPES_ARMES = ["Hache", "Pelle", "Marteau", "Épée", "Dagues", "Bâton", "Baguette", "Arc", "Faux", "Pioche"]

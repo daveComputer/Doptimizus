@@ -2,6 +2,7 @@ import json
 import traceback
 import uuid
 
+import sqlite3
 from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import json
@@ -11,10 +12,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from statistiques import enrichir_base_de_donnees
 from statistiques import extraire_top_3_par_type
 from optimiseur_top3 import extraire_top_n_solutions
+from database import get_db_connection, init_db
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
 items_exclus = []
+init_db()
 
 # Chemin où le fichier sera enregistré
 
@@ -26,26 +29,34 @@ def serve_index():
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
 
+
 @app.route('/save', methods=['POST'])
 def save_data():
     try:
         data = request.json
-        unique_id = str(uuid.uuid4())
-        filename = f"config_{unique_id}.json"
-        with open(filename, 'w') as f:
-            json.dump(request.json, f, indent=4)
         
+        # 1. SAUVEGARDE DANS SQLITE (Pour l'historique)
+        conn = get_db_connection()
+        conn.execute('INSERT INTO history (config_json) VALUES (?)', (json.dumps(data),))
+        conn.commit()
+        conn.close()
+
         # 2. APPEL DE LA FONCTION D'ENRICHISSEMENT
-        # C'est ici que la magie opère quand on clique sur "Confirmer"
-        enrichir_base_de_donnees('database.json', 'database_scores.json',filename, config_user=data)
+        # On ne passe plus 'filename', mais directement 'data'
+        # Assure-toi que enrichir_base_de_donnees peut traiter le dict directement !
+        enrichir_base_de_donnees(
+            'database.json', 
+            'database_scores.json', 
+            config_user=data  # On utilise le dictionnaire en mémoire
+        )
         
         return jsonify({
             "status": "success", 
-            "message": "Scores enregistrés et base de données mise à jour !"
+            "message": "Configuration enregistrée en base et scores mis à jour !"
         })
+
     except Exception as e:
-        # Ceci va écrire l'erreur exacte dans tes logs Docker !
-        print("!!! ERREUR SERVEUR !!!")
+        print("!!! ERREUR LORS DE LA SAUVEGARDE !!!")
         traceback.print_exc() 
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -54,20 +65,41 @@ def get_results():
     try:
         lvl = request.args.get('lvl', default=200, type=int)
         
-        # 1. Récupère le Top 5 par type (avec les répartitions d'items déjà incluses)
-        top_items = extraire_top_3_par_type('database_scores.json', lvl)
+        # 1. RÉCUPÉRATION DE LA BLACKLIST DEPUIS SQLITE
+        # On interroge la base de données au lieu de lire un fichier .txt
+        conn = get_db_connection()
+        rows = conn.execute('SELECT item_nom FROM blacklist').fetchall()
+        conn.close()
         
-        # 2. Récupère le top des stuffs (l'optimiseur calcule maintenant les % globaux)
-        # Note : On suppose que ta fonction extraire_top_n_solutions 
-        # a été mise à jour avec la logique de cumul des points.
-        top_stuffs = extraire_top_n_solutions('database_scores.json', lvl, n=5)
+        # On transforme le résultat en une liste simple de noms
+        items_bannis = [row['item_nom'] for row in rows]
+        
+        # 2. Passage de la liste aux fonctions de calcul
+        # IMPORTANT : Tu dois modifier la signature de ces deux fonctions 
+        # pour qu'elles acceptent l'argument 'items_bannis'.
+        top_items = extraire_top_3_par_type(
+            'database_scores.json', 
+            lvl, 
+            exclus=items_bannis
+        )
+        
+        top_stuffs = extraire_top_n_solutions(
+            'database_scores.json', 
+            lvl, 
+            n=5, 
+            items_exclus=items_bannis
+        )
         
         # 3. On renvoie tout au JS
         return jsonify({
             "status": "success",
             "top_items": top_items,
-            "top_stuffs": top_stuffs  # Contiendra "stuff", "score" et "repartition"
+            "top_stuffs": top_stuffs
         })
+        
+    except Exception as e:
+        print(f"Erreur lors de la récupération des résultats : {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
         
     except Exception as e:
         # Debug : affiche l'erreur exacte dans tes logs Render
@@ -77,36 +109,37 @@ def get_results():
     
 @app.route('/exclude-item', methods=['POST'])
 def exclude_item():
-    data = request.json
-    nom = data.get('item_nom')
-    if nom and nom not in items_exclus:
-        items_exclus.append(nom)
-        # Optionnel : sauvegarder dans un fichier pour que ça reste après un reboot
-        with open("blacklist.txt", "a") as f:
-            f.write(f"{nom}\n")
-    return jsonify({"status": "success"})
+    item_nom = request.json.get('item_nom')
+    items_exclus.append(item_nom)
+    if not item_nom:
+        return "Nom manquant", 400
+    
+    conn = get_db_connection()
+    try:
+        conn.execute('INSERT INTO blacklist (item_nom) VALUES (?)', (item_nom,))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        pass # L'item est déjà dans la liste, pas grave
+    finally:
+        conn.close()
+    return "OK", 200
 
 @app.route('/get-blacklist', methods=['GET'])
 def get_blacklist():
-    # On renvoie la liste triée par ordre alphabétique
-    return jsonify(sorted(list(items_exclus)))
+    conn = get_db_connection()
+    items = conn.execute('SELECT item_nom FROM blacklist').fetchall()
+    conn.close()
+    # On transforme les lignes en liste de strings
+    return jsonify([row['item_nom'] for row in items])
 
 @app.route('/rehabilitate-item', methods=['POST'])
 def rehabilitate_item():
-    data = request.json
-    nom = data.get('item_nom')
-    
-    if nom in items_exclus:
-        items_exclus.remove(nom)
-        # On met à jour le fichier physique pour que ce soit permanent
-        try:
-            with open("blacklist.txt", "w", encoding="utf-8") as f:
-                for item in items_exclus:
-                    f.write(f"{item}\n")
-        except Exception as e:
-            print(f"Erreur lors de la mise à jour du fichier : {e}")
-            
-    return jsonify({"status": "success"})
+    item_nom = request.json.get('item_nom')
+    conn = get_db_connection()
+    conn.execute('DELETE FROM blacklist WHERE item_nom = ?', (item_nom,))
+    conn.commit()
+    conn.close()
+    return "OK", 200
 
 
 if __name__ == "__main__":

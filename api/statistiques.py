@@ -1,7 +1,7 @@
 import re
 import json
 import os
-from optimiseur_top3 import charger_blacklist, mapper_points_vers_axes
+from optimiseur_top3 import  mapper_points_vers_axes
 
 # 1. VOS MULTIPLICATEURS HARDCODÉS (La base fixe)
 # Ce sont les poids "théoriques" de chaque stat
@@ -24,27 +24,36 @@ BASE_MULTIPLIERS = {
     "coeff_pui":4
 }
 
-def extraire_donnees(filename):
-    chemin_json = filename
-    
-    if not os.path.exists(chemin_json):
-        print("Erreur : Le fichier JSON n'existe pas encore.")
-        return None
+def extraire_donnees(config_user):
+    """
+    Extrait les scores de désirabilité directement depuis l'objet 
+    de configuration en mémoire.
+    """
+    if not config_user:
+        print("Erreur : Aucune configuration utilisateur reçue.")
+        return {}
 
-    with open(chemin_json, 'r') as f:
-        data = json.load(f)
+    # On accède directement aux clés du dictionnaire envoyé par le frontend
+    # Note : Assure-toi que ton JS envoie bien cette structure (radar_stats -> details)
+    try:
+        details = config_user.get('radar_stats', {}).get('details', [])
+        
+        desirabilite = { 
+            item['caracteristique']: float(item['score_desirabilite']) 
+            for item in details 
+        }
+        return desirabilite
+        
+    except (KeyError, TypeError) as e:
+        print(f"Erreur lors de l'extraction des données de désirabilité : {e}")
+        return {}
     
-    desirabilite = { 
-        item['caracteristique']: float(item['score_desirabilite']) 
-        for item in data['radar_stats']['details'] 
-    }
-    return desirabilite
 
 # --- 3. VOTRE LOGIQUE DE CALCUL ---
-def executer_calcul_perso(config_user=None, filename=None):
+def executer_calcul_perso(config_user=None):
     if config_user is None:
         print("Aucune configuration utilisateur fournie, utilisation des valeurs par défaut.")
-    desir= extraire_donnees(filename)
+    desir= extraire_donnees(config_user)
     if not desir: return
     lvl = config_user.get('lvl', 200)
     moyenne_sort = config_user.get('moyenne_sort', 30)
@@ -219,12 +228,12 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
     }
 
 
-def enrichir_base_de_donnees(input_file, output_file, filename, config_user=None):
+def enrichir_base_de_donnees(input_file, output_file, config_user=None):
     """Lit le JSON, calcule les scores/répartitions et sauvegarde."""
     with open(input_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
-    scores_finaux,poids_details = executer_calcul_perso(config_user=config_user, filename=filename)
+    scores_finaux,poids_details = executer_calcul_perso(config_user=config_user)
 
     for entry in data:
         # Cas 1 : C'est un item
@@ -245,63 +254,60 @@ def enrichir_base_de_donnees(input_file, output_file, filename, config_user=None
 
 
 
-def extraire_top_3_par_type(input_file, lvl_max):
+def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
+    """
+    Extrait le top 3 par type en filtrant par niveau et blacklist.
+    'exclus' est maintenant une liste (ou set) venant de SQLite.
+    """
     with open(input_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    items_exclus = charger_blacklist()
-    print("Items exclus chargés :", items_exclus)
-    # 1. Listes de regroupement
-    TYPES_ARMES = [
-        "Épée", "Arc", "Dagues", "Bâton", "Marteau", 
-        "Pelle", "Hache", "Baguette", "Pioche", "Faux"
-    ]
+
+    # Conversion en set pour une recherche instantanée (O(1) au lieu de O(n))
+    items_exclus = set(exclus) if exclus else set()
+    
+    TYPES_ARMES = ["Épée", "Arc", "Dagues", "Bâton", "Marteau", "Pelle", "Hache", "Baguette", "Pioche", "Faux"]
     TYPES_CAPES = ["Cape", "Sac"]
     
-    # 2. Filtrage (On garde les items avec stats et sous le niveau max)
+    # Filtrage : On exclut les items dans la blacklist SQLite
     items_valides = [
         entry for entry in data 
-        if "stats" in entry and entry.get("niveau", 0) <= lvl_max and entry.get("nom", "") not in items_exclus
+        if "stats" in entry 
+        and entry.get("niveau", 0) <= lvl_max 
+        and entry.get("nom") not in items_exclus
     ]
-    print(f"{len(items_valides)} items valides trouvés pour le niveau {lvl_max} après filtrage.")
-    # 3. Groupement par type
+
     classement_par_type = {}
     for item in items_valides:
         type_nom = item.get("type_objet", "Inconnu")
-        
-        # Logique de regroupement
-        if type_nom in TYPES_ARMES:
-            type_nom = "Armes"
-        elif type_nom in TYPES_CAPES:
-            type_nom = "Capes/Sacs"
+        if type_nom in TYPES_ARMES: type_nom = "Armes"
+        elif type_nom in TYPES_CAPES: type_nom = "Capes/Sacs"
             
         if type_nom not in classement_par_type:
             classement_par_type[type_nom] = []
         classement_par_type[type_nom].append(item)
     
-    # 4. Tri et formatage des résultats (Top 5 comme dans ton code)
     resultats_finaux = {}
     for type_nom, liste_items in classement_par_type.items():
-        # Tri par score décroissant
+        # On trie par score
         liste_triee = sorted(liste_items, key=lambda x: x.get("score", 0), reverse=True)
-        resultat=[]
+        
+        resultat = []
         for it in liste_triee[:3]:
-            points_par_stat = {}
+            # Calcul de la répartition pour le radar frontend
+            sc = it.get("score", 0)
             rep = it.get("repartition_stats", {})
-            sc=it.get("score", 0)
-            for stat, pct in rep.items():
-                points = sc * (pct / 100)
-                points_par_stat[stat] = points
-
+            
+            points_par_stat = {stat: sc * (pct / 100) for stat, pct in rep.items()}
             points_par_axe = mapper_points_vers_axes(points_par_stat)
-            # On construit un objet propre pour le frontend
+            
             resultat.append({
-                    "nom": it.get("nom"),
-                    "niveau": it.get("niveau"),
-                    "score": it.get("score", 0),
-                    "repartition": points_par_axe, # Les fameux % par stat
-                    "image": it.get("image_url", ""), # Si tu as les images
-                    "stats_completes": it.get("stats") # Pour afficher le détail au survol
-                })
+                "nom": it.get("nom"),
+                "niveau": it.get("niveau"),
+                "score": round(sc, 2),
+                "repartition": points_par_axe,
+                "image": it.get("image_url", ""),
+                "stats_completes": it.get("stats")
+            })
         resultats_finaux[type_nom] = resultat
                 
     return resultats_finaux
