@@ -81,8 +81,8 @@ def executer_calcul_perso(config_user=None):
     scores_finaux["% Rés."]= desir.get("Résistances", 1) * BASE_MULTIPLIERS["coeff_res_pourcentage"]
     dommage_moyen=lvl*4*(1-desir.get("Résistances", 1)/20*0.35)
     scores_finaux["Rés. fixe"]= desir.get("Résistances", 1)*300/dommage_moyen * BASE_MULTIPLIERS["coeff_re_fixe"]
-    scores_finaux["Esquive PA"]= desir.get("PA", 1)/desir.get("PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]
-    scores_finaux["Esquive PM"]= desir.get("PM", 1)/desir.get("PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]
+    scores_finaux["Esquive PA"]= desir.get("PA", 1)/desir.get("PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/2
+    scores_finaux["Esquive PM"]= desir.get("PM", 1)/desir.get("PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/2
     scores_finaux["Dommages"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"]
     scores_finaux["Dommages Eau"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * CHANCE/SUM_CARAC
     scores_finaux["Dommages Terre"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * FORCE/1.5/SUM_CARAC
@@ -176,7 +176,7 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
             categorie = "Rés. fixe"
             poids = scores_finaux.get("Rés. fixe", 0)
             points_cette_stat = val * poids * (0.5 if "Neutre" in nom else 1.0)
-        elif "Vitalité" in nom:
+        elif "Vitalité" == nom:
             categorie = "Vitalité"
             # Si tu n'as pas de poids pour la vita, on considère 1 par défaut ou 0
             points_cette_stat = val * scores_finaux.get("Vitalité", 1)
