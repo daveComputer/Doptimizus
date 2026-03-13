@@ -118,8 +118,8 @@ def executer_calcul_perso(config_user=None):
         "Sagesse": {
             "Retrait PA": desir.get("Retrait PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
             "Retrait PM": desir.get("Retrait PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
-            "Esquive PA": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
-            "Esquive PM": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10
+            "Esquive PA": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
+            "Esquive PM": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20
         },
         "Dommages Critique": {
             "Dommages": scores_finaux["Dommages"] * (desir.get("Critique", 1)/10+0.2)*(0.5+(1-(desir.get("Critique", 1)/10+0.2))/2),
