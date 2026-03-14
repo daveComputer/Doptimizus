@@ -2,13 +2,13 @@ import json
 import traceback
 import uuid
 import sys
+import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import sqlite3
 from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import json
-import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from statistiques import enrichir_base_de_donnees
 from statistiques import extraire_top_3_par_type
