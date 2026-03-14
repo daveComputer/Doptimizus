@@ -1,7 +1,7 @@
 import re
 import json
 import os
-from optimiseur_top3 import  mapper_points_vers_axes
+from api.optimiseur_top3 import  mapper_points_vers_axes
 
 # 1. VOS MULTIPLICATEURS HARDCODÉS (La base fixe)
 # Ce sont les poids "théoriques" de chaque stat

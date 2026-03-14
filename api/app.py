@@ -10,10 +10,10 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from statistiques import enrichir_base_de_donnees
-from statistiques import extraire_top_3_par_type
-from optimiseur_top3 import extraire_top_n_solutions
-from database import get_db_connection, init_db
+from api.statistiques import enrichir_base_de_donnees
+from api.statistiques import extraire_top_3_par_type
+from api.optimiseur_top3 import extraire_top_n_solutions
+from api.database import get_db_connection, init_db
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
