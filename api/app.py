@@ -14,12 +14,14 @@ from api.statistiques import enrichir_base_de_donnees
 from api.statistiques import extraire_top_3_par_type
 from api.optimiseur_top3 import extraire_top_n_solutions
 from api.database import get_db_connection, init_db
+API_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
 items_exclus = []
 init_db()
-
+db_path = os.path.join(API_DIR, 'database.json')
+scores_path = os.path.join(API_DIR, 'database_scores.json')
 # Chemin où le fichier sera enregistré
 
 @app.route('/')
@@ -46,8 +48,8 @@ def save_data():
         # On ne passe plus 'filename', mais directement 'data'
         # Assure-toi que enrichir_base_de_donnees peut traiter le dict directement !
         enrichir_base_de_donnees(
-            'database.json', 
-            'database_scores.json', 
+            db_path, 
+            scores_path, 
             config_user=data  # On utilise le dictionnaire en mémoire
         )
         
@@ -79,13 +81,13 @@ def get_results():
         # IMPORTANT : Tu dois modifier la signature de ces deux fonctions 
         # pour qu'elles acceptent l'argument 'items_bannis'.
         top_items = extraire_top_3_par_type(
-            'database_scores.json', 
+            scores_path, 
             lvl, 
             exclus=items_bannis
         )
         
         top_stuffs = extraire_top_n_solutions(
-            'database_scores.json', 
+            scores_path, 
             lvl, 
             n=5, 
             items_exclus=items_bannis
