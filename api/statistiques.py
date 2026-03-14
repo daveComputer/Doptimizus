@@ -70,66 +70,101 @@ def executer_calcul_perso(config_user=None):
 
     scores_finaux = {}
     
-    scores_finaux["Puissance"]= desir.get("Caractéristique(s) principale(s)", 1) * BASE_MULTIPLIERS["coeff_stat_principal"]
-    scores_finaux["PA"]= desir.get("PA", 1) * BASE_MULTIPLIERS["coeff_pa"]
-    scores_finaux["PM"]= desir.get("PM", 1) * BASE_MULTIPLIERS["coeff_pm"]
-    scores_finaux["PO"]= desir.get("PO", 1) * BASE_MULTIPLIERS["coeff_po"]
-    scores_finaux["Invocations"]= desir.get("Invocations", 1) * BASE_MULTIPLIERS["coeff_invoc"]
-    scores_finaux["Initiative"]= desir.get("Initiative", 1) * BASE_MULTIPLIERS["coeff_ini"]
-    scores_finaux["Fuite"]= desir.get("Fuite", 1) * BASE_MULTIPLIERS["coeff_fuite"]
-    scores_finaux["Tacle"]= desir.get("Tacle", 1) * BASE_MULTIPLIERS["coeff_tacle"]
-    scores_finaux["% Rés."]= desir.get("Résistances", 1) * BASE_MULTIPLIERS["coeff_res_pourcentage"]
+    scores_finaux["Puissance"]= {"rarete":  BASE_MULTIPLIERS["coeff_stat_principal"],
+                                 "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_pa"],
+                          "desir": desir.get("PA", 1)}
+    scores_finaux["PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_pm"],
+                          "desir": desir.get("PM", 1)}
+    scores_finaux["PO"]= {"rarete":  BASE_MULTIPLIERS["coeff_po"],
+                          "desir": desir.get("PO", 1)}
+    scores_finaux["Invocations"]= {"rarete":  BASE_MULTIPLIERS["coeff_invoc"],
+                                   "desir": desir.get("Invocations", 1)}
+    scores_finaux["Initiative"]= {"rarete":  BASE_MULTIPLIERS["coeff_ini"],
+                                   "desir": desir.get("Initiative", 1)}
+    scores_finaux["Fuite"]= {"rarete":  BASE_MULTIPLIERS["coeff_fuite"],
+                             "desir": desir.get("Fuite", 1)}
+    scores_finaux["Tacle"]= {"rarete":  BASE_MULTIPLIERS["coeff_tacle"],
+                             "desir": desir.get("Tacle", 1)}
+    scores_finaux["% Rés."]= {"rarete":  BASE_MULTIPLIERS["coeff_res_pourcentage"],
+                              "desir": desir.get("Résistances", 1)}
     dommage_moyen=lvl*4*(1-desir.get("Résistances", 1)/20*0.35)
-    scores_finaux["Rés. fixe"]= desir.get("Résistances", 1)*300/dommage_moyen * BASE_MULTIPLIERS["coeff_re_fixe"]
-    scores_finaux["Esquive PA"]= desir.get("PA", 1)/desir.get("PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/2
-    scores_finaux["Esquive PM"]= desir.get("PM", 1)/desir.get("PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/2
-    scores_finaux["Dommages"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"]
-    scores_finaux["Dommages Eau"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * CHANCE/SUM_CARAC
-    scores_finaux["Dommages Terre"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * FORCE/1.5/SUM_CARAC
-    scores_finaux["Dommages Neutre"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * FORCE/3/SUM_CARAC
-    scores_finaux["Dommages Air"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * AGILITE/SUM_CARAC
-    scores_finaux["Dommages Feu"]= desir.get("Caractéristique(s) principale(s)", 1)*20/moyenne_sort* BASE_MULTIPLIERS["coeff_do"] * INTELLIGENCE/SUM_CARAC
-    scores_finaux["Soins"]= desir.get("Soins",1) * BASE_MULTIPLIERS["coeff_soins"]
-    scores_finaux["Critique"]= desir.get("Critique", 1) * BASE_MULTIPLIERS["coeff_crit"]
-    scores_finaux["Retrait PA"]= desir.get("Retrait PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]
-    scores_finaux["Retrait PM"]= desir.get("Retrait PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]
-    scores_finaux["Dommages Poussée"]= desir.get("Dommages Poussée", 1) * BASE_MULTIPLIERS["coeff_do"]
+    scores_finaux["Rés. fixe"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_fixe"]*300/dommage_moyen,
+                                 "desir": desir.get("Résistances", 1)}
+    scores_finaux["Esquive PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"]/2,
+                                  "desir": desir.get("PA", 1)/desir.get("PM", 1)}
+    scores_finaux["Esquive PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"]/2,
+                                  "desir": desir.get("PM", 1)/desir.get("PA", 1)}
+    scores_finaux["Dommages"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"]*20/moyenne_sort,
+                                 "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Dommages Eau"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * CHANCE/SUM_CARAC*20/moyenne_sort,
+                                    "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Dommages Neutre"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * FORCE/3/SUM_CARAC*20/moyenne_sort,
+                                       "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Dommages Air"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * AGILITE/SUM_CARAC*20/moyenne_sort,
+                                    "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Dommages Feu"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * INTELLIGENCE/SUM_CARAC*20/moyenne_sort,
+                                     "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Soins"]= {"rarete":  BASE_MULTIPLIERS["coeff_soins"],
+                             "desir": desir.get("Soins", 1)}
+    scores_finaux["Critique"]= {"rarete":  BASE_MULTIPLIERS["coeff_crit"],
+                                 "desir": desir.get("Critique", 1)}
+    scores_finaux["Retrait PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"],
+                                   "desir": desir.get("Retrait PA", 1)}
+    scores_finaux["Retrait PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"],
+                                   "desir": desir.get("Retrait PM", 1)}
+    scores_finaux["Dommages Poussée"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"],
+                                        "desir": desir.get("Dommages Poussée", 1)}
     
     poids_details = {
         "Intelligence": {
-            "Intelligence": (desir.get("Caractéristique(s) principale(s)", 1) * BASE_MULTIPLIERS["coeff_stat_principal"] * INTELLIGENCE / SUM_CARAC),
-            "Initiative": (desir.get("Initiative", 1) * BASE_MULTIPLIERS["coeff_ini"] * (1 - INTELLIGENCE)),
-            "Soins": 0.1*scores_finaux["Soins"]
+            "Intelligence":{"rarete": BASE_MULTIPLIERS["coeff_stat_principal"] * INTELLIGENCE / SUM_CARAC,
+                            "desir": desir.get("Caractéristique(s) principale(s)", 1)},
+            "Initiative": {"rarete": BASE_MULTIPLIERS["coeff_ini"] * (1 - INTELLIGENCE),
+                           "desir": desir.get("Initiative", 1)},
+            "Soins": {"rarete": 0.1*scores_finaux["Soins"]["rarete"],
+                      "desir": scores_finaux["Soins"]["desir"]}
         },
         "Force": {
-            "Force": (desir.get("Caractéristique(s) principale(s)", 1) * BASE_MULTIPLIERS["coeff_stat_principal"] * FORCE / SUM_CARAC),
-            "Initiative": (desir.get("Initiative", 1) * BASE_MULTIPLIERS["coeff_ini"] * (1.5 - FORCE))
+            "Force": {"rarete":BASE_MULTIPLIERS["coeff_stat_principal"] * FORCE / SUM_CARAC,
+                      "desir": desir.get("Caractéristique(s) principale(s)", 1)},
+            "Initiative": {"rarete":BASE_MULTIPLIERS["coeff_ini"] * (1.5 - FORCE),
+                           "desir": desir.get("Initiative", 1)}
         },
         "Chance": {
-            "Chance": (desir.get("Caractéristique(s) principale(s)", 1) * BASE_MULTIPLIERS["coeff_stat_principal"] * CHANCE / SUM_CARAC),
-            "Initiative": (desir.get("Initiative", 1) * BASE_MULTIPLIERS["coeff_ini"] * (1 - CHANCE)),
-            "Fuite": 0.1*scores_finaux["Fuite"]
+            "Chance": {"rarete": BASE_MULTIPLIERS["coeff_stat_principal"] * CHANCE / SUM_CARAC,
+                       "desir": desir.get("Caractéristique(s) principale(s)", 1)},
+            "Initiative": {"rarete": BASE_MULTIPLIERS["coeff_ini"] * (1 - CHANCE),
+                           "desir": desir.get("Initiative", 1)},
+            "Fuite": {"rarete": 0.1*scores_finaux["Fuite"]["rarete"],
+                      "desir": scores_finaux["Fuite"]["desir"]}
         },
         "Agilité": {
-            "Agilité": (desir.get("Caractéristique(s) principale(s)", 1) * BASE_MULTIPLIERS["coeff_stat_principal"] * AGILITE / SUM_CARAC),
-            "Initiative": (desir.get("Initiative", 1) * BASE_MULTIPLIERS["coeff_ini"] * (1 - AGILITE)),
-            "Tacle": 0.1*scores_finaux["Tacle"]
+            "Agilité": {"rarete": BASE_MULTIPLIERS["coeff_stat_principal"] * AGILITE / SUM_CARAC,
+                        "desir": desir.get("Caractéristique(s) principale(s)", 1)},
+            "Initiative": {"rarete": BASE_MULTIPLIERS["coeff_ini"] * (1 - AGILITE),
+                           "desir": desir.get("Initiative", 1)},
+            "Tacle": {"rarete": 0.1*scores_finaux["Tacle"]["rarete"],
+                      "desir": scores_finaux["Tacle"]["desir"]}
         },
         "Sagesse": {
-            "Retrait PA": desir.get("Retrait PA", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
-            "Retrait PM": desir.get("Retrait PM", 1) * BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
-            "Esquive PA": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
-            "Esquive PM": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20
+            "Retrait PA": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
+                           "desir": desir.get("Retrait PA", 1)},
+            "Retrait PM": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
+                           "desir": desir.get("Retrait PM", 1)},
+            "Esquive PA": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
+                           "desir": desir.get("Esquive PA", 1)},
+            "Esquive PM": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
+                           "desir": desir.get("Esquive PM", 1)}
         },
         "Dommages Critique": {
-            "Dommages": scores_finaux["Dommages"] * (desir.get("Critique", 1)/10+0.2)*(0.5+(1-(desir.get("Critique", 1)/10+0.2))/2),
-            "Critique": scores_finaux["Dommages"] * (desir.get("Critique", 1)/10+0.2)*(desir.get("Critique", 1)/10+0.2)/2
+            "Dommages": {"rarete": scores_finaux["Dommages"]["rarete"] * (desir.get("Critique", 1)/10+0.2)*(0.5+(1-(desir.get("Critique", 1)/10+0.2))/2),
+                          "desir": desir.get("Dommages", 1)},
+            "Critique": {"rarete": scores_finaux["Dommages"]["rarete"] * (desir.get("Critique", 1)/10+0.2)*(desir.get("Critique", 1)/10+0.2)/2,
+                          "desir": desir.get("Critique", 1)}
         }
     }
     
-    print("Scores finaux calculés :")
-    for stat, score in scores_finaux.items():
-        print(f"  - {stat} : {score:.2f}")
     return scores_finaux, poids_details
 
 def extraire_valeur_max(valeur_str):
@@ -156,71 +191,89 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
 
     total_score = 0
     details_points = {}
+    score_norm=0
 
     for stat in liste_stats:
         nom = stat['nom']
         # Attention : extraire_valeur_max doit bien retourner une valeur négative si c'est un malus
         val = extraire_valeur_max(stat['valeur']) 
         points_cette_stat = 0
+        points_norm=0
         categorie = None
 
         # --- LOGIQUE DE MAPPING ---
         if nom in scores_finaux:
             categorie = nom
-            points_cette_stat = val * scores_finaux[nom]
+            points_cette_stat = val * scores_finaux[nom]["rarete"]*scores_finaux[nom]["desir"]
+            points_norm = val * scores_finaux[nom]["rarete"]
         elif "% Rés." in nom:
             categorie = "% Rés."
-            poids = scores_finaux.get("% Rés.", 0)
-            points_cette_stat = val * poids * (0.5 if "Neutre" in nom else 1.0)
+            poids = scores_finaux.get("% Rés.", 0)["rarete"]
+            points_cette_stat = val * poids * (0.5 if "Neutre" in nom else 1.0) *scores_finaux.get("% Rés.", 0)["desir"]
+            points_norm = val * poids * (0.5 if "Neutre" in nom else 1.0)
         elif "Rés." in nom and "%" not in nom:
             categorie = "Rés. fixe"
-            poids = scores_finaux.get("Rés. fixe", 0)
-            points_cette_stat = val * poids * (0.5 if "Neutre" in nom else 1.0)
+            poids = scores_finaux.get("Rés. fixe", 0)["rarete"]
+            points_cette_stat = val * poids * (0.5 if "Neutre" in nom else 1.0) * scores_finaux.get("Rés. fixe", 0)["desir"]
+            points_norm = val * poids * (0.5 if "Neutre" in nom else 1.0)
         elif "Vitalité" == nom:
             categorie = "Vitalité"
             # Si tu n'as pas de poids pour la vita, on considère 1 par défaut ou 0
-            points_cette_stat = val * scores_finaux.get("Vitalité", 1)
+            points_cette_stat = val
+            points_norm = val
         elif "Dommages Critique" in nom:
-            if scores_finaux.get("Critique", 0)/BASE_MULTIPLIERS["coeff_crit"] >=8:
+            if scores_finaux.get("Critique", 0)["rarete"]*scores_finaux.get("Critique", 0)["desir"]/BASE_MULTIPLIERS["coeff_crit"] >=8:
                 categorie="Dommages"
-                points_cette_stat = val * scores_finaux["Dommages"]*0.5
+                points_cette_stat = val * scores_finaux["Dommages"]["rarete"]*0.5 * scores_finaux["Dommages"]["desir"]
+                points_norm = val * scores_finaux["Dommages"]["rarete"]*0.5
                 total_score += points_cette_stat
-                details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+                score_norm+=points_norm
+                details_points[categorie] = details_points.get(categorie, 0) + points_norm
                 categorie="Critique"
-                points_cette_stat = val* scores_finaux["Dommages"]*0.5
+                points_cette_stat = val* scores_finaux["Dommages"]["rarete"]*0.5 * scores_finaux["Dommages"]["desir"]
+                points_norm = val * scores_finaux["Dommages"]["rarete"]*0.5
                 total_score += points_cette_stat
-                details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+                score_norm+=points_norm
+                details_points[categorie] = details_points.get(categorie, 0) + points_norm
             else:
                 for cat, pts in poids_details[nom].items():
                     categorie = cat
-                    points_cette_stat = val * pts
+                    points_cette_stat = val * pts["rarete"] * pts["desir"]
+                    points_norm = val * pts["rarete"]
                     if categorie and points_cette_stat != 0:
                         total_score += points_cette_stat
-                        details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+                        score_norm+=points_norm
+                        details_points[categorie] = details_points.get(categorie, 0) + points_norm
         elif nom in poids_details:
             for cat, pts in poids_details[nom].items():
                 if cat in scores_finaux:
                     categorie = cat
-                    points_cette_stat = val * pts
+                    points_cette_stat = val * pts["rarete"] * pts["desir"]
+                    points_norm = val * pts["rarete"]
                     if categorie and points_cette_stat != 0:
-                        total_score += points_cette_stat
-                        details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+                        total_score +=  points_cette_stat
+                        score_norm+=points_norm
+                        details_points[categorie] = details_points.get(categorie, 0) + points_norm
 
         # --- ACCUMULATION ---
         if categorie and points_cette_stat != 0 and "Dommages Critique" not in nom and nom not in poids_details:
             total_score += points_cette_stat
-            details_points[categorie] = details_points.get(categorie, 0) + points_cette_stat
+            score_norm+=points_norm
+            details_points[categorie] = details_points.get(categorie, 0) + points_norm
     # --- CALCUL DES POURCENTAGES ---
     repartition = {}
     
     # On évite la division par zéro. 
     # Note : Si total_score est négatif, l'item est globalement "mauvais".
-    if total_score != 0:
+    if score_norm != 0:
         for cat, pts in details_points.items():
             # Si pts est négatif et total_score positif -> % négatif
             # Si pts est positif et total_score positif -> % positif
-            pourcentage = (pts / total_score) * 100
+            pourcentage = (pts / score_norm) * 100
             repartition[cat] = round(pourcentage, 1)
+    else:
+        for cat, pts in details_points.items():
+            repartition[cat] = 0.0
 
     return {
         "total": round(total_score, 2),
