@@ -14,6 +14,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
     sets_data = [s for s in data if s.get("type") == "bonus_panoplie"]
     TYPES_ARMES = ["Hache", "Pelle", "Marteau", "Épée", "Dagues", "Bâton", "Baguette", "Arc", "Faux", "Pioche"]
     TYPES_CAPE=[ "Cape", "Sac"]
+    TYPES_MONTURE = ["Familier", "Dragodinde","Montilier"]
 
     # Création du problème de base
     prob = pulp.LpProblem("Optimisation_Top_N", pulp.LpMaximize)
@@ -46,6 +47,8 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             t_final = "Arme"
         elif it.get("type_objet") in TYPES_CAPE:
             t_final = "Cape"
+        elif it.get("type_objet") in TYPES_MONTURE:
+            t_final = "Monture"
         else:
             t_final = it.get("type_objet")
         if t_final not in slots: slots[t_final] = []
@@ -69,8 +72,12 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
     prob += score_items + score_paliers
 
     solutions_trouvees = []
+    scores_vus = {}
+    iteration = 0
+    max_iterations = 50
 
-    for iteration in range(n):
+    while len(solutions_trouvees) < 5 and iteration < max_iterations:
+        iteration += 1
         prob.solve(pulp.PULP_CBC_CMD(msg=0))
         
         if pulp.LpStatus[prob.status] == 'Optimal':
@@ -100,15 +107,20 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
                         for stat, pct in rep.items():
                             points = sc * (pct / 100)
                             points_par_stat[stat] = points_par_stat.get(stat, 0) + points
-            points_par_axe = mapper_points_vers_axes(points_par_stat)
-
-            # D. Sauvegarde de la solution
-            solutions_trouvees.append({
-                "stuff": stuff_actuel,
-                "score": round(score_total_reel, 2),
-                "repartition_axes": points_par_axe
-            })
             
+            score_arrondi = round(score_total_reel, 2)
+            points_par_axe = mapper_points_vers_axes(points_par_stat)
+            cle_unique = (score_arrondi, tuple(sorted(points_par_axe.items())))
+            if cle_unique not in scores_vus:
+
+                # D. Sauvegarde de la solution
+                solutions_trouvees.append({
+                    "stuff": stuff_actuel,
+                    "score": round(score_total_reel, 2),
+                    "repartition_axes": points_par_axe
+                })
+                scores_vus[cle_unique] = len(solutions_trouvees) - 1
+
             # Contrainte d'exclusion pour trouver la solution suivante
             current_vars = [item_vars[it["_lp_var"]] for it in stuff_actuel]
             prob += pulp.lpSum(current_vars) <= len(current_vars) - 1

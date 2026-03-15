@@ -31,7 +31,10 @@
             </div>
 
             <div class="config-group">
-                <label for="base-damage">Dégâts de base (moyenne):</label>
+                <label for="base-damage">
+                    Dégâts de base (moyenne):
+                    <span class="info-icon" data-tooltip="Exemple: Pour un Zobal de niveau 18 Terre/Air, on utilise 3 sorts pour taper (Rétention, Martelo et Appui).&#10;Rétention Niveau 4 tape entre 17 et 21 donc 19 en moyenne.&#10;Martelo Niveau 4 tape 19.5.&#10;Appui Niveau 4 tape 5.5 Terre et 5.5 Air (on ne compte pas la ligne de dégats Eau).&#10;On peut estimer qu'on utilisera autant Martelo que Rétention car le premier tape en zone mais le second a plus de Portée tandis que Appui est 4 fois moins utilisé.&#10;On a donc une moyenne m = (19x4 + 19.5x4 + 5.5 + 5.5) / 10 = 16.5">ⓘ</span>
+                </label>
                 <input type="number" id="base-damage" value="30">
             </div>
         </div>

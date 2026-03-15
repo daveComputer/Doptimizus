@@ -119,7 +119,6 @@ export function displayResults(data, shouldScroll = false) {
 
             // On crée un badge pour CHAQUE item du stuff
             itemsDetails.forEach(item => {
-                                // Dans ta boucle itemsDetails.forEach(item => { ... }) pour les stuffs :
 
                 const badge = document.createElement("div");
                 badge.className = "equipment-badge";
@@ -230,9 +229,10 @@ export function markVisualsAsBanned(itemName) {
     // 1. GESTION DU PANNEAU GAUCHE (Items individuels)
     // On cherche la carte dans la liste de gauche et on la fait disparaître
     const itemCards = document.querySelectorAll('.item-card:not(.stuff-card)');
+    const namesToBan = itemName.split('/').map(n => n.trim()).filter(n => n !== "");
     itemCards.forEach(card => {
         const nameSpan = card.querySelector('.item-name');
-        if (nameSpan && nameSpan.innerText === itemName) {
+        if (nameSpan && namesToBan.includes(nameSpan.innerText.trim())) {
             card.style.opacity = "0";
             card.style.transform = "translateX(20px)";
             setTimeout(() => card.remove(), 300);
@@ -243,7 +243,7 @@ export function markVisualsAsBanned(itemName) {
     const badges = document.querySelectorAll('.equipment-badge');
     badges.forEach(badge => {
         const span = badge.querySelector('span');
-        if (span && span.innerText === itemName) {
+        if (span && namesToBan.includes(span.innerText.trim())) {
             // On marque le badge en rouge
             badge.classList.add('is-banned-item');
             badge.style.borderColor = "#ff4444";

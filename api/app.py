@@ -113,18 +113,35 @@ def get_results():
 @app.route('/exclude-item', methods=['POST'])
 def exclude_item():
     item_nom = request.json.get('item_nom')
-    items_exclus.append(item_nom)
+    
+    # 1. Vérification initiale
     if not item_nom:
         return "Nom manquant", 400
-    
+
+    # 2. Séparation des noms par '/' et nettoyage des espaces inutiles
+    # On utilise une compréhension de liste pour ignorer les entrées vides
+    noms_a_traiter = [n.strip() for n in item_nom.split('/') if n.strip()]
+
     conn = get_db_connection()
     try:
-        conn.execute('INSERT INTO blacklist (item_nom) VALUES (?)', (item_nom,))
+        for nom in noms_a_traiter:
+            # 3. Ajout à la liste en mémoire (si pas déjà présent)
+            if nom not in items_exclus:
+                items_exclus.append(nom)
+            
+            # 4. Insertion en base de données
+            try:
+                conn.execute('INSERT INTO blacklist (item_nom) VALUES (?)', (nom,))
+            except sqlite3.IntegrityError:
+                # L'item est déjà en DB, on passe au suivant
+                continue
+        
         conn.commit()
-    except sqlite3.IntegrityError:
-        pass # L'item est déjà dans la liste, pas grave
+    except Exception as e:
+        return f"Erreur lors de l'insertion : {str(e)}", 500
     finally:
         conn.close()
+
     return "OK", 200
 
 @app.route('/get-blacklist', methods=['GET'])

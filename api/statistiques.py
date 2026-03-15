@@ -115,6 +115,11 @@ def executer_calcul_perso(config_user=None):
                                    "desir": desir.get("Retrait PM", 1)}
     scores_finaux["Dommages Poussée"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"],
                                         "desir": desir.get("Dommages Poussée", 1)}
+    global_sum = float(config_user.get('radar_stats', {}).get('global_sum_score', 1))
+
+    chances_crit=(((desir.get("Critique", 1)/global_sum/0.3)**2)*lvl*0.8+20)/100
+    if chances_crit>1:
+        chances_crit=1
     
     poids_details = {
         "Intelligence": {
@@ -158,10 +163,10 @@ def executer_calcul_perso(config_user=None):
                            "desir": desir.get("Esquive PM", 1)}
         },
         "Dommages Critique": {
-            "Dommages": {"rarete": scores_finaux["Dommages"]["rarete"] * (desir.get("Critique", 1)/10+0.2)*(0.5+(1-(desir.get("Critique", 1)/10+0.2))/2),
-                          "desir": desir.get("Dommages", 1)},
-            "Critique": {"rarete": scores_finaux["Dommages"]["rarete"] * (desir.get("Critique", 1)/10+0.2)*(desir.get("Critique", 1)/10+0.2)/2,
-                          "desir": desir.get("Critique", 1)}
+            "Dommages": {"rarete": scores_finaux["Dommages"]["rarete"] * (chances_crit)*(1-chances_crit/2),
+                          "desir": scores_finaux["Dommages"]["desir"]},
+            "Critique": {"rarete": scores_finaux["Dommages"]["rarete"] * (chances_crit)*(chances_crit)/2,
+                          "desir": scores_finaux["Dommages"]["desir"]}
         }
     }
     
@@ -181,7 +186,7 @@ def extraire_valeur_max(valeur_str):
     vals = [int(n) for n in nombres]
     return max(vals)
 
-def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
+def calculer_score_stats(liste_stats, scores_finaux, poids_details=None, config_user=None):
     """
     Calcule le score total en intégrant les malus.
     Les malus impactent négativement le score total et la répartition.
@@ -192,6 +197,7 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
     total_score = 0
     details_points = {}
     score_norm=0
+    details_points_total = {}
 
     for stat in liste_stats:
         nom = stat['nom']
@@ -221,44 +227,22 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
             # Si tu n'as pas de poids pour la vita, on considère 1 par défaut ou 0
             points_cette_stat = val
             points_norm = val
-        elif "Dommages Critique" in nom:
-            if scores_finaux.get("Critique", 0)["rarete"]*scores_finaux.get("Critique", 0)["desir"]/BASE_MULTIPLIERS["coeff_crit"] >=8:
-                categorie="Dommages"
-                points_cette_stat = val * scores_finaux["Dommages"]["rarete"]*0.5 * scores_finaux["Dommages"]["desir"]
-                points_norm = val * scores_finaux["Dommages"]["rarete"]*0.5
-                total_score += points_cette_stat
-                score_norm+=points_norm
-                details_points[categorie] = details_points.get(categorie, 0) + points_norm
-                categorie="Critique"
-                points_cette_stat = val* scores_finaux["Dommages"]["rarete"]*0.5 * scores_finaux["Dommages"]["desir"]
-                points_norm = val * scores_finaux["Dommages"]["rarete"]*0.5
-                total_score += points_cette_stat
-                score_norm+=points_norm
-                details_points[categorie] = details_points.get(categorie, 0) + points_norm
-            else:
-                for cat, pts in poids_details[nom].items():
-                    categorie = cat
-                    points_cette_stat = val * pts["rarete"] * pts["desir"]
-                    points_norm = val * pts["rarete"]
-                    if categorie and points_cette_stat != 0:
-                        total_score += points_cette_stat
-                        score_norm+=points_norm
-                        details_points[categorie] = details_points.get(categorie, 0) + points_norm
         elif nom in poids_details:
             for cat, pts in poids_details[nom].items():
-                if cat in scores_finaux:
-                    categorie = cat
-                    points_cette_stat = val * pts["rarete"] * pts["desir"]
-                    points_norm = val * pts["rarete"]
-                    if categorie and points_cette_stat != 0:
-                        total_score +=  points_cette_stat
-                        score_norm+=points_norm
-                        details_points[categorie] = details_points.get(categorie, 0) + points_norm
+                categorie = cat
+                points_cette_stat = val * pts["rarete"] * pts["desir"]
+                points_norm = val * pts["rarete"]
+                if categorie and points_cette_stat != 0:
+                    total_score +=  points_cette_stat
+                    score_norm+=points_norm
+                    details_points_total[categorie] = details_points_total.get(categorie, 0) + points_cette_stat
+                    details_points[categorie] = details_points.get(categorie, 0) + points_norm
 
         # --- ACCUMULATION ---
-        if categorie and points_cette_stat != 0 and "Dommages Critique" not in nom and nom not in poids_details:
+        if categorie and points_cette_stat != 0 and nom not in poids_details:
             total_score += points_cette_stat
             score_norm+=points_norm
+            details_points_total[categorie] = details_points_total.get(categorie, 0) + points_cette_stat
             details_points[categorie] = details_points.get(categorie, 0) + points_norm
     # --- CALCUL DES POURCENTAGES ---
     repartition = {}
@@ -277,7 +261,8 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None):
 
     return {
         "total": round(total_score, 2),
-        "repartition": repartition
+        "repartition": repartition,
+        "details_points": details_points_total
     }
 
 
@@ -287,25 +272,61 @@ def enrichir_base_de_donnees(input_file, output_file, config_user=None):
         data = json.load(f)
         
     scores_finaux,poids_details = executer_calcul_perso(config_user=config_user)
+    print("Scores finaux calculés :")
+    for cat, stats in scores_finaux.items():
+        print(f"  {cat}: {stats}")
+    print("Poids détaillés :")
+    for nom, poids in poids_details.items():
+        print(f"  {nom}: {poids}")
+
 
     for entry in data:
         # Cas 1 : C'est un item
         if "stats" in entry:
-            resultat = calculer_score_stats(entry["stats"], scores_finaux, poids_details)
-            entry["score"] = resultat["total"]
-            entry["repartition_stats"] = resultat["repartition"] # Nouveau champ
+            croum_factor=1
+            global_sum = float(config_user.get('radar_stats', {}).get('global_sum_score', 1))
+            estimation_resistance_percentage= scores_finaux["% Rés."]["desir"]/global_sum*20 * config_user.get('lvl', 200)/20
+            if estimation_resistance_percentage>35:
+                estimation_resistance_percentage=35
+            resultat = calculer_score_stats(entry["stats"], scores_finaux, poids_details,config_user=config_user)
+            if entry["nom"]=="Croum" or entry["nom"]=="El Scarador":
+                if estimation_resistance_percentage>9 and estimation_resistance_percentage<29:
+                    croum_factor=2*(1-(estimation_resistance_percentage/40-0.225))
+                elif (estimation_resistance_percentage<29):
+                    croum_factor=2
+            elif("Bwak" in entry["nom"]):
+                resultat=choisir_meilleure_stat(resultat)
+            entry["score"] = resultat["total"]*croum_factor
+            entry["repartition_stats"] = resultat["repartition"]
         
         # Cas 2 : C'est un bonus de panoplie
         elif "type" in entry and entry["type"] == "bonus_panoplie":
             for palier in entry.get("paliers", []):
-                resultat_palier = calculer_score_stats(palier["bonus"], scores_finaux, poids_details)
+                resultat_palier = calculer_score_stats(palier["bonus"], scores_finaux, poids_details,config_user=config_user)
                 palier["score"] = resultat_palier["total"]
                 palier["repartition_stats"] = resultat_palier["repartition"]
 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-
+def choisir_meilleure_stat(resultat):
+    """
+    Pour les items comme les Bwak qui ont plusieurs stats, on peut choisir de ne prendre en compte que la meilleure.
+    Ici, on prend la stat qui apporte le plus de points (en valeur absolue) au score total.
+    """
+    if not resultat.get("details_points"):
+        return resultat
+    
+    meilleure_stat = max(resultat["details_points"], key=lambda k: abs(resultat["details_points"][k]))
+    meilleur_score = resultat["details_points"][meilleure_stat]
+    
+    # On remet à zéro les autres stats
+    for stat in resultat["details_points"]:
+        if stat != meilleure_stat:
+            resultat["details_points"][stat] = 0
+            resultat["repartition"][stat] = 0
+    resultat["total"] = meilleur_score  # On retire l'impact des autres stats
+    return resultat
 
 def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
     """
@@ -320,6 +341,7 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
     
     TYPES_ARMES = ["Épée", "Arc", "Dagues", "Bâton", "Marteau", "Pelle", "Hache", "Baguette", "Pioche", "Faux"]
     TYPES_CAPES = ["Cape", "Sac"]
+    TYPES_MONTURE = ["Familier", "Dragodinde","Montilier"]
     
     # Filtrage : On exclut les items dans la blacklist SQLite
     items_valides = [
@@ -334,6 +356,7 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
         type_nom = item.get("type_objet", "Inconnu")
         if type_nom in TYPES_ARMES: type_nom = "Armes"
         elif type_nom in TYPES_CAPES: type_nom = "Capes/Sacs"
+        elif type_nom in TYPES_MONTURE: type_nom = "Montures"
             
         if type_nom not in classement_par_type:
             classement_par_type[type_nom] = []
@@ -341,26 +364,40 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
     
     resultats_finaux = {}
     for type_nom, liste_items in classement_par_type.items():
-        # On trie par score
         liste_triee = sorted(liste_items, key=lambda x: x.get("score", 0), reverse=True)
         
         resultat = []
-        for it in liste_triee[:3]:
-            # Calcul de la répartition pour le radar frontend
-            sc = it.get("score", 0)
-            rep = it.get("repartition_stats", {})
+        i = 0
+        # Sécurité : on s'arrête si on a 3 éléments OU si on a épuisé la liste
+        while len(resultat) < 3 and i < len(liste_triee):
+            it = liste_triee[i]
+            sc_reel = it.get("score", 0)
+            sc_arrondi = round(sc_reel, 2)
             
-            points_par_stat = {stat: sc * (pct / 100) for stat, pct in rep.items()}
+            # Calcul de la répartition
+            rep = it.get("repartition_stats", {})
+            points_par_stat = {stat: sc_reel * (pct / 100) for stat, pct in rep.items()}
             points_par_axe = mapper_points_vers_axes(points_par_stat)
             
-            resultat.append({
-                "nom": it.get("nom"),
-                "niveau": it.get("niveau"),
-                "score": round(sc, 2),
-                "repartition": points_par_axe,
-                "image": it.get("image_url", ""),
-                "stats_completes": it.get("stats")
-            })
+            # VÉRIFICATION : Est-ce un doublon parfait du précédent ?
+            # On vérifie d'abord si 'resultat' n'est pas vide pour éviter le crash
+            if resultat and resultat[-1]["score"] == sc_arrondi:
+                # On fusionne le nom sans incrémenter le compteur d'éléments
+                if it.get("nom") not in resultat[-1]["nom"]: # Évite de doubler si l'item est déjà cité
+                    resultat[-1]["nom"] += " / " + it.get("nom")
+            else:
+                # C'est un nouvel item ou le premier de la liste
+                resultat.append({
+                    "nom": it.get("nom"),
+                    "niveau": it.get("niveau"),
+                    "score": sc_arrondi,
+                    "repartition": points_par_axe,
+                    "image": it.get("image_url", ""),
+                    "stats_completes": it.get("stats")
+                })
+            
+            i += 1 # On passe à l'élément suivant dans liste_triee
+            
         resultats_finaux[type_nom] = resultat
                 
     return resultats_finaux

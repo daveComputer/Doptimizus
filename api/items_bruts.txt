@@ -50154,6 +50154,15 @@ Panoplie de Kocksis
 //
 Panoplie du Kwak du Vent
 
+8
+80 Vitalité
+35 Force
+55 Agilité
+25 Sagesse
+1 PA
+1 PM
+2 PO
+
 7
 45 Vitalité
 30 Force
@@ -50194,6 +50203,15 @@ Panoplie du Kwak du Vent
 15 Agilité
 //
 Panoplie du Kwak de Terre 
+
+8
+80 Vitalité
+55 Force
+35 Chance
+25 Sagesse
+1 PA
+1 PM
+2 PO
 
 7
 45 Vitalité
@@ -50236,6 +50254,15 @@ Panoplie du Kwak de Terre
 //
 Panoplie du Kwak de Glace
 
+8
+80 Vitalité
+35 Intelligence
+55 Chance
+25 Sagesse
+1 PA
+1 PM
+2 PO
+
 7
 45 Vitalité
 30 Intelligence
@@ -50276,6 +50303,15 @@ Panoplie du Kwak de Glace
 15 Chance
 //
 Panoplie du Kwak de Flammes
+
+8
+80 Vitalité
+55 Intelligence
+35 Agilité
+25 Sagesse
+1 PA
+1 PM
+2 PO
 
 7
 45 Vitalité
@@ -50837,3 +50873,1659 @@ Panoplie du Boune
 3 Chance
 3 Agilité
 1 Sagesse
+
+//
+
+Bisouglours 
+Familier - Niveau 80
+Panoplie Infernale 
+Bisouglours
+
+22 Dommages Feu
+
+//
+
+Blérodoudou 
+Familier - Niveau 80
+Panoplie Meurtrière 
+Blérodoudou
+
+22 Dommages Air
+
+//
+Bulbisou 
+Familier - Niveau 80
+Panoplie Contrebandière 
+Bulbisou
+
+22 Dommages Terre
+//
+Kanigloups 
+Familier - Niveau 80
+Panoplie Fluviale 
+Kanigloups
+
+22 Dommages Eau
+//
+Dragodinde Barbare 
+Dragodinde - Niveau 60
+Dragodinde Barbare
+
+5 % Rés. Eau
+
+5 % Rés. Feu
+
+5 % Rés. Terre
+
+5 % Rés. Neutre
+
+5 % Rés. Air
+
+200 Vitalité
+//
+Aquilar 
+Montilier - Niveau 60
+Aquilar
+
+1 PM
+
+30 Puissance
+//
+Khin-Tohoune 
+Montilier - Niveau 60
+Khin-Tohoune
+
+1 PM
+
+125 Vitalité
+//
+Tarentina 
+Montilier - Niveau 60
+Tarentina
+
+150 Vitalité
+
+5 % Rés. Terre
+
+5 % Rés. Eau
+
+5 % Rés. Feu
+
+5 % Rés. Neutre
+
+5 % Rés. Air
+//
+Kompost 
+Montilier - Niveau 60
+Kompost
+
+160 Force
+
+-100 Vitalité
+//
+Brûlih 
+Montilier - Niveau 60
+Brûlih
+
+160 Intelligence
+
+-100 Vitalité
+//
+Dehluge 
+Montilier - Niveau 60
+Dehluge
+
+160 Chance
+
+-100 Vitalité
+//
+Siroko 
+Montilier - Niveau 60
+Siroko
+
+160 Agilité
+
+-100 Vitalité
+//
+Dragodinde Royale 
+Dragodinde - Niveau 60
+Dragodinde Royale
+
+5 % Rés. Eau
+
+5 % Rés. Feu
+
+5 % Rés. Terre
+
+5 % Rés. Neutre
+
+5 % Rés. Air
+
+70 Puissance
+//
+Dragodinde Ebène 
+Dragodinde - Niveau 60
+Dragodinde Ebène
+
+80 Agilité
+
+100 Vitalité
+//
+Dragodinde Ebène et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Ivoire
+
+60 Puissance
+
+40 Agilité
+
+150 Vitalité
+//
+Dragodinde Rousse 
+Dragodinde - Niveau 60
+Dragodinde Rousse
+
+400 Vitalité
+//
+Dragodinde Ivoire et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Ivoire et Rousse
+
+60 Puissance
+
+250 Vitalité
+//
+Dragodinde Ebène et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Rousse
+
+60 Agilité
+
+200 Vitalité
+//
+Dragodinde Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Turquoise
+
+80 Prospection
+
+100 Vitalité
+//
+Dragodinde Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Ivoire
+
+100 Vitalité
+
+70 Puissance
+//
+Dragodinde Indigo 
+Dragodinde - Niveau 60
+Dragodinde Indigo
+
+80 Chance
+
+100 Vitalité
+//
+Dragodinde Dorée 
+Dragodinde - Niveau 60
+Dragodinde Dorée
+
+100 Vitalité
+
+8 Critique
+//
+Dragodinde Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Pourpre
+
+80 Force
+
+100 Vitalité
+//
+Dragodinde Amande 
+Dragodinde - Niveau 60
+Dragodinde Amande
+
+2 Invocation
+
+1500 Initiative
+//
+Dragodinde Emeraude 
+Dragodinde - Niveau 60
+Dragodinde Emeraude
+
+1 PM
+
+250 Vitalité
+//
+Dragodinde Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Orchidée
+
+80 Intelligence
+
+100 Vitalité
+//
+Dragodinde Prune 
+Dragodinde - Niveau 60
+Dragodinde Prune
+
+2 PO
+
+250 Vitalité
+//
+Dragodinde Amande et Dorée 
+Dragodinde - Niveau 60
+Dragodinde Amande et Dorée
+
+1 Invocation
+
+5 Critique
+
+100 Vitalité
+
+800 Initiative
+//
+Dragodinde Amande et Ebène 
+Dragodinde - Niveau 60
+Dragodinde Amande et Ebène
+
+60 Agilité
+
+1 Invocation
+
+800 Initiative
+
+100 Vitalité
+//
+Dragodinde Amande et Emeraude 
+Dragodinde - Niveau 60
+Dragodinde Amande et Emeraude
+
+1 PM
+
+1 Invocation
+
+150 Vitalité
+
+800 Initiative
+//
+Dragodinde Amande et Indigo 
+Dragodinde - Niveau 60
+Dragodinde Amande et Indigo
+
+60 Chance
+
+1 Invocation
+
+100 Vitalité
+
+800 Initiative
+//
+Dragodinde Amande et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Amande et Ivoire
+
+1 Invocation
+
+60 Puissance
+
+80 Vitalité
+
+800 Initiative
+//
+Dragodinde Amande et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Amande et Rousse
+
+2 Invocation
+
+800 Initiative
+
+150 Vitalité
+//
+Dragodinde Amande et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Amande et Turquoise
+
+1 Invocation
+
+40 Prospection
+
+100 Vitalité
+
+800 Initiative
+//
+Dragodinde Amande et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Amande et Orchidée
+
+1 Invocation
+
+60 Intelligence
+
+800 Initiative
+
+100 Vitalité
+//
+Dragodinde Amande et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Amande et Pourpre
+
+60 Force
+
+1 Invocation
+
+800 Initiative
+
+100 Vitalité
+//
+Dragodinde Dorée et Ebène 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Ebène
+
+60 Agilité
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Emeraude 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Emeraude
+
+1 PM
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Indigo 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Indigo
+
+60 Chance
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Ivoire
+
+60 Puissance
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Rousse
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Turquoise
+
+40 Prospection
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Orchidée
+
+60 Intelligence
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Dorée et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Dorée et Pourpre
+
+60 Force
+
+5 Critique
+
+150 Vitalité
+//
+Dragodinde Ebène et Emeraude 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Emeraude
+
+30 Agilité
+
+1 PM
+
+150 Vitalité
+//
+Dragodinde Ebène et Indigo 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Indigo
+
+50 Agilité
+
+50 Chance
+
+150 Vitalité
+//
+Dragodinde Ebène et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Turquoise
+
+60 Agilité
+
+40 Prospection
+
+150 Vitalité
+//
+Dragodinde Ebène et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Orchidée
+
+50 Agilité
+
+50 Intelligence
+
+150 Vitalité
+//
+Dragodinde Ebène et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Ebène et Pourpre
+
+50 Agilité
+
+50 Force
+
+150 Vitalité
+//
+Dragodinde Emeraude et Indigo 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Indigo
+
+1 PM
+
+30 Chance
+
+150 Vitalité
+//
+Dragodinde Emeraude et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Ivoire
+
+1 PM
+
+30 Puissance
+
+150 Vitalité
+//
+Dragodinde Emeraude et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Rousse
+
+1 PM
+
+400 Vitalité
+//
+Dragodinde Emeraude et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Turquoise
+
+1 PM
+
+40 Prospection
+
+150 Vitalité
+//
+Dragodinde Emeraude et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Orchidée
+
+1 PM
+
+30 Intelligence
+
+150 Vitalité
+//
+Dragodinde Emeraude et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Emeraude et Pourpre
+
+1 PM
+
+30 Force
+
+150 Vitalité
+//
+Dragodinde Indigo et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Indigo et Ivoire
+
+40 Chance
+
+60 Puissance
+
+150 Vitalité
+//
+Dragodinde Indigo et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Indigo et Rousse
+
+60 Chance
+
+200 Vitalité
+//
+Dragodinde Indigo et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Indigo et Turquoise
+
+60 Chance
+
+40 Prospection
+
+150 Vitalité
+//
+Dragodinde Indigo et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Indigo et Orchidée
+
+50 Chance
+
+50 Intelligence
+
+150 Vitalité
+//
+Dragodinde Indigo et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Indigo et Pourpre
+
+50 Chance
+
+50 Force
+
+150 Vitalité
+//
+Dragodinde Ivoire et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Ivoire et Turquoise
+
+40 Prospection
+
+60 Puissance
+
+150 Vitalité
+//
+Dragodinde Ivoire et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Ivoire et Orchidée
+
+40 Intelligence
+
+60 Puissance
+
+150 Vitalité
+//
+Dragodinde Ivoire et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Ivoire et Pourpre
+
+40 Force
+
+60 Puissance
+
+150 Vitalité
+//
+Dragodinde Turquoise et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Turquoise et Rousse
+
+40 Prospection
+
+250 Vitalité
+//
+Dragodinde Orchidée et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Orchidée et Rousse
+
+60 Intelligence
+
+200 Vitalité
+//
+Dragodinde Pourpre et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Pourpre et Rousse
+
+60 Force
+
+200 Vitalité
+//
+Dragodinde Turquoise et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Turquoise et Orchidée
+
+60 Intelligence
+
+40 Prospection
+
+150 Vitalité
+//
+Dragodinde Turquoise et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Turquoise et Pourpre
+
+60 Force
+
+40 Prospection
+
+150 Vitalité
+//
+Dragodinde Orchidée et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Orchidée et Pourpre
+
+50 Intelligence
+
+50 Force
+
+150 Vitalité
+//
+Dragodinde Prune et Amande 
+Dragodinde - Niveau 60
+Dragodinde Prune et Amande
+
+1 PO
+
+1 Invocation
+
+800 Initiative
+
+250 Vitalité
+//
+Dragodinde Prune et Dorée 
+Dragodinde - Niveau 60
+Dragodinde Prune et Dorée
+
+1 PO
+
+5 Critique
+
+250 Vitalité
+//
+Dragodinde Prune et Ebène 
+Dragodinde - Niveau 60
+Dragodinde Prune et Ebène
+
+1 PO
+
+60 Agilité
+
+250 Vitalité
+//
+Dragodinde Prune et Emeraude 
+Dragodinde - Niveau 60
+Dragodinde Prune et Emeraude
+
+1 PO
+
+1 PM
+
+250 Vitalité
+//
+Dragodinde Prune et Indigo 
+Dragodinde - Niveau 60
+Dragodinde Prune et Indigo
+
+60 Chance
+
+1 PO
+
+250 Vitalité
+//
+Dragodinde Prune et Ivoire 
+Dragodinde - Niveau 60
+Dragodinde Prune et Ivoire
+
+60 Puissance
+
+1 PO
+
+250 Vitalité
+//
+Dragodinde Prune et Rousse 
+Dragodinde - Niveau 60
+Dragodinde Prune et Rousse
+
+1 PO
+
+400 Vitalité
+//
+Dragodinde Prune et Turquoise 
+Dragodinde - Niveau 60
+Dragodinde Prune et Turquoise
+
+1 PO
+
+60 Prospection
+
+250 Vitalité
+//
+Dragodinde Prune et Orchidée 
+Dragodinde - Niveau 60
+Dragodinde Prune et Orchidée
+
+1 PO
+
+60 Intelligence
+
+250 Vitalité
+//
+Dragodinde Prune et Pourpre 
+Dragodinde - Niveau 60
+Dragodinde Prune et Pourpre
+
+1 PO
+
+60 Force
+
+250 Vitalité
+//
+Dragodinde en armure 
+Dragodinde - Niveau 60
+Dragodinde en armure
+
+5 % Rés. Eau
+
+5 % Rés. Feu
+
+5 % Rés. Terre
+
+5 % Rés. Neutre
+
+5 % Rés. Air
+
+70 Puissance
+//
+Dragodinde à Plumes 
+Dragodinde - Niveau 60
+Dragodinde à Plumes
+
+40 Dommages Poussée
+
+200 Vitalité
+//
+Rakariatre 
+Montilier - Niveau 60
+Rakariatre
+
+1 PA
+
+-100 Vitalité
+//
+Kwaltess 
+Montilier - Niveau 60
+Kwaltess
+
+1 PA
+
+-100 Vitalité
+//
+Kougnard 
+Montilier - Niveau 60
+Kougnard
+
+2100 Initiative
+//
+Dragouf Noir 
+Montilier - Niveau 60
+Dragouf Noir
+
+440 Vitalité
+//
+Balafreux 
+Montilier - Niveau 60
+Balafreux
+
+44 Dommages Critique
+//
+Sakochère 
+Montilier - Niveau 60
+Sakochère
+
+1100 Pods
+//
+Kramkram 
+Montilier - Niveau 60
+Kramkram
+
+70 Puissance
+
+5 % Rés. Neutre
+
+5 % Rés. Terre
+
+5 % Rés. Eau
+
+5 % Rés. Feu
+
+5 % Rés. Air
+//
+Dragouf 
+Montilier - Niveau 60
+Dragouf
+
+75 Puissance
+//
+Péki 
+Familier - Niveau 60
+Péki
+
+550 Vitalité
+//
+Dragodinde Armurivante 
+Dragodinde - Niveau 60
+Dragodinde Armurivante
+
+40 Rés. Critique
+
+150 Vitalité
+//
+Grifforis le Nouveau-né 
+Montilier - Niveau 1
+Grifforis le Nouveau-né
+
+25 Prospection
+
+50 Initiative
+//
+Mécaphor 
+Montilier - Niveau 1
+Mécaphor
+
+65 Rés. Critique
+//
+Kokiroule 
+Familier - Niveau 1
+Kokiroule
+
+55 Esquive PM
+//
+Serpiplume apprivoisé 
+Familier - Niveau 1
+Serpiplume apprivoisé
+
+44 Dommages Critique
+//
+Noxine 
+Familier - Niveau 1
+Noxine
+
+550 Vitalité
+//
+Mandrog 
+Familier - Niveau 1
+Mandrog
+
+65 Rés. Poussée
+//
+Kometh 
+Familier - Niveau 1
+Kometh
+
+65 Rés. Poussée
+//
+Racoune 
+Familier - Niveau 1
+Racoune
+
+110 Force
+//
+Bouloute d'Halouine 
+Familier - Niveau 1
+Bouloute d'Halouine
+
+65 Rés. Critique
+//
+Moumoute 
+Familier - Niveau 1
+Moumoute
+
+110 Intelligence
+//
+Eliôme 
+Familier - Niveau 1
+Eliôme
+
+110 Chance
+//
+Dauge 
+Familier - Niveau 1
+Dauge
+
+110 Force
+//
+Mosk 
+Familier - Niveau 1
+Mosk
+
+110 Agilité
+//
+Chaperlipopette 
+Familier - Niveau 1
+Chaperlipopette
+
+2100 Initiative
+//
+
+Surime 
+Familier - Niveau 1
+Surime
+
+55 Fuite
+//
+Chienchien Roux 
+Familier - Niveau 1
+Chienchien Roux
+
+55 Tacle
+//
+Platypus 
+Familier - Niveau 1
+Platypus
+
+17 Dommages
+//
+Dragoune Dorée 
+Familier - Niveau 1
+Dragoune Dorée
+
+220 Sagesse
+//
+Koalak Sanguin 
+Familier - Niveau 1
+Panoplie du Koalak 
+Koalak Sanguin
+
+220 Sagesse
+//
+Atouin 
+Familier - Niveau 1
+Panoplie Tortue 
+Atouin
+
+17 Soin
+
+17 Dommages
+//
+Bwak de Terre 
+Familier - Niveau 1
+Panoplie du Kwak de Terre 
+Bwak de Terre
+
+110 Force
+
+27 % Rés. Terre
+
+110 Vitalité
+//
+Bwak d'Air 
+Familier - Niveau 1
+Panoplie du Kwak du Vent 
+Bwak d'Air
+
+110 Agilité
+
+27 % Rés. Air
+
+110 Vitalité
+//
+Bwak d'Eau 
+Familier - Niveau 1
+Panoplie du Kwak de Glace 
+Bwak d'Eau
+
+110 Chance
+
+27 % Rés. Eau
+
+110 Vitalité
+//
+Bwak de Feu 
+Familier - Niveau 1
+Panoplie du Kwak de Flammes 
+Bwak de Feu
+
+110 Intelligence
+
+27 % Rés. Feu
+
+110 Vitalité
+//
+Drakopin 
+Familier - Niveau 1
+Drakopin
+
+220 Sagesse
+//
+Dragnir 
+Montilier - Niveau 1
+Dragnir
+
+64 Dommages Poussée
+//
+Pholaine 
+Montilier - Niveau 1
+Pholaine
+
+110 Agilité
+//
+Kougnard Albâtre 
+Montilier - Niveau 1
+Kougnard Albâtre
+
+44 Dommages Critique
+//
+Godron Ventru 
+Familier - Niveau 1
+Godron Ventru
+
+44 Rés. Feu
+//
+Godron Poisseux 
+Familier - Niveau 1
+Godron Poisseux
+
+44 Rés. Terre
+//
+Godron Mesuré 
+Familier - Niveau 1
+Godron Mesuré
+
+44 Rés. Air
+//
+Godron Charmant 
+Familier - Niveau 1
+Godron Charmant
+
+44 Rés. Eau
+//
+Godron Brâkmarien 
+Familier - Niveau 1
+Godron Brâkmarien
+
+65 Rés. Critique
+//
+Godron Bontarien 
+Familier - Niveau 1
+Godron Bontarien
+
+44 Dommages Critique
+//
+La Chose 
+Familier - Niveau 1
+La Chose
+
+55 Esquive PA
+//
+Homlett 
+Familier - Niveau 1
+Homlett
+
+2100 Initiative
+//
+Bounax 
+Montilier - Niveau 1
+Bounax
+
+550 Vitalité
+//
+Chacharge 
+Montilier - Niveau 1
+Chacharge
+
+220 Sagesse
+//
+Titard 
+Familier - Niveau 1
+Titard
+
+550 Vitalité
+//
+Titcham 
+Familier - Niveau 1
+Titcham
+
+550 Vitalité
+//
+Brâkarien 
+Familier - Niveau 1
+Brâkarien
+
+550 Vitalité
+//
+Bontique 
+Familier - Niveau 1
+Bontique
+
+550 Vitalité
+//
+Gerbouille 
+Familier - Niveau 1
+Gerbouille
+
+75 Puissance
+//
+Chacha Ventru 
+Familier - Niveau 1
+Chacha Ventru
+
+22 Dommages Feu
+//
+Chacha Bontarien 
+Familier - Niveau 1
+Chacha Bontarien
+
+55 Fuite
+//
+Chacha Brâkmarien 
+Familier - Niveau 1
+Chacha Brâkmarien
+
+55 Tacle
+//
+Chacha Charmant 
+Familier - Niveau 1
+Chacha Charmant
+
+22 Dommages Eau
+//
+Chacha Poisseux 
+Familier - Niveau 1
+Chacha Poisseux
+
+22 Dommages Terre
+//
+Chacha Mesuré 
+Familier - Niveau 1
+Chacha Mesuré
+
+22 Dommages Air
+//
+Boune Ventru 
+Familier - Niveau 1
+Boune Ventru
+
+27 % Rés. Feu
+//
+Boune Bontarien 
+Familier - Niveau 1
+Boune Bontarien
+
+55 Soin
+//
+Boune Charmant 
+Familier - Niveau 1
+Boune Charmant
+
+27 % Rés. Eau
+//
+Boune Poisseux 
+Familier - Niveau 1
+Boune Poisseux
+
+27 % Rés. Terre
+//
+Boune Mesuré 
+Familier - Niveau 1
+Boune Mesuré
+
+27 % Rés. Air
+//
+Tofu Bontarien 
+Familier - Niveau 1
+Tofu Bontarien
+
+2100 Initiative
+//
+Tofu Brakmarien 
+Familier - Niveau 1
+Tofu Brakmarien
+
+75 Puissance
+//
+Tofu Charmant 
+Familier - Niveau 1
+Tofu Charmant
+
+110 Chance
+//
+Tofu Poisseux 
+Familier - Niveau 1
+Tofu Poisseux
+
+110 Force
+//
+Tofu Ventru 
+Familier - Niveau 1
+Tofu Ventru
+
+110 Intelligence
+//
+Tofu Mesuré 
+Familier - Niveau 1
+Tofu Mesuré
+
+110 Agilité
+//
+Boskito 
+Familier - Niveau 1
+Boskito
+
+220 Sagesse
+//
+Toukancre 
+Familier - Niveau 1
+Toukancre
+
+44 Rés. Air
+
+44 Rés. Terre
+
+//
+Kokulte 
+Familier - Niveau 1
+Kokulte
+
+44 Dommages Critique
+//
+Kafarce 
+Familier - Niveau 1
+Kafarce
+
+64 Dommages Poussée
+//
+Kroliméa 
+Familier - Niveau 1
+Kroliméa
+
+75 Puissance
+//
+Ploup 
+Familier - Niveau 1
+Ploup
+
+55 Soin
+//
+Mékrabe 
+Familier - Niveau 1
+Mékrabe
+
+17 Dommages
+//
+Meulourd 
+Familier - Niveau 1
+Meulourd
+
+50 Prospection
+
+90 Sagesse
+//
+Rauleur 
+Familier - Niveau 1
+Rauleur
+
+90 Sagesse
+
+50 Puissance
+//
+Scarakiri 
+Familier - Niveau 1
+Scarakiri
+
+30 Rés. Poussée
+
+15 Dommages
+//
+Sourisette 
+Familier - Niveau 1
+Sourisette
+
+300 Initiative
+
+300 Vitalité
+//
+Tofu Givré 
+Familier - Niveau 1
+Tofu Givré
+
+55 Esquive PM
+//
+Tofüm 
+Familier - Niveau 1
+Tofüm
+
+44 Dommages Critique
+//
+Serpète 
+Familier - Niveau 1
+Serpète
+
+17 Dommages
+//
+Phénix 
+Familier - Niveau 1
+Phénix
+
+45 Prospection
+
+45 Sagesse
+//
+Gwo Tofu Ventripotent 
+Familier - Niveau 1
+Gwo Tofu Ventripotent
+
+220 Sagesse
+//
+Givrefoux 
+Familier - Niveau 1
+Givrefoux
+
+220 Sagesse
+//
+Ecumouth 
+Familier - Niveau 1
+Ecumouth
+
+17 Dommages
+//
+Médugivre 
+Familier - Niveau 1
+Médugivre
+
+55 Soin
+//
+Cromeugnon 
+Familier - Niveau 1
+Cromeugnon
+
+550 Vitalité
+//
+Gupin 
+Familier - Niveau 1
+Gupin
+
+550 Vitalité
+//
+Chauffe-souris Délavée 
+Familier - Niveau 1
+Chauffe-souris Délavée
+
+55 Esquive PA
+//
+Kouin-Kouin Noir 
+Familier - Niveau 1
+Kouin-Kouin Noir
+
+55 Soin
+//
+Chienchien Tigré 
+Familier - Niveau 1
+Chienchien Tigré
+
+17 Dommages
+//
+Meuch 
+Familier - Niveau 1
+Meuch
+
+55 Soin
+//
+Tofoudre 
+Familier - Niveau 1
+Tofoudre
+
+17 Dommages
+//
+Raknaille 
+Familier - Niveau 1
+Raknaille
+
+64 Dommages Poussée
+//
+Goultus 
+Familier - Niveau 1
+Goultus
+
+75 Puissance
+//
+Gelutin 
+Familier - Niveau 1
+Gelutin
+
+550 Vitalité
+//
+Vampyrette 
+Familier - Niveau 1
+Vampyrette
+
+550 Vitalité
+//
+Shushu de Rushu 
+Familier - Niveau 1
+Shushu de Rushu
+
+550 Vitalité
+//
+Dragoune Noire 
+Familier - Niveau 1
+Dragoune Noire
+
+220 Sagesse
+//
+Crocodaille 
+Familier - Niveau 1
+Crocodaille
+
+75 Puissance
+//
+Miniminotot 
+Familier - Niveau 1
+Miniminotot
+
+75 Puissance
+//
+Tiwabbit Kiafin 
+Familier - Niveau 1
+Tiwabbit Kiafin
+
+75 Puissance
+//
+Chacha Angora 
+Familier - Niveau 1
+Chacha Angora
+
+75 Puissance
+//
+Bouloute du Parrain 
+Familier - Niveau 1
+Bouloute du Parrain
+
+550 Vitalité
+//
+Fëanor 
+Familier - Niveau 1
+Fëanor
+
+75 Puissance
+//
+Ross 
+Familier - Niveau 1
+Ross
+
+55 Soin
+//
+Walk 
+Familier - Niveau 1
+Walk
+
+75 Puissance
+//
+Bébé Pandawa 
+Familier - Niveau 1
+Bébé Pandawa
+
+75 Puissance
+//
+Tifoux 
+Familier - Niveau 1
+Tifoux
+
+220 Sagesse
+//
+El Scarador 
+Familier - Niveau 1
+El Scarador
+
+26 % Rés. Feu
+
+//
+Abra Kadabra 
+Familier - Niveau 1
+Abra Kadabra
+
+75 Puissance
+//
+Bouloute 
+Familier - Niveau 1
+Bouloute
+
+550 Vitalité
+//
+Willy le Relou 
+Familier - Niveau 1
+Willy le Relou
+
+75 Puissance
+//
+Pioute violet 
+Familier - Niveau 1
+Pioute violet
+
+17 Dommages
+//
+Pioute vert 
+Familier - Niveau 1
+Pioute vert
+
+110 Force
+//
+Pioute rouge 
+Familier - Niveau 1
+Pioute rouge
+
+110 Intelligence
+//
+Pioute rose 
+Familier - Niveau 1
+Pioute rose
+
+55 Soin
+//
+Pioute jaune 
+Familier - Niveau 1
+Pioute jaune
+
+110 Agilité
+//
+Pioute bleu 
+Familier - Niveau 1
+Pioute bleu
+
+110 Chance
+//
+Marcassin de combat 
+Familier - Niveau 1
+Marcassin de combat
+
+70 Puissance
+
+5 % Rés. Air
+
+5 % Rés. Eau
+
+5 % Rés. Terre
+
+5 % Rés. Feu
+
+5 % Rés. Neutre
+//
+Léopardo 
+Familier - Niveau 1
+Léopardo
+
+75 Puissance
+//
+Ecureuil Chenapan 
+Familier - Niveau 1
+Ecureuil Chenapan
+
+75 Puissance
+//
+Chacha Tigré 
+Familier - Niveau 1
+Chacha Tigré
+
+75 Puissance
+//
+Minimino 
+Familier - Niveau 1
+Minimino
+
+75 Puissance
+//
+Croum 
+Familier - Niveau 1
+Croum
+
+26 % Rés. Air
+
+//
+Dragoune Rose 
+Familier - Niveau 1
+Dragoune Rose
+
+220 Sagesse
+//
+Fotome 
+Familier - Niveau 1
+Fotome
+
+550 Vitalité
+//
+Petit Chienchien Noir 
+Familier - Niveau 1
+Petit Chienchien Noir
+
+75 Puissance
+//
+Petit Chacha Blanc 
+Familier - Niveau 1
+Petit Chacha Blanc
+
+2100 Initiative
+//
+Chienchien Noir 
+Familier - Niveau 1
+Chienchien Noir
+
+75 Puissance
+

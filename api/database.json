@@ -100484,6 +100484,39 @@
         "type": "bonus_panoplie",
         "paliers": [
             {
+                "nombre_items": 8,
+                "bonus": [
+                    {
+                        "nom": "Vitalité",
+                        "valeur": "80"
+                    },
+                    {
+                        "nom": "Force",
+                        "valeur": "35"
+                    },
+                    {
+                        "nom": "Agilité",
+                        "valeur": "55"
+                    },
+                    {
+                        "nom": "Sagesse",
+                        "valeur": "25"
+                    },
+                    {
+                        "nom": "PA",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PM",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PO",
+                        "valeur": "2"
+                    }
+                ]
+            },
+            {
                 "nombre_items": 7,
                 "bonus": [
                     {
@@ -100627,6 +100660,39 @@
         "nom_panoplie": "Panoplie du Kwak de Terre",
         "type": "bonus_panoplie",
         "paliers": [
+            {
+                "nombre_items": 8,
+                "bonus": [
+                    {
+                        "nom": "Vitalité",
+                        "valeur": "80"
+                    },
+                    {
+                        "nom": "Force",
+                        "valeur": "55"
+                    },
+                    {
+                        "nom": "Chance",
+                        "valeur": "35"
+                    },
+                    {
+                        "nom": "Sagesse",
+                        "valeur": "25"
+                    },
+                    {
+                        "nom": "PA",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PM",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PO",
+                        "valeur": "2"
+                    }
+                ]
+            },
             {
                 "nombre_items": 7,
                 "bonus": [
@@ -100772,6 +100838,39 @@
         "type": "bonus_panoplie",
         "paliers": [
             {
+                "nombre_items": 8,
+                "bonus": [
+                    {
+                        "nom": "Vitalité",
+                        "valeur": "80"
+                    },
+                    {
+                        "nom": "Intelligence",
+                        "valeur": "35"
+                    },
+                    {
+                        "nom": "Chance",
+                        "valeur": "55"
+                    },
+                    {
+                        "nom": "Sagesse",
+                        "valeur": "25"
+                    },
+                    {
+                        "nom": "PA",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PM",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PO",
+                        "valeur": "2"
+                    }
+                ]
+            },
+            {
                 "nombre_items": 7,
                 "bonus": [
                     {
@@ -100915,6 +101014,39 @@
         "nom_panoplie": "Panoplie du Kwak de Flammes",
         "type": "bonus_panoplie",
         "paliers": [
+            {
+                "nombre_items": 8,
+                "bonus": [
+                    {
+                        "nom": "Vitalité",
+                        "valeur": "80"
+                    },
+                    {
+                        "nom": "Intelligence",
+                        "valeur": "55"
+                    },
+                    {
+                        "nom": "Agilité",
+                        "valeur": "35"
+                    },
+                    {
+                        "nom": "Sagesse",
+                        "valeur": "25"
+                    },
+                    {
+                        "nom": "PA",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PM",
+                        "valeur": "1"
+                    },
+                    {
+                        "nom": "PO",
+                        "valeur": "2"
+                    }
+                ]
+            },
             {
                 "nombre_items": 7,
                 "bonus": [
@@ -102784,6 +102916,3278 @@
                         "valeur": "1"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "nom": "Bisouglours",
+        "type_objet": "Familier",
+        "niveau": 80,
+        "panoplie": "Panoplie Infernale",
+        "stats": [
+            {
+                "nom": "Dommages Feu",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Blérodoudou",
+        "type_objet": "Familier",
+        "niveau": 80,
+        "panoplie": "Panoplie Meurtrière",
+        "stats": [
+            {
+                "nom": "Dommages Air",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Bulbisou",
+        "type_objet": "Familier",
+        "niveau": 80,
+        "panoplie": "Panoplie Contrebandière",
+        "stats": [
+            {
+                "nom": "Dommages Terre",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Kanigloups",
+        "type_objet": "Familier",
+        "niveau": 80,
+        "panoplie": "Panoplie Fluviale",
+        "stats": [
+            {
+                "nom": "Dommages Eau",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Barbare",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Aquilar",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "30"
+            }
+        ]
+    },
+    {
+        "nom": "Khin-Tohoune",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "125"
+            }
+        ]
+    },
+    {
+        "nom": "Tarentina",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            }
+        ]
+    },
+    {
+        "nom": "Kompost",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "160"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Brûlih",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "160"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Dehluge",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "160"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Siroko",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "160"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Royale",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "70"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "80"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Agilité",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "400"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ivoire et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "80"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "70"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "80"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "8"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "80"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "2"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "1500"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "80"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "2"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Dorée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Ebène",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "60"
+            },
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Emeraude",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "80"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "2"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Intelligence",
+                "valeur": "60"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Amande et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "60"
+            },
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Ebène",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "60"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Emeraude",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "60"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Dorée et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "60"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Emeraude",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "30"
+            },
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "50"
+            },
+            {
+                "nom": "Chance",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "60"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "50"
+            },
+            {
+                "nom": "Intelligence",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ebène et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "50"
+            },
+            {
+                "nom": "Force",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Chance",
+                "valeur": "30"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "30"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "400"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Intelligence",
+                "valeur": "30"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Emeraude et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Force",
+                "valeur": "30"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "40"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "50"
+            },
+            {
+                "nom": "Intelligence",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Indigo et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "50"
+            },
+            {
+                "nom": "Force",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ivoire et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ivoire et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "40"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Ivoire et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "40"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Turquoise et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Orchidée et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Pourpre et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Turquoise et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "60"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Turquoise et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "60"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Orchidée et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "50"
+            },
+            {
+                "nom": "Force",
+                "valeur": "50"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Amande",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Invocation",
+                "valeur": "1"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "800"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Dorée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Critique",
+                "valeur": "5"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Ebène",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Agilité",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Emeraude",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "PM",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Indigo",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "60"
+            },
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Ivoire",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "60"
+            },
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Rousse",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "400"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Turquoise",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Prospection",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Orchidée",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Intelligence",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Prune et Pourpre",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PO",
+                "valeur": "1"
+            },
+            {
+                "nom": "Force",
+                "valeur": "60"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "250"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde en armure",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "70"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde à Plumes",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Poussée",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "200"
+            }
+        ]
+    },
+    {
+        "nom": "Rakariatre",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PA",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Kwaltess",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "PA",
+                "valeur": "1"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "-100"
+            }
+        ]
+    },
+    {
+        "nom": "Kougnard",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "2100"
+            }
+        ]
+    },
+    {
+        "nom": "Dragouf Noir",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "440"
+            }
+        ]
+    },
+    {
+        "nom": "Balafreux",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Sakochère",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Pods",
+                "valeur": "1100"
+            }
+        ]
+    },
+    {
+        "nom": "Kramkram",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "70"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            }
+        ]
+    },
+    {
+        "nom": "Dragouf",
+        "type_objet": "Montilier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Péki",
+        "type_objet": "Familier",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Dragodinde Armurivante",
+        "type_objet": "Dragodinde",
+        "niveau": 60,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Critique",
+                "valeur": "40"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "150"
+            }
+        ]
+    },
+    {
+        "nom": "Grifforis le Nouveau-né",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "25"
+            },
+            {
+                "nom": "Initiative",
+                "valeur": "50"
+            }
+        ]
+    },
+    {
+        "nom": "Mécaphor",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Critique",
+                "valeur": "65"
+            }
+        ]
+    },
+    {
+        "nom": "Kokiroule",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Esquive PM",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Serpiplume apprivoisé",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Noxine",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Mandrog",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Poussée",
+                "valeur": "65"
+            }
+        ]
+    },
+    {
+        "nom": "Kometh",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Poussée",
+                "valeur": "65"
+            }
+        ]
+    },
+    {
+        "nom": "Racoune",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Bouloute d'Halouine",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Critique",
+                "valeur": "65"
+            }
+        ]
+    },
+    {
+        "nom": "Moumoute",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Eliôme",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Dauge",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Mosk",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Chaperlipopette",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "2100"
+            }
+        ]
+    },
+    {
+        "nom": "Surime",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Fuite",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Chienchien Roux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Tacle",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Platypus",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Dragoune Dorée",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Koalak Sanguin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie du Koalak",
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Atouin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie Tortue",
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "17"
+            },
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Bwak de Terre",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie du Kwak de Terre",
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "110"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "27"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Bwak d'Air",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie du Kwak du Vent",
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "110"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "27"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Bwak d'Eau",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie du Kwak de Glace",
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "110"
+            },
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "27"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Bwak de Feu",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": "Panoplie du Kwak de Flammes",
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "110"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "27"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Drakopin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Dragnir",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Poussée",
+                "valeur": "64"
+            }
+        ]
+    },
+    {
+        "nom": "Pholaine",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Kougnard Albâtre",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Ventru",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Feu",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Poisseux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Terre",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Mesuré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Air",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Charmant",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Eau",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Brâkmarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Critique",
+                "valeur": "65"
+            }
+        ]
+    },
+    {
+        "nom": "Godron Bontarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "La Chose",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Esquive PA",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Homlett",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "2100"
+            }
+        ]
+    },
+    {
+        "nom": "Bounax",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Chacharge",
+        "type_objet": "Montilier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Titard",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Titcham",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Brâkarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Bontique",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Gerbouille",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Ventru",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Feu",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Bontarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Fuite",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Brâkmarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Tacle",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Charmant",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Eau",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Poisseux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Terre",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Mesuré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Air",
+                "valeur": "22"
+            }
+        ]
+    },
+    {
+        "nom": "Boune Ventru",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "27"
+            }
+        ]
+    },
+    {
+        "nom": "Boune Bontarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Boune Charmant",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "27"
+            }
+        ]
+    },
+    {
+        "nom": "Boune Poisseux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "27"
+            }
+        ]
+    },
+    {
+        "nom": "Boune Mesuré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Air",
+                "valeur": "27"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Bontarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "2100"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Brakmarien",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Charmant",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Poisseux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Ventru",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Mesuré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Boskito",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Toukancre",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Air",
+                "valeur": "44"
+            },
+            {
+                "nom": "Rés. Terre",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Kokulte",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Kafarce",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Poussée",
+                "valeur": "64"
+            }
+        ]
+    },
+    {
+        "nom": "Kroliméa",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Ploup",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Mékrabe",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Meulourd",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "50"
+            },
+            {
+                "nom": "Sagesse",
+                "valeur": "90"
+            }
+        ]
+    },
+    {
+        "nom": "Rauleur",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "90"
+            },
+            {
+                "nom": "Puissance",
+                "valeur": "50"
+            }
+        ]
+    },
+    {
+        "nom": "Scarakiri",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Rés. Poussée",
+                "valeur": "30"
+            },
+            {
+                "nom": "Dommages",
+                "valeur": "15"
+            }
+        ]
+    },
+    {
+        "nom": "Sourisette",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "300"
+            },
+            {
+                "nom": "Vitalité",
+                "valeur": "300"
+            }
+        ]
+    },
+    {
+        "nom": "Tofu Givré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Esquive PM",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Tofüm",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Critique",
+                "valeur": "44"
+            }
+        ]
+    },
+    {
+        "nom": "Serpète",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Phénix",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Prospection",
+                "valeur": "45"
+            },
+            {
+                "nom": "Sagesse",
+                "valeur": "45"
+            }
+        ]
+    },
+    {
+        "nom": "Gwo Tofu Ventripotent",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Givrefoux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Ecumouth",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Médugivre",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Cromeugnon",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Gupin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Chauffe-souris Délavée",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Esquive PA",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Kouin-Kouin Noir",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Chienchien Tigré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Meuch",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Tofoudre",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Raknaille",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages Poussée",
+                "valeur": "64"
+            }
+        ]
+    },
+    {
+        "nom": "Goultus",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Gelutin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Vampyrette",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Shushu de Rushu",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Dragoune Noire",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Crocodaille",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Miniminotot",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Tiwabbit Kiafin",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Angora",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Bouloute du Parrain",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Fëanor",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Ross",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Walk",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Bébé Pandawa",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Tifoux",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "El Scarador",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "26"
+            }
+        ]
+    },
+    {
+        "nom": "Abra Kadabra",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Bouloute",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Willy le Relou",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute violet",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Dommages",
+                "valeur": "17"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute vert",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Force",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute rouge",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Intelligence",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute rose",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Soin",
+                "valeur": "55"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute jaune",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Agilité",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Pioute bleu",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Chance",
+                "valeur": "110"
+            }
+        ]
+    },
+    {
+        "nom": "Marcassin de combat",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "70"
+            },
+            {
+                "nom": "% Rés. Air",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Eau",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Terre",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Feu",
+                "valeur": "5"
+            },
+            {
+                "nom": "% Rés. Neutre",
+                "valeur": "5"
+            }
+        ]
+    },
+    {
+        "nom": "Léopardo",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Ecureuil Chenapan",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Chacha Tigré",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Minimino",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Croum",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "% Rés. Air",
+                "valeur": "26"
+            }
+        ]
+    },
+    {
+        "nom": "Dragoune Rose",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Sagesse",
+                "valeur": "220"
+            }
+        ]
+    },
+    {
+        "nom": "Fotome",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Vitalité",
+                "valeur": "550"
+            }
+        ]
+    },
+    {
+        "nom": "Petit Chienchien Noir",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
+            }
+        ]
+    },
+    {
+        "nom": "Petit Chacha Blanc",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Initiative",
+                "valeur": "2100"
+            }
+        ]
+    },
+    {
+        "nom": "Chienchien Noir",
+        "type_objet": "Familier",
+        "niveau": 1,
+        "panoplie": null,
+        "stats": [
+            {
+                "nom": "Puissance",
+                "valeur": "75"
             }
         ]
     }
