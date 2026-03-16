@@ -12,7 +12,11 @@ export function initRadar(containerId, initialData) {
 
     svg = d3.select(containerId).html("")
         .append("svg")
-        .attr("width", width).attr("height", height)
+        // viewBox = "min-x min-y largeur hauteur"
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .style("width", "100%")  // Le SVG prend toute la largeur de son parent
+        .style("height", "auto") // La hauteur s'adapte proportionnellement
         .append("g")
         .attr("transform", `translate(${width/2}, ${height/2})`);
 
