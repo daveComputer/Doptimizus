@@ -125,7 +125,7 @@ h3 { color: #00ffc8; text-align: center; border-bottom: 1px solid #30363d; paddi
 }
 
 .item-name { font-weight: bold; color: #f0f6fc; }
-.item-score-stuff { color: #8b949e; font-size: 0.9em; float: right; }
+.item-score-stuff { color: #8b949e; font-size: 0.9em; float: right; margin-bottom: 12px;}
 .item-score { font-size: 0.8em; color: #8b949e; display: block; }
 
 .stuff-card {
@@ -552,4 +552,28 @@ input[type=number] {
 
 #btn-envoyer:hover {
     background-color: #666;
+}
+
+/* Cette règle s'applique uniquement aux écrans de moins de 768px (mobiles/tablettes) */
+@media (max-width: 768px) {
+    .main-container, .workspace-container { 
+        display: flex;
+        flex-direction: column; /* On empile au lieu d'aligner à gauche/droite */
+        align-items: center;    /* On centre tout */
+        width: 100%;
+        padding: 10px;          /* Un peu d'air sur les côtés */
+    }
+
+    /* Le graphique prend toute la largeur */
+    .chart-panel {
+        width: 100% !important;
+        min-height: 300px;      /* On lui donne de la hauteur pour qu'il ne soit pas écrasé */
+        margin-bottom: 20px;
+    }
+
+    /* Les listes (top stuff / équipements) */
+    .side-panel{
+        width: 100% !important;
+        margin: 0;              /* On enlève les décalages à droite */
+    }
 }
