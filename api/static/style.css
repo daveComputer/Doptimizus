@@ -517,3 +517,39 @@ input[type=number] {
     opacity: 1;
     visibility: visible;
 }
+
+/* Le conteneur principal */
+.comment-form {
+    display: flex;
+    flex-direction: column; /* Aligne les enfants verticalement */
+    align-items: center;    /* Centre horizontalement */
+    max-width: 600px;       /* Largeur maximale pour que ce ne soit pas trop large sur PC */
+    margin: 20px auto;      /* Centre le bloc entier dans la page */
+    gap: 15px;              /* Ajoute de l'espace entre l'input, le textarea et le bouton */
+}
+
+/* L'input nom et le textarea */
+#comm-message {
+    width: 100%;            /* Prend toute la largeur du conteneur (600px max) */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;   /* Utilise la même police que le reste du site */
+    box-sizing: border-box; /* Évite que le padding ne fasse déborder l'élément */
+}
+
+
+/* Le bouton */
+#btn-envoyer {
+    padding: 10px 25px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#btn-envoyer:hover {
+    background-color: #666;
+}

@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
     if (btn) {
         btn.addEventListener("click", exportToJson);
     }
+    const bouton = document.getElementById('btn-envoyer');
+    if (bouton) {
+        bouton.addEventListener('click', envoyerCommentaire);
+    }
 });
 
 /**
@@ -102,5 +106,22 @@ async function exportToJson(e) {
     } finally {
         btn.disabled = false;
         btn.innerText = "Confirmer et Optimiser";
+    }
+}
+
+async function envoyerCommentaire() {
+    const message = document.getElementById('comm-message').value;
+    const messageInput = document.getElementById('comm-message');
+
+    if (!message) return alert("Le message est vide !");
+
+    const response = await fetch('/add_comment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({message: message })
+    });
+
+    if (response.ok) {
+        messageInput.value = "";
     }
 }

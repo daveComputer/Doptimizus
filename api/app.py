@@ -13,7 +13,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from api.statistiques import enrichir_base_de_donnees
 from api.statistiques import extraire_top_3_par_type
 from api.optimiseur_top3 import extraire_top_n_solutions
-from api.database import get_db_connection, init_db
+from api.database import get_db_connection, init_db, send_discord_notification
 API_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
@@ -160,6 +160,27 @@ def rehabilitate_item():
     conn.commit()
     conn.close()
     return "OK", 200
+
+@app.route('/add_comment', methods=['POST'])
+def add_comment():
+    data = request.json
+    message = data.get('message')
+
+    if not message:
+        return "Message vide", 400
+
+    conn = get_db_connection()
+    try:
+        conn.execute('INSERT INTO commentaires (message) VALUES (?)', (message,))
+        conn.commit()
+        
+        # --- APPEL À DISCORD ICI ---
+        send_discord_notification( message)
+        
+    finally:
+        conn.close()
+        
+    return "Merci pour votre retour !", 200
 
 
 if __name__ == "__main__":

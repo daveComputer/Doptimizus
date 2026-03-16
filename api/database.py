@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import requests
 
 DB_PATH = "doptimizus.db"
 
@@ -24,8 +25,33 @@ def init_db():
             config_json TEXT NOT NULL
         )
     ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS commentaires (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            auteur TEXT,
+            message TEXT NOT NULL,
+            date DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
     conn.commit()
     conn.close()
+
+
+DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1483181860463841442/XinhHUqh7y2f9U3VCryZx9z4iUM_04J61cnDkNbseNIISCs6Uvu7gLd0SnYuAx3KIZ3Y"
+
+def send_discord_notification(message):
+    data = {
+        "content": f"🚀 **Nouveau commentaire reçu !**",
+        "embeds": [{
+            "description": message,
+            "color": 5814783, # Une couleur sympa (bleu-ish)
+            "footer": {"text": "Mon Site Web"}
+        }]
+    }
+    try:
+        requests.post(DISCORD_WEBHOOK_URL, json=data)
+    except Exception as e:
+        print(f"Erreur Discord : {e}")
 
 # Initialisation au lancement
 if __name__ == "__main__":
