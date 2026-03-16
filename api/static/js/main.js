@@ -115,13 +115,23 @@ async function envoyerCommentaire() {
 
     if (!message) return alert("Le message est vide !");
 
-    const response = await fetch('/add_comment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({message: message })
-    });
+    try {
+        const response = await fetch('/add_comment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({message: message })
+        });
 
-    if (response.ok) {
-        messageInput.value = "";
+        if (response.ok) {
+            messageInput.value = "";
+        }
+        else {
+            const errorText = await response.text();
+            alert("Erreur serveur : " + errorText);
+        }
+    }
+    catch (error) {
+        console.error("Erreur lors de l'envoi :", error);
+        alert("Impossible de contacter le serveur.");
     }
 }
