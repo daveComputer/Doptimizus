@@ -15,6 +15,7 @@ from api.statistiques import extraire_top_3_par_type
 from api.optimiseur_top3 import extraire_top_n_solutions
 from api.database import get_db_connection, init_db, send_discord_notification
 API_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(API_DIR, "database.db")
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
@@ -34,6 +35,12 @@ def serve_index():
 @app.route('/<path:path>')
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
+
+def get_db_connection():
+    # On force l'ouverture du fichier au bon endroit
+    conn = sqlite3.connect(DATABASE_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 @app.route('/save', methods=['POST'])
