@@ -23,6 +23,13 @@ CORS(app)  # Autorise le frontend à parler au backend
 
 app.secret_key = 'clementine'
 
+def get_db_connection():
+    # On force l'ouverture du fichier au bon endroit
+    conn = sqlite3.connect(DATABASE_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
 init_db()
 db_path = os.path.join(API_DIR, 'database.json')
 scores_path = os.path.join(API_DIR, 'database_scores.json')
@@ -36,11 +43,6 @@ def serve_index():
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
 
-def get_db_connection():
-    # On force l'ouverture du fichier au bon endroit
-    conn = sqlite3.connect(DATABASE_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
 
 
 @app.route('/save', methods=['POST'])
