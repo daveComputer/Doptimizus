@@ -1,11 +1,10 @@
 import sqlite3
 import os
 import requests
-
-DB_PATH = "doptimizus.db"
+from app import DATABASE_PATH
 
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DATABASE_PATH)
     conn.row_factory = sqlite3.Row  # Permet d'accéder aux colonnes par nom
     return conn
 
