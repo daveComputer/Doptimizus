@@ -1,7 +1,9 @@
 import sqlite3
 import os
 import requests
-from app import DATABASE_PATH
+
+API_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(API_DIR, "database.db")
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE_PATH)
