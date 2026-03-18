@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import sqlite3
-from flask import Flask, request, jsonify, send_from_directory, render_template
+from flask import Flask, request, jsonify, send_from_directory, render_template, session
 from flask_cors import CORS
 import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -18,7 +18,10 @@ API_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__,template_folder='web', 
             static_folder='static')
 CORS(app)  # Autorise le frontend à parler au backend
-items_exclus = []
+
+
+app.secret_key = 'clementine'
+
 init_db()
 db_path = os.path.join(API_DIR, 'database.json')
 scores_path = os.path.join(API_DIR, 'database_scores.json')
@@ -67,11 +70,12 @@ def save_data():
 def get_results():
     try:
         lvl = request.args.get('lvl', default=200, type=int)
+        user_id = session.get('user_id')
         
         # 1. RÉCUPÉRATION DE LA BLACKLIST DEPUIS SQLITE
         # On interroge la base de données au lieu de lire un fichier .txt
         conn = get_db_connection()
-        rows = conn.execute('SELECT item_nom FROM blacklist').fetchall()
+        rows = conn.execute('SELECT item_nom FROM blacklist WHERE user_id = ?', (user_id,)).fetchall()
         conn.close()
         
         # On transforme le résultat en une liste simple de noms
@@ -113,6 +117,7 @@ def get_results():
 @app.route('/exclude-item', methods=['POST'])
 def exclude_item():
     item_nom = request.json.get('item_nom')
+    user_id = session.get('user_id')
     
     # 1. Vérification initiale
     if not item_nom:
@@ -125,13 +130,12 @@ def exclude_item():
     conn = get_db_connection()
     try:
         for nom in noms_a_traiter:
-            # 3. Ajout à la liste en mémoire (si pas déjà présent)
-            if nom not in items_exclus:
-                items_exclus.append(nom)
-            
             # 4. Insertion en base de données
             try:
-                conn.execute('INSERT INTO blacklist (item_nom) VALUES (?)', (nom,))
+                conn.execute(
+                    'INSERT INTO blacklist (user_id, item_nom) VALUES (?, ?)', 
+                    (user_id, nom)
+                )
             except sqlite3.IntegrityError:
                 # L'item est déjà en DB, on passe au suivant
                 continue
@@ -146,11 +150,11 @@ def exclude_item():
 
 @app.route('/get-blacklist', methods=['GET'])
 def get_blacklist():
+    user_id = session.get('user_id')
     conn = get_db_connection()
-    items = conn.execute('SELECT item_nom FROM blacklist').fetchall()
+    rows = conn.execute('SELECT item_nom FROM blacklist WHERE user_id = ?', (user_id,)).fetchall()
     conn.close()
-    # On transforme les lignes en liste de strings
-    return jsonify([row['item_nom'] for row in items])
+    return [row['item_nom'] for row in rows]
 
 @app.route('/rehabilitate-item', methods=['POST'])
 def rehabilitate_item():
@@ -181,6 +185,14 @@ def add_comment():
         conn.close()
         
     return "Merci pour votre retour !", 200
+
+@app.before_request
+def ensure_user_id():
+    # On vérifie si l'ID existe
+    if 'user_id' not in session:
+        session['user_id'] = str(uuid.uuid4())
+        # On force Flask à envoyer le cookie de session immédiatement
+        session.permanent = True 
 
 
 if __name__ == "__main__":

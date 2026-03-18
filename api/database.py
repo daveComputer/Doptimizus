@@ -15,7 +15,9 @@ def init_db():
     conn.execute('''
         CREATE TABLE IF NOT EXISTS blacklist (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            item_nom TEXT UNIQUE NOT NULL
+            user_id TEXT, 
+            item_nom TEXT,
+            UNIQUE(user_id, item_nom)
         )
     ''')
     conn.execute('''
