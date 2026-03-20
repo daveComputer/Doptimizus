@@ -101,6 +101,8 @@ def executer_calcul_perso(config_user=None):
                                     "desir": desir.get("Caractéristique(s) principale(s)", 1)}
     scores_finaux["Dommages Neutre"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * FORCE/3/SUM_CARAC*20/moyenne_sort,
                                        "desir": desir.get("Caractéristique(s) principale(s)", 1)}
+    scores_finaux["Dommages Terre"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * FORCE*2/3/SUM_CARAC*20/moyenne_sort,
+                                       "desir": desir.get("Caractéristique(s) principale(s)", 1)}
     scores_finaux["Dommages Air"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * AGILITE/SUM_CARAC*20/moyenne_sort,
                                     "desir": desir.get("Caractéristique(s) principale(s)", 1)}
     scores_finaux["Dommages Feu"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * INTELLIGENCE/SUM_CARAC*20/moyenne_sort,
@@ -309,6 +311,8 @@ def enrichir_base_de_donnees(input_file, output_file, config_user=None):
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+    return calculer_poids_final(scores_finaux,poids_details)
+
 def choisir_meilleure_stat(resultat):
     """
     Pour les items comme les Bwak qui ont plusieurs stats, on peut choisir de ne prendre en compte que la meilleure.
@@ -451,6 +455,27 @@ def calculer_stats_moyennes_relatives(json_file, lvl_min, lvl_max):
         ratios_relatifs[nom] = round(moy / vitalite_moyenne, 4)
 
     return ratios_relatifs, vitalite_moyenne
+
+
+def calculer_poids_final(scores_finaux,poids_details):
+    """
+    Calcule un poids final pour chaque caractéristique en multipliant le score de désirabilité par la rareté.
+    Ce poids peut être utilisé pour ajuster l'importance de chaque stat dans d'autres calculs ou affichages.
+    """
+    poids_final = {}
+    for nom, stats in scores_finaux.items():
+        rarete = stats.get("rarete", 0)
+        desir = stats.get("desir", 0)
+        poids_final[nom] = round(rarete * desir, 4)
+
+    for nom, poids in poids_details.items():
+        poids_final[nom] = 0
+        for cat, stats in poids.items():
+            rarete = stats.get("rarete", 0)
+            desir = stats.get("desir", 0)
+            poids_final[nom] += round(rarete * desir, 4)
+
+    return poids_final
 
 # # --- EXEMPLE D'UTILISATION ---
 # ratios, vit_moy = calculer_stats_moyennes_relatives('database_scores.json', 10, 200)

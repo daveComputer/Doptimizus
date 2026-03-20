@@ -157,9 +157,9 @@ h3 { color: #00ffc8; text-align: center; border-bottom: 1px solid #30363d; paddi
     border-radius: 12px;
     border: 1px solid #30363d;
     margin-bottom: 20px;
-    width: 90%;
     max-width: 900px;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .config-group {
@@ -502,34 +502,33 @@ input[type=number] {
     position: relative;
 }
 
-/* La bulle d'aide (Tooltip) */
-.info-icon::after {
-    content: attr(data-tooltip); /* On récupère le texte du HTML */
-    position: absolute;
-    top: 50%;
-    left: 125%;
-    transform: translateY(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
+/* On supprime les anciens .info-icon:after et :before */
+
+.custom-tooltip {
+    position: fixed; /* Important pour ne pas être gêné par les overflow:hidden parents */
+    background-color: #161b22;
+    color: #e6edf3;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #39FF14; /* Ta touche néon */
     font-size: 0.85rem;
-    white-space: pre-wrap; /* Permet le retour à la ligne */
-    width: 400px; /* Largeur de la bulle */
-    z-index: 100;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    z-index: 9999;
+    max-width: 300px;
+    white-space: pre-wrap;
+    pointer-events: none; /* La souris passe à travers */
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: opacity 0.2s;
+}
+
+.custom-tooltip.visible {
+    opacity: 1;
 }
 
 
 /* Affichage au survol */
 .info-icon:hover::after, 
-.info-icon:hover::before {
-    opacity: 1;
-    visibility: visible;
-}
+
 
 /* Le conteneur principal */
 .comment-form {
@@ -588,5 +587,83 @@ input[type=number] {
     .side-panel{
         width: 100% !important;
         margin: 0;              /* On enlève les décalages à droite */
+    }
+}
+
+/* Conteneur parent pour mettre la config et les poids sur la même ligne */
+.header-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+
+/* Le conteneur de poids à droite */
+#weights-container {
+    width: 280px;
+    background-color: #000;
+    border: 1px solid #39FF14; /* Vert néon */
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+#weights-container h3 {
+    width: 100%;
+    color: #39FF14;
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+    text-transform: uppercase;
+    font-family: inherit; /* Utilise la police de ton site */
+}
+
+/* La liste scrollable à l'intérieur */
+#weights-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 120px; /* Ajuste selon la hauteur de ta config-bar */
+    padding: 10px;
+}
+
+.weight-line {
+    color: #39FF14;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    font-family: inherit;
+    border-bottom: 1px solid rgba(57, 255, 20, 0.05);
+}
+
+/* Scrollbar personnalisée Vert Néon */
+#weights-list::-webkit-scrollbar {
+    width: 4px;
+}
+#weights-list::-webkit-scrollbar-thumb {
+    background: #39FF14;
+    border-radius: 10px;
+}
+
+/* --- Adaptabilité Mobile --- */
+@media (max-width: 900px) {
+    .header-section {
+        /* On passe en mode classique quand il n'y a plus assez de place */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .header-spacer {
+        display: none;
+    }
+
+    #weights-container {
+        width: 100%;
+        max-width: 400px;
     }
 }

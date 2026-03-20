@@ -49,21 +49,31 @@ def serve_static(path):
 def save_data():
     try:
         data = request.json
+        user_id = session.get('user_id')
         
         # 1. SAUVEGARDE DANS SQLITE (Pour l'historique)
         conn = get_db_connection()
         conn.execute('INSERT INTO history (config_json) VALUES (?)', (json.dumps(data),))
         conn.commit()
-        conn.close()
 
         # 2. APPEL DE LA FONCTION D'ENRICHISSEMENT
         # On ne passe plus 'filename', mais directement 'data'
         # Assure-toi que enrichir_base_de_donnees peut traiter le dict directement !
-        enrichir_base_de_donnees(
+        poids_finaux=enrichir_base_de_donnees(
             db_path, 
             scores_path, 
             config_user=data  # On utilise le dictionnaire en mémoire
         )
+
+        try:
+            # On utilise INSERT OR REPLACE pour mettre à jour si l'user existe déjà
+            conn.execute('''
+                INSERT OR REPLACE INTO user_stats (user_id, poids_json) 
+                VALUES (?, ?)
+            ''', (user_id, json.dumps(poids_finaux))) # On transforme le dict en texte JSON
+            conn.commit()
+        finally:
+            conn.close()
         
         return jsonify({
             "status": "success", 
@@ -85,7 +95,6 @@ def get_results():
         # On interroge la base de données au lieu de lire un fichier .txt
         conn = get_db_connection()
         rows = conn.execute('SELECT item_nom FROM blacklist WHERE user_id = ?', (user_id,)).fetchall()
-        conn.close()
         
         # On transforme le résultat en une liste simple de noms
         items_bannis = [row['item_nom'] for row in rows]
@@ -105,12 +114,18 @@ def get_results():
             n=5, 
             items_exclus=items_bannis
         )
+
+        row = conn.execute('SELECT poids_json FROM user_stats WHERE user_id = ?', (user_id,)).fetchone()
+        conn.close()
+
+        poids = json.loads(row['poids_json']) if row else {}
         
         # 3. On renvoie tout au JS
         return jsonify({
             "status": "success",
             "top_items": top_items,
-            "top_stuffs": top_stuffs
+            "top_stuffs": top_stuffs,
+            "weights": poids
         })
         
     except Exception as e:

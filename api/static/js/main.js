@@ -3,6 +3,13 @@ import { initialData } from './config.js';
 import { initRadar } from './radar.js';
 import { displayResults, showError, hideError } from './ui.js';
 import { refreshBlacklistUI } from './blacklist.js';
+import { displayWeights } from './poids.js';
+import { initTooltips } from './tooltip.js';
+
+// Une fois que ton DOM est chargé
+document.addEventListener('DOMContentLoaded', () => {
+    initTooltips();
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Initialisation du radar au chargement avec tes données de config
@@ -99,7 +106,7 @@ async function exportToJson(e) {
         
         // Affichage via le module UI
         displayResults(data, true);
-
+        displayWeights(data.weights);
     } catch (error) {
         console.error('Erreur:', error);
         showError("Une erreur est survenue : " + error.message);
@@ -135,3 +142,5 @@ async function envoyerCommentaire() {
         alert("Impossible de contacter le serveur.");
     }
 }
+
+

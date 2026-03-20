@@ -177,32 +177,29 @@ export function initRadar(containerId, initialData) {
                 totalCapacity += requestedDelta > 0 ? (el.value - elFloor) : (30 - el.value);
             });
 
-            // 4. On ajuste le delta si les autres ne peuvent pas tout encaisser
-            let actualDelta = Math.min(Math.abs(requestedDelta), totalCapacity) * (requestedDelta > 0 ? 1 : -1);
+            if (Math.abs(requestedDelta)< totalCapacity) {
+                // 5. Redistribution proportionnelle au "poids" de chaque contributeur
+                // Pour une augmentation : on réduit proportionnellement à leur valeur actuelle
+                // Pour une réduction : on augmente proportionnellement à l'espace vide restant
+                let sumForWeight = contributors.reduce((sum, el) => {
+                    return sum + el.value;
+                }, 0);
 
-            // 5. Redistribution proportionnelle au "poids" de chaque contributeur
-            // Pour une augmentation : on réduit proportionnellement à leur valeur actuelle
-            // Pour une réduction : on augmente proportionnellement à l'espace vide restant
-            let sumForWeight = contributors.reduce((sum, el) => {
-                const elFloor = getMinimumValue(el.name);
-                return sum + (actualDelta > 0 ? (el.value - elFloor) : (30 - el.value));
-            }, 0);
+                contributors.forEach(el => {
+                    const elFloor = getMinimumValue(el.name);
+                    const weight = el.value / (sumForWeight || 1);
+                    el.value -= requestedDelta * weight;
+                    
+                    // Sécurité anti-débordement par micro-arrondi
+                    el.value = Math.max(elFloor, Math.min(30, el.value));
+                });
 
-            contributors.forEach(el => {
-                const elFloor = getMinimumValue(el.name);
-                const capacity = actualDelta > 0 ? (el.value - elFloor) : (30 - el.value);
-                const weight = capacity / (sumForWeight || 1);
-                el.value -= actualDelta * weight;
-                
-                // Sécurité anti-débordement par micro-arrondi
-                el.value = Math.max(elFloor, Math.min(30, el.value));
-            });
+                // 6. Mise à jour de l'axe traîné
+                d.value += requestedDelta;
+                d.value = Math.max(myFloor, Math.min(30, d.value));
 
-            // 6. Mise à jour de l'axe traîné
-            d.value += actualDelta;
-            d.value = Math.max(myFloor, Math.min(30, d.value));
-
-            updateGraph();
+                updateGraph();
+            }
         });
 
     svg.selectAll(".handle")
