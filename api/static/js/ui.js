@@ -27,6 +27,9 @@ export function displayResults(data, shouldScroll = false) {
         document.querySelectorAll('.item-card').forEach(c => {
             c.classList.remove('selected'); // On retire la classe partout
         });
+        document.querySelectorAll('.equipment-badge').forEach(c => {
+            c.classList.remove('selected'); // On retire la classe partout
+        });
     };
 
     // --- PARTIE 1 : TOP ITEMS PAR TYPE ---
@@ -65,6 +68,7 @@ export function displayResults(data, shouldScroll = false) {
             card.addEventListener("click", () => {
                 clearAllHighlights();
                 card.classList.add('selected'); // On active le néon
+                console.log('Répartition de l\'item sélectionné :', item.repartition);
                 updateSelectionMembrane(item.repartition, item.score);
             });
 
@@ -131,6 +135,15 @@ export function displayResults(data, shouldScroll = false) {
                         </svg>
                     </button>
                 `;
+
+                badge.addEventListener("click",async (e) => {
+                    e.stopPropagation();
+                    clearAllHighlights();
+                    badge.classList.add('selected'); // On active le néon
+                    console.log('Répartition de l\'item sélectionné :', item.repartition_stats);
+                    console.log('Score de l\'item sélectionné :', item.score);
+                    updateSelectionMembrane(item.repartition_stats, item.score);
+                });
 
                 // Événement sur le bouton (uniquement l'icône)
                 badge.querySelector(".delete-mini-btn").addEventListener("click", async (e) => {

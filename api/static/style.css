@@ -274,7 +274,7 @@ input[type=number] {
     flex-direction: column;
     align-items: center;
     flex: 0 0 600px;
-    position: sticky;
+    position: relative;
     top: 20px;
 }
 
@@ -390,6 +390,18 @@ input[type=number] {
     transition: all 0.2s ease;
 }
 
+.equipment-badge.selected {
+    border-color: #00ffc8 !important; /* Vert néon */
+    box-shadow: 0 0 12px rgba(0, 255, 200, 0.2);
+    background-color: #161b22;
+}
+
+.equipment-badge:hover {
+    background-color: #1c2128; /* Un gris un peu plus clair */
+    border-color: #58a6ff;     /* Bordure bleue (ou celle de ton choix) */
+    transform: translateY(-2px); /* Petit soulèvement de la carte */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
 /* Mini bouton de suppression dans le badge */
 .delete-mini-btn {
@@ -666,4 +678,31 @@ input[type=number] {
         width: 100%;
         max-width: 400px;
     }
+}
+
+.chart-help-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    background: #000;
+    border: 1px solid #39FF14; /* Ton vert néon */
+    color: #39FF14;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: help;
+    transition: all 0.2s ease;
+    z-index: 10; /* Pour qu'il soit au-dessus du SVG */
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.2);
+}
+
+.chart-help-btn:hover {
+    background: #39FF14;
+    color: #000;
+    box-shadow: 0 0 15px #39FF14;
 }

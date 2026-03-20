@@ -75,6 +75,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
     scores_vus = {}
     iteration = 0
     max_iterations = 50
+    items_vus=[]
 
     while len(solutions_trouvees) < 5 and iteration < max_iterations:
         iteration += 1
@@ -117,7 +118,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
                 solutions_trouvees.append({
                     "stuff": stuff_actuel,
                     "score": round(score_total_reel, 2),
-                    "repartition_axes": points_par_axe
+                    "repartition_axes": points_par_axe,
                 })
                 scores_vus[cle_unique] = len(solutions_trouvees) - 1
 
@@ -126,7 +127,17 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             prob += pulp.lpSum(current_vars) <= len(current_vars) - 1
         else:
             break 
-
+    
+    for solution in solutions_trouvees:
+        for it in solution["stuff"]:
+                    sc = it.get("score", 0)
+                    rep = it.get("repartition_stats", {})
+                    if it["nom"] not in items_vus:
+                        points_par_stat_it = {stat: sc * (pct / 100) for stat, pct in rep.items()}
+                        points_par_axe_it = mapper_points_vers_axes(points_par_stat_it)
+                        print(f"Item: {it['nom']}, Score: {sc}, Répartition: {rep}, Points par stat: {points_par_stat_it}, Points par axe: {points_par_axe_it}")
+                        it["repartition_stats"]= points_par_axe_it
+                        items_vus.append(it["nom"])
     return solutions_trouvees
 
 

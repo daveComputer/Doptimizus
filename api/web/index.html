@@ -44,7 +44,7 @@
             </div>
 
             <aside id="weights-container" class="hidden-initially">
-                <h3>Poids<span class="info-icon" data-tooltip="Les poids sont optimisés pour le PVP: la Vitalité et les PA/PM sont surévalués pour donner des stuffs viables">ⓘ</span></h3>
+                <h3>Poids modifiés<span class="info-icon" data-tooltip="Ces poids sont le produit de la désirabilité (calculée à partir de votre configuration de graphique) et de la rareté naturelle de la statistique (poids de forgemagie). Les poids sont déjà optimisés pour le PVP: la Vitalité et les PA/PM sont surévalués pour donner des stuffs viables">ⓘ</span></h3>
                 <div id="weights-list">
                     </div>
             </aside>
@@ -55,24 +55,25 @@
         <div class="workspace-container">
         
             <div id="left-panel" class="side-panel hidden-initially">
-                <h3>Top Items</h3>
+                <h3>Top Items<span class="info-icon" data-tooltip="Cliquer sur un élément permet de voir la répartition des statistiques qu'il donne. Cette répartition n'est pas influencée par vos paramètres, elle ne dépend que des poids de forgemagie">ⓘ</span></h3>
                 <div id="top-items-list" class="scrollable-list"></div>
             </div>
 
             <div class="chart-panel">
+                <div class="chart-help-btn info-icon" data-tooltip="Ces pourcentages représentent la part de désirabilité que vous accordez à chaque statistique. Un axe à 20% signifiera que le poids de la statistique associée sera 2 fois plus valorisé que celui de la statistique associée à un autre axe à 10%">?
+                </div>
                 <div id="chart"></div>
 
                 <div id="error-msg-container" style="display: none;">
                     <span id="error-text"></span>
                 </div>
-
                 <div id="controls">
                     <button id="export-btn" class="export-btn">Confirmer et Optimiser</button>
                 </div>
             </div>
 
             <div id="right-panel" class="side-panel hidden-initially">
-                <h3>Compositions</h3>
+                <h3>Compositions<span class="info-icon" data-tooltip="Cliquer sur un élément permet de voir la répartition des statistiques qu'il donne. Cette répartition n'est pas influencée par vos paramètres, elle ne dépend que des poids de forgemagie">ⓘ</span></h3>
                 <div id="top-stuffs-list" class="scrollable-list"></div>
             </div>
         </div>
