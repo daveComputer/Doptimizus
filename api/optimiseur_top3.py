@@ -1,7 +1,7 @@
 import json
 import pulp
 import os
-from statistiques import  mapper_points_vers_axes, executer_calcul_perso
+from api.statistiques import  mapper_points_vers_axes
 
 CONTRAINTES={
     "PA": 5,
