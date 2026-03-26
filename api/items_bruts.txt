@@ -52529,3 +52529,1293 @@ Chienchien Noir
 
 75 Puissance
 
+//
+Puissant majeur 
+Trophée - Niveau 150
+Puissant majeur
+
+40 Puissance
+//
+Féroce majeur 
+Trophée - Niveau 150
+Féroce majeur
+
+12 Dommages Neutre
+
+12 Dommages Terre
+
+12 Dommages Feu
+
+12 Dommages Eau
+
+12 Dommages Air
+
+-24 Dommages Critique
+//
+Robuste majeur 
+Trophée - Niveau 150
+Robuste majeur
+
+80 Puissance
+
+-12 Critique
+//
+Muraille Air majeure 
+Trophée - Niveau 150
+Muraille Air majeure
+
+-8 % Rés. Feu
+
+40 Rés. Air
+//
+Muraille Eau majeure 
+Trophée - Niveau 150
+Muraille Eau majeure
+
+-8 % Rés. Neutre
+
+40 Rés. Eau
+//
+Muraille Feu majeure 
+Trophée - Niveau 150
+Muraille Feu majeure
+
+-8 % Rés. Terre
+
+40 Rés. Feu
+//
+Muraille Neutre majeure 
+Trophée - Niveau 150
+Muraille Neutre majeure
+
+-8 % Rés. Eau
+
+40 Rés. Neutre
+//
+Muraille Terre majeure 
+Trophée - Niveau 150
+Muraille Terre majeure
+
+-8 % Rés. Air
+
+40 Rés. Terre
+//
+Précurseur majeur 
+Trophée - Niveau 150
+Précurseur majeur
+
+-100 Vitalité
+
+800 Initiative
+//
+Inflexible majeur 
+Trophée - Niveau 150
+Inflexible majeur
+
+-32 Fuite
+
+96 Rés. Poussée
+//
+Bousculeur majeur 
+Trophée - Niveau 150
+Bousculeur majeur
+
+-32 Tacle
+
+64 Dommages Poussée
+//
+Evanescent majeur 
+Trophée - Niveau 150
+Evanescent majeur
+
+-32 Esquive PA
+
+32 Esquive PM
+//
+Imprenable majeur 
+Trophée - Niveau 150
+Imprenable majeur
+
+32 Esquive PA
+
+-32 Esquive PM
+//
+Paralyseur majeur 
+Trophée - Niveau 150
+Paralyseur majeur
+
+24 Retrait PA
+
+-24 Esquive PM
+//
+Entraveur majeur 
+Trophée - Niveau 150
+Entraveur majeur
+
+24 Retrait PM
+
+-24 Esquive PA
+//
+Saccageur Air majeur 
+Trophée - Niveau 150
+Saccageur Air majeur
+
+20 Dommages Air
+
+-8 % Rés. Feu
+//
+Saccageur Eau majeur 
+Trophée - Niveau 150
+Saccageur Eau majeur
+
+20 Dommages Eau
+
+-8 % Rés. Neutre
+//
+Saccageur Feu majeur 
+Trophée - Niveau 150
+Saccageur Feu majeur
+
+20 Dommages Feu
+
+-8 % Rés. Terre
+//
+Saccageur Neutre majeur 
+Trophée - Niveau 150
+Saccageur Neutre majeur
+
+20 Dommages Neutre
+
+-8 % Rés. Eau
+//
+Saccageur Terre majeur 
+Trophée - Niveau 150
+Saccageur Terre majeur
+
+20 Dommages Terre
+
+-8 % Rés. Air
+//
+Bastion majeur 
+Trophée - Niveau 150
+Bastion majeur
+
+-32 Dommages Critique
+
+32 Rés. Critique
+//
+Taquin majeur 
+Trophée - Niveau 150
+Taquin majeur
+
+-200 Vitalité
+
+100 Chance
+//
+Equilibriste majeur 
+Trophée - Niveau 150
+Equilibriste majeur
+
+-200 Vitalité
+
+100 Agilité
+//
+Astucieux majeur 
+Trophée - Niveau 150
+Astucieux majeur
+
+-200 Vitalité
+
+100 Intelligence
+//
+Forcené majeur 
+Trophée - Niveau 150
+Forcené majeur
+
+-200 Vitalité
+
+100 Force
+//
+Docteur majeur 
+Trophée - Niveau 150
+Docteur majeur
+
+-200 Vitalité
+
+32 Soin
+//
+Vagabond majeur 
+Trophée - Niveau 150
+Vagabond majeur
+
+-32 Tacle
+
+32 Fuite
+//
+Bloqueur majeur 
+Trophée - Niveau 150
+Bloqueur majeur
+
+32 Tacle
+
+-32 Fuite
+//
+Ravageur Terre majeur 
+Trophée - Niveau 150
+Ravageur Terre majeur
+
+12 Dommages Terre
+//
+Survivant majeur 
+Trophée - Niveau 150
+Survivant majeur
+
+120 Vitalité
+//
+Furibond majeur 
+Trophée - Niveau 150
+Furibond majeur
+
+60 Force
+//
+Savant majeur 
+Trophée - Niveau 150
+Savant majeur
+
+60 Intelligence
+//
+Joueur majeur 
+Trophée - Niveau 150
+Joueur majeur
+
+60 Chance
+//
+Acrobate majeur 
+Trophée - Niveau 150
+Acrobate majeur
+
+60 Agilité
+//
+Soigneur majeur 
+Trophée - Niveau 150
+Soigneur majeur
+
+16 Soin
+//
+Initiateur majeur 
+Trophée - Niveau 150
+Initiateur majeur
+
+400 Initiative
+//
+Ravageur Neutre majeur 
+Trophée - Niveau 150
+Ravageur Neutre majeur
+
+12 Dommages Neutre
+//
+Ravageur Feu majeur 
+Trophée - Niveau 150
+Ravageur Feu majeur
+
+12 Dommages Feu
+//
+Ravageur Eau majeur 
+Trophée - Niveau 150
+Ravageur Eau majeur
+
+12 Dommages Eau
+//
+Ravageur Air majeur 
+Trophée - Niveau 150
+Ravageur Air majeur
+
+12 Dommages Air
+//
+Cuirassé Neutre majeur 
+Trophée - Niveau 150
+Cuirassé Neutre majeur
+
+24 Rés. Neutre
+//
+Cuirassé Terre majeur 
+Trophée - Niveau 150
+Cuirassé Terre majeur
+
+24 Rés. Terre
+//
+Cuirassé Feu majeur 
+Trophée - Niveau 150
+Cuirassé Feu majeur
+
+24 Rés. Feu
+//
+Cuirassé Eau majeur 
+Trophée - Niveau 150
+Cuirassé Eau majeur
+
+24 Rés. Eau
+//
+Cuirassé Air majeur 
+Trophée - Niveau 150
+Cuirassé Air majeur
+
+24 Rés. Air
+//
+Rempart majeur 
+Trophée - Niveau 150
+Rempart majeur
+
+12 Rés. Critique
+//
+Adamantin majeur 
+Trophée - Niveau 150
+Adamantin majeur
+
+48 Rés. Poussée
+//
+Pousseur majeur 
+Trophée - Niveau 150
+Pousseur majeur
+
+32 Dommages Poussée
+//
+Insaisissable majeur 
+Trophée - Niveau 150
+Insaisissable majeur
+
+16 Esquive PA
+//
+Fugitif majeur 
+Trophée - Niveau 150
+Fugitif majeur
+
+16 Esquive PM
+//
+Engourdisseur majeur 
+Trophée - Niveau 150
+Engourdisseur majeur
+
+12 Retrait PA
+//
+Ralentisseur majeur 
+Trophée - Niveau 150
+Ralentisseur majeur
+
+12 Retrait PM
+//
+Fuyard majeur 
+Trophée - Niveau 150
+Fuyard majeur
+
+16 Fuite
+//
+Tacleur majeur 
+Trophée - Niveau 150
+Tacleur majeur
+
+16 Tacle
+//
+Puissant 
+Trophée - Niveau 100
+Puissant
+
+20 Puissance
+//
+Féroce 
+Trophée - Niveau 100
+Féroce
+
+6 Dommages Neutre
+
+6 Dommages Terre
+
+6 Dommages Feu
+
+6 Dommages Eau
+
+6 Dommages Air
+
+-12 Dommages Critique
+//
+Voyageur 
+Trophée - Niveau 100
+Voyageur
+
+1 PM
+
+-20 Tacle
+
+-20 Fuite
+//
+Turbulent 
+Trophée - Niveau 100
+Turbulent
+
+1 PA
+
+-1 PM
+PM < 6
+//
+Robuste 
+Trophée - Niveau 100
+Robuste
+
+40 Puissance
+
+-6 Critique
+//
+Muraille Eau 
+Trophée - Niveau 100
+Muraille Eau
+
+-4 % Rés. Neutre
+
+20 Rés. Eau
+//
+Muraille Feu 
+Trophée - Niveau 100
+Muraille Feu
+
+-4 % Rés. Terre
+
+20 Rés. Feu
+//
+Muraille Neutre 
+Trophée - Niveau 100
+Muraille Neutre
+
+-4 % Rés. Eau
+
+20 Rés. Neutre
+//
+Muraille Terre 
+Trophée - Niveau 100
+Muraille Terre
+
+-4 % Rés. Air
+
+20 Rés. Terre
+//
+Précurseur 
+Trophée - Niveau 100
+Précurseur
+
+-50 Vitalité
+
+400 Initiative
+//
+Inflexible 
+Trophée - Niveau 100
+Inflexible
+
+-16 Fuite
+
+48 Rés. Poussée
+//
+Bousculeur 
+Trophée - Niveau 100
+Bousculeur
+
+-16 Tacle
+
+32 Dommages Poussée
+//
+Evanescent 
+Trophée - Niveau 100
+Evanescent
+
+-16 Esquive PA
+
+16 Esquive PM
+//
+Imprenable 
+Trophée - Niveau 100
+Imprenable
+
+16 Esquive PA
+
+-16 Esquive PM
+//
+Paralyseur 
+Trophée - Niveau 100
+Paralyseur
+
+12 Retrait PA
+
+-12 Esquive PM
+//
+Entraveur 
+Trophée - Niveau 100
+Entraveur
+
+12 Retrait PM
+
+-12 Esquive PA
+//
+Saccageur Air 
+Trophée - Niveau 100
+Saccageur Air
+
+10 Dommages Air
+
+-4 % Rés. Feu
+//
+Saccageur Eau 
+Trophée - Niveau 100
+Saccageur Eau
+
+10 Dommages Eau
+
+-4 % Rés. Neutre
+//
+Saccageur Feu 
+Trophée - Niveau 100
+Saccageur Feu
+
+10 Dommages Feu
+
+-4 % Rés. Terre
+//
+Saccageur Neutre 
+Trophée - Niveau 100
+Saccageur Neutre
+
+10 Dommages Neutre
+
+-4 % Rés. Eau
+//
+Saccageur Terre 
+Trophée - Niveau 100
+Saccageur Terre
+
+10 Dommages Terre
+
+-4 % Rés. Air
+//
+Bastion 
+Trophée - Niveau 100
+Bastion
+
+-16 Dommages Critique
+
+16 Rés. Critique
+//
+Taquin 
+Trophée - Niveau 100
+Taquin
+
+-100 Vitalité
+
+50 Chance
+//
+Equilibriste 
+Trophée - Niveau 100
+Equilibriste
+
+-100 Vitalité
+
+50 Agilité
+//
+Astucieux 
+Trophée - Niveau 100
+Astucieux
+
+-100 Vitalité
+
+50 Intelligence
+//
+Forcené 
+Trophée - Niveau 100
+Forcené
+
+-100 Vitalité
+
+50 Force
+//
+Docteur 
+Trophée - Niveau 100
+Docteur
+
+-100 Vitalité
+
+16 Soin
+//
+Vagabond 
+Trophée - Niveau 100
+Vagabond
+
+-16 Tacle
+
+16 Fuite
+//
+Bloqueur 
+Trophée - Niveau 100
+Bloqueur
+
+16 Tacle
+
+-16 Fuite
+//
+Survivant 
+Trophée - Niveau 100
+Survivant
+
+60 Vitalité
+//
+Furibond 
+Trophée - Niveau 100
+Furibond
+
+30 Force
+//
+Savant 
+Trophée - Niveau 100
+Savant
+
+30 Intelligence
+//
+Joueur 
+Trophée - Niveau 100
+Joueur
+
+30 Chance
+//
+Acrobate 
+Trophée - Niveau 100
+Acrobate
+
+30 Agilité
+//
+Soigneur 
+Trophée - Niveau 100
+Soigneur
+
+8 Soin
+//
+Ravageur Terre 
+Trophée - Niveau 100
+Ravageur Terre
+
+6 Dommages Terre
+//
+Initiateur 
+Trophée - Niveau 100
+Initiateur
+
+200 Initiative
+//
+Ravageur Neutre 
+Trophée - Niveau 100
+Ravageur Neutre
+
+6 Dommages Neutre
+//
+Ravageur Feu 
+Trophée - Niveau 100
+Ravageur Feu
+
+6 Dommages Feu
+//
+Ravageur Eau 
+Trophée - Niveau 100
+Ravageur Eau
+
+6 Dommages Eau
+//
+Ravageur Air 
+Trophée - Niveau 100
+Ravageur Air
+
+6 Dommages Air
+//
+Cuirassé Neutre 
+Trophée - Niveau 100
+Cuirassé Neutre
+
+12 Rés. Neutre
+//
+Cuirassé Terre 
+Trophée - Niveau 100
+Cuirassé Terre
+
+12 Rés. Terre
+//
+Cuirassé Feu 
+Trophée - Niveau 100
+Cuirassé Feu
+
+12 Rés. Feu
+//
+Cuirassé Eau 
+Trophée - Niveau 100
+Cuirassé Eau
+
+12 Rés. Eau
+//
+Cuirassé Air 
+Trophée - Niveau 100
+Cuirassé Air
+
+12 Rés. Air
+//
+Rempart 
+Trophée - Niveau 100
+Rempart
+
+6 Rés. Critique
+//
+Adamantin 
+Trophée - Niveau 100
+Adamantin
+
+24 Rés. Poussée
+//
+Pousseur 
+Trophée - Niveau 100
+Pousseur
+
+16 Dommages Poussée
+//
+Insaisissable 
+Trophée - Niveau 100
+Insaisissable
+
+8 Esquive PA
+//
+Fugitif 
+Trophée - Niveau 100
+Fugitif
+
+8 Esquive PM
+//
+Engourdisseur 
+Trophée - Niveau 100
+Engourdisseur
+
+6 Retrait PA
+//
+Ralentisseur 
+Trophée - Niveau 100
+Ralentisseur
+
+6 Retrait PM
+//
+Fuyard 
+Trophée - Niveau 100
+Fuyard
+
+8 Fuite
+//
+Tacleur 
+Trophée - Niveau 100
+Tacleur
+
+8 Tacle
+//
+Puissant mineur 
+Trophée - Niveau 50
+Puissant mineur
+
+10 Puissance
+//
+Féroce mineur 
+Trophée - Niveau 50
+Féroce mineur
+
+3 Dommages Neutre
+
+3 Dommages Terre
+
+3 Dommages Feu
+
+3 Dommages Eau
+
+3 Dommages Air
+
+-6 Dommages Critique
+//
+Examinateur 
+Trophée - Niveau 50
+Examinateur
+
+1 PO
+//
+Robuste mineur 
+Trophée - Niveau 50
+Robuste mineur
+
+20 Puissance
+
+-3 Critique
+//
+Muraille Air mineure 
+Trophée - Niveau 50
+Muraille Air mineure
+
+-2 % Rés. Feu
+
+10 Rés. Air
+//
+Muraille Eau mineure 
+Trophée - Niveau 50
+Muraille Eau mineure
+
+-2 % Rés. Neutre
+
+10 Rés. Eau
+//
+Muraille Feu mineure 
+Trophée - Niveau 50
+Muraille Feu mineure
+
+-2 % Rés. Terre
+
+10 Rés. Feu
+//
+Muraille Neutre mineure 
+Trophée - Niveau 50
+Muraille Neutre mineure
+
+-2 % Rés. Eau
+
+10 Rés. Neutre
+//
+Muraille Terre mineure 
+Trophée - Niveau 50
+Muraille Terre mineure
+
+-2 % Rés. Air
+
+10 Rés. Terre
+//
+Précurseur mineur 
+Trophée - Niveau 50
+Précurseur mineur
+
+-25 Vitalité
+
+200 Initiative
+//
+Inflexible mineur 
+Trophée - Niveau 50
+Inflexible mineur
+
+-8 Fuite
+
+24 Rés. Poussée
+//
+Bousculeur mineur 
+Trophée - Niveau 50
+Bousculeur mineur
+
+-8 Tacle
+
+16 Dommages Poussée
+//
+Evanescent mineur 
+Trophée - Niveau 50
+Evanescent mineur
+
+-8 Esquive PA
+
+8 Esquive PM
+//
+Imprenable mineur 
+Trophée - Niveau 50
+Imprenable mineur
+
+8 Esquive PA
+
+-8 Esquive PM
+//
+Paralyseur mineur 
+Trophée - Niveau 50
+Paralyseur mineur
+
+6 Retrait PA
+
+-6 Esquive PM
+//
+Entraveur mineur 
+Trophée - Niveau 50
+Entraveur mineur
+
+6 Retrait PM
+
+-6 Esquive PA
+//
+Saccageur Air mineur 
+Trophée - Niveau 50
+Saccageur Air mineur
+
+5 Dommages Air
+
+-2 % Rés. Feu
+//
+Saccageur Eau mineur 
+Trophée - Niveau 50
+Saccageur Eau mineur
+
+5 Dommages Eau
+
+-2 % Rés. Neutre
+//
+Saccageur Feu mineur 
+Trophée - Niveau 50
+Saccageur Feu mineur
+
+5 Dommages Feu
+
+-2 % Rés. Terre
+//
+Saccageur Neutre mineur 
+Trophée - Niveau 50
+Saccageur Neutre mineur
+
+5 Dommages Neutre
+
+-2 % Rés. Eau
+//
+Saccageur Terre mineur 
+Trophée - Niveau 50
+Saccageur Terre mineur
+
+5 Dommages Terre
+
+-2 % Rés. Air
+//
+Bastion mineur 
+Trophée - Niveau 50
+Bastion mineur
+
+-8 Dommages Critique
+
+8 Rés. Critique
+//
+Taquin mineur 
+Trophée - Niveau 50
+Taquin mineur
+
+-50 Vitalité
+
+25 Chance
+//
+Equilibriste mineur 
+Trophée - Niveau 50
+Equilibriste mineur
+
+-50 Vitalité
+
+25 Agilité
+//
+Astucieux mineur 
+Trophée - Niveau 50
+Astucieux mineur
+
+-50 Vitalité
+
+25 Intelligence
+//
+Forcené mineur 
+Trophée - Niveau 50
+Forcené mineur
+
+-50 Vitalité
+
+25 Force
+//
+Docteur mineur 
+Trophée - Niveau 50
+Docteur mineur
+
+-50 Vitalité
+
+8 Soin
+//
+Vagabond mineur 
+Trophée - Niveau 50
+Vagabond mineur
+
+-8 Tacle
+
+8 Fuite
+//
+Bloqueur mineur 
+Trophée - Niveau 50
+Bloqueur mineur
+
+8 Tacle
+
+-8 Fuite
+//
+Ravageur Terre mineur 
+Trophée - Niveau 50
+Ravageur Terre mineur
+
+3 Dommages Terre
+//
+Survivant mineur 
+Trophée - Niveau 50
+Survivant mineur
+
+30 Vitalité
+//
+Furibond mineur 
+Trophée - Niveau 50
+Furibond mineur
+
+15 Force
+//
+Joueur mineur 
+Trophée - Niveau 50
+Joueur mineur
+
+15 Chance
+//
+Savant mineur 
+Trophée - Niveau 50
+Savant mineur
+
+15 Intelligence
+//
+Acrobate mineur 
+Trophée - Niveau 50
+Acrobate mineur
+
+15 Agilité
+//
+Soigneur mineur 
+Trophée - Niveau 50
+Soigneur mineur
+
+4 Soin
+//
+Initiateur mineur 
+Trophée - Niveau 50
+Initiateur mineur
+
+100 Initiative
+//
+Ravageur Neutre mineur 
+Trophée - Niveau 50
+Ravageur Neutre mineur
+
+3 Dommages Neutre
+//
+Ravageur Feu mineur 
+Trophée - Niveau 50
+Ravageur Feu mineur
+
+3 Dommages Feu
+//
+Ravageur Eau mineur 
+Trophée - Niveau 50
+Ravageur Eau mineur
+
+3 Dommages Eau
+//
+Ravageur Air mineur 
+Trophée - Niveau 50
+Ravageur Air mineur
+
+3 Dommages Air
+//
+Cuirassé Neutre mineur 
+Trophée - Niveau 50
+Cuirassé Neutre mineur
+
+6 Rés. Neutre
+//
+Cuirassé Terre mineur 
+Trophée - Niveau 50
+Cuirassé Terre mineur
+
+6 Rés. Terre
+//
+Cuirassé Feu mineur 
+Trophée - Niveau 50
+Cuirassé Feu mineur
+
+6 Rés. Feu
+//
+Cuirassé Eau mineur 
+Trophée - Niveau 50
+Cuirassé Eau mineur
+
+6 Rés. Eau
+//
+Cuirassé Air mineur 
+Trophée - Niveau 50
+Cuirassé Air mineur
+
+6 Rés. Air
+//
+Rempart mineur 
+Trophée - Niveau 50
+Rempart mineur
+
+3 Rés. Critique
+//
+Adamantin mineur 
+Trophée - Niveau 50
+Adamantin mineur
+
+12 Rés. Poussée
+//
+Pousseur mineur 
+Trophée - Niveau 50
+Pousseur mineur
+
+8 Dommages Poussée
+//
+Insaisissable mineur 
+Trophée - Niveau 50
+Insaisissable mineur
+
+4 Esquive PA
+//
+Fugitif mineur 
+Trophée - Niveau 50
+Fugitif mineur
+
+4 Esquive PM
+//
+Engourdisseur mineur 
+Trophée - Niveau 50
+Engourdisseur mineur
+
+3 Retrait PA
+//
+Ralentisseur mineur 
+Trophée - Niveau 50
+Ralentisseur mineur
+
+3 Retrait PM
+//
+Fuyard mineur 
+Trophée - Niveau 50
+Fuyard mineur
+
+4 Fuite
+//
+Tacleur mineur 
+Trophée - Niveau 50
+Tacleur mineur
+
+4 Tacle
+//
+Dofus Tâcheté 
+Dofus - Niveau 200
+Dofus Tâcheté
+
+1 Invocation
+//
+Dofus des Glaces 
+Dofus - Niveau 180
+Dofus des Glaces
+
+20 Dommages Neutre
+
+20 Dommages Terre
+
+20 Dommages Feu
+
+20 Dommages Eau
+
+20 Dommages Air
+//
+Dofus Magmatique 
+Dofus - Niveau 180
+Dofus Magmatique
+
+91 à 120 Rés. Poussée
+//
+Dorigami 
+Dofus - Niveau 180
+Dorigami
+
+35 Rés. Critique
+//
+Domakuro 
+Dofus - Niveau 180
+Domakuro
+
+30 Dommages Critique
+//
+Dofus Émeraude 
+Dofus - Niveau 140
+Dofus Émeraude
+
+300 Vitalité
+
+//
+Dofus des Glaces intemporel 
+Dofus - Niveau 120
+Dofus des Glaces intemporel
+
+5 Dommages Neutre
+
+5 Dommages Terre
+
+5 Dommages Feu
+
+5 Dommages Eau
+
+5 Dommages Air
+//
+Dolmanax 
+Dofus - Niveau 120
+Dolmanax
+
+60 Force
+
+60 Intelligence
+
+60 Chance
+
+60 Agilité
+
+60 Sagesse
+//
+Dofushu 
+Dofus - Niveau 100
+Dofushu
+
+1 PO
+//
+Dofus Cawotte 
+Dofus - Niveau 40
+Dofus Cawotte
+
+25 Force
+
+25 Intelligence
+
+25 Chance
+
+25 Agilité
+//
+Dofus Turquoise 
+Dofus - Niveau 6
+Dofus Turquoise
+
+11 à 20 Critique
+//
+Dofus Pourpre 
+Dofus - Niveau 6
+Dofus Pourpre
+
+100 Puissance
+//
+Dofus Ocre 
+Dofus - Niveau 6
+Dofus Ocre
+
+1 PA
+//
+Dofus Vulbis 
+Dofus - Niveau 6
+Dofus Vulbis
+
+1 PM

@@ -1,10 +1,23 @@
 import json
 import pulp
 import os
+from statistiques import  mapper_points_vers_axes, executer_calcul_perso
+
+CONTRAINTES={
+    "PA": 5,
+    "PM": 3,
+    "PO": 6,
+    "Invocations": 5,
+    "% Rés. Neutre": 35,
+    "% Rés. Terre": 35,
+    "% Rés. Feu": 35,
+    "% Rés. Eau": 35,
+    "% Rés. Air": 35
+}
 
 
     
-def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
+def extraire_top_n_solutions(json_file, lvl_max, poids,n=3, items_exclus=None):
     # Chargement initial identique
     with open(json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -15,6 +28,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
     TYPES_ARMES = ["Hache", "Pelle", "Marteau", "Épée", "Dagues", "Bâton", "Baguette", "Arc", "Faux", "Pioche"]
     TYPES_CAPE=[ "Cape", "Sac"]
     TYPES_MONTURE = ["Familier", "Dragodinde","Montilier"]
+    TYPES_TROPHEES = ["Trophée","Dofus"]
 
     # Création du problème de base
     prob = pulp.LpProblem("Optimisation_Top_N", pulp.LpMaximize)
@@ -32,7 +46,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
         items_dispo = [it for it in items if it.get("panoplie") == p_name]
         if items_dispo:
             set_vars[p_name] = {}
-            p_scores = {p["nombre_items"]: p.get("score", 0) for p in s["paliers"]}
+            p_scores = {p["nombre_items"]: {"score":p.get("score", 0), "bonus": p.get("bonus", {})} for p in s["paliers"]}
             panoplie_scores[p_name] = p_scores
             p_reps = {p["nombre_items"]: p.get("repartition_stats", {}) for p in s["paliers"]}
             panoplie_repartitions[p_name] = p_reps
@@ -49,6 +63,8 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             t_final = "Cape"
         elif it.get("type_objet") in TYPES_MONTURE:
             t_final = "Monture"
+        elif it.get("type_objet") in TYPES_TROPHEES:
+            t_final = "Trophée/Dofus"
         else:
             t_final = it.get("type_objet")
         if t_final not in slots: slots[t_final] = []
@@ -67,15 +83,53 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             prob += sum_x >= k * y_var
 
     # Objectif
+    excess_vars = {
+        stat: pulp.LpVariable(f"excess_{stat}", lowBound=0, cat=pulp.LpContinuous)
+        for stat in CONTRAINTES.keys()
+    }
+    # 3. Calcul de la somme brute des stats (Items + Paliers)
+    penalites = []
+
+    for stat, limite in CONTRAINTES.items():
+        # Somme sur les items
+        somme_items = pulp.lpSum([
+            it.get("stats", {}).get(stat, 0) * item_vars[it["_lp_var"]] 
+            for it in items
+        ])
+        
+        # Somme sur les paliers de panoplie
+        somme_paliers = pulp.lpSum([
+            panoplie_scores[p_name][k].get("stats", {}).get(stat, 0) * set_vars[p_name][k]
+            for p_name in set_vars for k in set_vars[p_name]
+        ])
+
+        # Ajustement de la limite pour les BL
+        limite_eff = limite + 1 if (stat == "PA" and lvl_max < 100) else limite
+
+        # CONTRAINTE D'EXCÈS : excess_stat >= (Total - Limite)
+        # Si Total < Limite, excess_stat vaudra 0 (grâce au lowBound=0 et à la maximisation)
+        prob += excess_vars[stat] >= (somme_items + somme_paliers) - limite_eff
+
+        # On calcule la pénalité : Excès * Poids de la stat
+        if "Rés" not in stat:
+            poid = poids.get(stat, 1) # Par défaut 1 si non trouvé
+        else:
+            poid=poids.get("% Rés.")
+        penalites.append(excess_vars[stat] * poid)
+
+    # 4. DÉFINITION DE L'OBJECTIF FINAL
     score_items = pulp.lpSum([it.get("score", 0) * item_vars[it["_lp_var"]] for it in items])
-    score_paliers = pulp.lpSum([panoplie_scores[p_name][k] * set_vars[p_name][k] for p_name in set_vars for k in set_vars[p_name]])
-    prob += score_items + score_paliers
+    score_paliers = pulp.lpSum([panoplie_scores[p_name][k]["score"] * set_vars[p_name][k] for p_name in set_vars for k in set_vars[p_name]])
+
+    # Objectif = Gain brut - Pénalités d'excès
+    prob.setObjective(score_items + score_paliers - pulp.lpSum(penalites))
 
     solutions_trouvees = []
     scores_vus = {}
     iteration = 0
     max_iterations = 50
     items_vus=[]
+    prob += pulp.lpSum(item_vars.values()) >= 10, "Min_Items"
 
     while len(solutions_trouvees) < 5 and iteration < max_iterations:
         iteration += 1
@@ -102,7 +156,7 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             for p_name in set_vars:
                 for k in set_vars[p_name]:
                     if pulp.value(set_vars[p_name][k]) == 1:
-                        sc = panoplie_scores[p_name][k]
+                        sc = panoplie_scores[p_name][k]["score"]
                         rep = panoplie_repartitions[p_name][k]
                         score_total_reel += sc
                         for stat, pct in rep.items():
@@ -113,12 +167,11 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
             points_par_axe = mapper_points_vers_axes(points_par_stat)
             cle_unique = (score_arrondi, tuple(sorted(points_par_axe.items())))
             if cle_unique not in scores_vus:
-
                 # D. Sauvegarde de la solution
                 solutions_trouvees.append({
                     "stuff": stuff_actuel,
                     "score": round(score_total_reel, 2),
-                    "repartition_axes": points_par_axe,
+                    "repartition_axes": points_par_axe
                 })
                 scores_vus[cle_unique] = len(solutions_trouvees) - 1
 
@@ -135,44 +188,8 @@ def extraire_top_n_solutions(json_file, lvl_max, n=3, items_exclus=None):
                     if it["nom"] not in items_vus:
                         points_par_stat_it = {stat: sc * (pct / 100) for stat, pct in rep.items()}
                         points_par_axe_it = mapper_points_vers_axes(points_par_stat_it)
-                        print(f"Item: {it['nom']}, Score: {sc}, Répartition: {rep}, Points par stat: {points_par_stat_it}, Points par axe: {points_par_axe_it}")
                         it["repartition_stats"]= points_par_axe_it
                         items_vus.append(it["nom"])
     return solutions_trouvees
 
 
-def mapper_points_vers_axes(points_par_stat):
-    """
-    Regroupe les points des caractéristiques précises vers les axes du radar
-    en utilisant un dictionnaire de mapping.
-    """
-    mapping = {
-        "Caractéristique(s) principale(s)": ["Force", "Intelligence", "Agilité", "Chance", "Dommages", "Dommages Terre", "Dommages Feu", "Dommages Eau", "Dommages Air", "Dommages Neutre", "Puissance"],
-        "Initiative": ["Initiative"],
-        "Dommages Poussée": ["Dommages Poussée"],
-        "Soins": ["Soins"],
-        "Critique": ["Critique"],
-        "Retrait PA": ["Retrait PA"],
-        "Retrait PM": ["Retrait PM"],
-        "Résistances": ["% Rés.", "Rés. fixe"],
-        "Vitalité": ["Vitalité"],
-        "PA": ["PA", "Esquive PA"],
-        "PM": ["PM", "Esquive PM"],
-        "PO": ["PO"],
-        "Invocations": ["Invocations"],
-        "Tacle": ["Tacle"],
-        "Fuite": ["Fuite"]
-    }
-
-    # Initialisation des points par axe à 0
-    # On utilise les clés du mapping pour s'assurer que tous nos axes existent
-    points_par_axe = {axe: 0 for axe in mapping.keys()}
-
-    # Parcours des statistiques reçues
-    for stat_nom, points in points_par_stat.items():
-        # On cherche à quel axe appartient la statistique 'stat_nom'
-        for axe, liste_stats_associees in mapping.items():
-            if stat_nom in liste_stats_associees:
-                points_par_axe[axe] += points
-                break # On a trouvé l'axe, on passe à la stat suivante
-    return points_par_axe

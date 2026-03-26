@@ -140,8 +140,6 @@ export function displayResults(data, shouldScroll = false) {
                     e.stopPropagation();
                     clearAllHighlights();
                     badge.classList.add('selected'); // On active le néon
-                    console.log('Répartition de l\'item sélectionné :', item.repartition_stats);
-                    console.log('Score de l\'item sélectionné :', item.score);
                     updateSelectionMembrane(item.repartition_stats, item.score);
                 });
 

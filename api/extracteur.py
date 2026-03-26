@@ -9,7 +9,7 @@ def parse_item(lines):
         "type_objet": "",
         "niveau": 0,
         "panoplie": None,
-        "stats": []
+        "stats": {}
     }
 
     # Ligne 1 : Type & Niveau (Format: "Anneau - Niveau 200")
@@ -39,10 +39,9 @@ def parse_item(lines):
     for i in range(stats_start_index, len(lines)):
         match = re.search(stat_pattern, lines[i])
         if match:
-            item_data["stats"].append({
-                "nom": match.group(2).strip(),
-                "valeur": match.group(1).replace('\xa0', ' ')
-            })
+            nom_stat = match.group(2).strip()
+            valeur_brute = match.group(1).replace('\xa0', ' ').strip()
+            item_data["stats"][nom_stat]=valeur_brute
     return item_data
 
 def parse_set_bonus(lines):
@@ -60,14 +59,13 @@ def parse_set_bonus(lines):
         if re.match(r"^\d+$", line):
             if current_palier:
                 set_data["paliers"].append(current_palier)
-            current_palier = {"nombre_items": int(line), "bonus": []}
+            current_palier = {"nombre_items": int(line), "bonus": {}}
         elif current_palier is not None:
             match = re.search(r"(-?\d+(?:\sà\s-?\d+)?)\s*(.*)", line)
             if match:
-                current_palier["bonus"].append({
-                    "nom": match.group(2).strip(),
-                    "valeur": match.group(1).replace('\xa0', ' ')
-                })
+                nom_stat = match.group(2).strip()
+                valeur_brute = match.group(1).replace('\xa0', ' ').strip()
+                current_palier["bonus"][nom_stat]=valeur_brute
     if current_palier:
         set_data["paliers"].append(current_palier)
     return set_data

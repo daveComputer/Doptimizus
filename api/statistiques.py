@@ -1,7 +1,6 @@
 import re
 import json
 import os
-from api.optimiseur_top3 import  mapper_points_vers_axes
 
 # 1. VOS MULTIPLICATEURS HARDCODÉS (La base fixe)
 # Ce sont les poids "théoriques" de chaque stat
@@ -66,19 +65,21 @@ def executer_calcul_perso(config_user=None):
     AGILITE = 1 if "Agilité" in elements_choisis else 0
     SUM_CARAC = FORCE + INTELLIGENCE + CHANCE + AGILITE
 
-    
-
+    sum_desir=0
+    for _,desirabilite in desir.items():
+        sum_desir+=desirabilite
+    moyenne_desir=sum_desir/15
     scores_finaux = {}
     
     scores_finaux["Puissance"]= {"rarete":  BASE_MULTIPLIERS["coeff_stat_principal"],
                                  "desir": desir.get("Caractéristique(s) principale(s)", 1)}
-    scores_finaux["PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_pa"],
-                          "desir": desir.get("PA", 1)}
-    scores_finaux["PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_pm"],
-                          "desir": desir.get("PM", 1)}
+    scores_finaux["PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_pa"]/2,
+                          "desir": desir.get("PA", 1)*2}
+    scores_finaux["PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_pm"]/2,
+                          "desir": desir.get("PM", 1)*2}
     scores_finaux["PO"]= {"rarete":  BASE_MULTIPLIERS["coeff_po"],
                           "desir": desir.get("PO", 1)}
-    scores_finaux["Invocations"]= {"rarete":  BASE_MULTIPLIERS["coeff_invoc"],
+    scores_finaux["Invocation"]= {"rarete":  BASE_MULTIPLIERS["coeff_invoc"],
                                    "desir": desir.get("Invocations", 1)}
     scores_finaux["Initiative"]= {"rarete":  BASE_MULTIPLIERS["coeff_ini"],
                                    "desir": desir.get("Initiative", 1)}
@@ -91,10 +92,10 @@ def executer_calcul_perso(config_user=None):
     dommage_moyen=lvl*4*(1-desir.get("Résistances", 1)/20*0.35)
     scores_finaux["Rés. fixe"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_fixe"]*300/dommage_moyen,
                                  "desir": desir.get("Résistances", 1)}
-    scores_finaux["Esquive PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"]/2,
-                                  "desir": desir.get("PA", 1)/desir.get("PM", 1)}
-    scores_finaux["Esquive PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"]/2,
-                                  "desir": desir.get("PM", 1)/desir.get("PA", 1)}
+    scores_finaux["Esquive PA"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"],
+                                  "desir": (1-1/(desir.get("PA", 1)/desir.get("PM", 1)+1))*moyenne_desir}
+    scores_finaux["Esquive PM"]= {"rarete":  BASE_MULTIPLIERS["coeff_re_pa/pm"],
+                                  "desir": (1-1/(desir.get("PM", 1)/desir.get("PA", 1)+1))*moyenne_desir}
     scores_finaux["Dommages"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"]*20/moyenne_sort,
                                  "desir": desir.get("Caractéristique(s) principale(s)", 1)}
     scores_finaux["Dommages Eau"]= {"rarete":  BASE_MULTIPLIERS["coeff_do"] * CHANCE/SUM_CARAC*20/moyenne_sort,
@@ -135,7 +136,7 @@ def executer_calcul_perso(config_user=None):
         "Force": {
             "Force": {"rarete":BASE_MULTIPLIERS["coeff_stat_principal"] * FORCE / SUM_CARAC,
                       "desir": desir.get("Caractéristique(s) principale(s)", 1)},
-            "Initiative": {"rarete":BASE_MULTIPLIERS["coeff_ini"] * (1.5 - FORCE),
+            "Initiative": {"rarete":BASE_MULTIPLIERS["coeff_ini"] * (1.5 - FORCE)/1.5,
                            "desir": desir.get("Initiative", 1)}
         },
         "Chance": {
@@ -159,10 +160,10 @@ def executer_calcul_perso(config_user=None):
                            "desir": desir.get("Retrait PA", 1)},
             "Retrait PM": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
                            "desir": desir.get("Retrait PM", 1)},
-            "Esquive PA": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
-                           "desir": desir.get("Esquive PA", 1)},
-            "Esquive PM": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/20,
-                           "desir": desir.get("Esquive PM", 1)}
+            "Esquive PA": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
+                           "desir": scores_finaux["Esquive PA"]["desir"]},
+            "Esquive PM": {"rarete": BASE_MULTIPLIERS["coeff_re_pa/pm"]/10,
+                           "desir": scores_finaux["Esquive PM"]["desir"]}
         },
         "Dommages Critique": {
             "Dommages": {"rarete": scores_finaux["Dommages"]["rarete"] * (chances_crit)*(1-chances_crit/2),
@@ -171,7 +172,7 @@ def executer_calcul_perso(config_user=None):
                           "desir": scores_finaux["Dommages"]["desir"]}
         }
     }
-    
+    print(poids_details["Sagesse"])
     return scores_finaux, poids_details
 
 def extraire_valeur_max(valeur_str):
@@ -201,10 +202,10 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None, config_
     score_norm=0
     details_points_total = {}
 
-    for stat in liste_stats:
-        nom = stat['nom']
+    for nom,valeur in liste_stats.items():
         # Attention : extraire_valeur_max doit bien retourner une valeur négative si c'est un malus
-        val = extraire_valeur_max(stat['valeur']) 
+        val = extraire_valeur_max(valeur) 
+        liste_stats[nom]=val
         points_cette_stat = 0
         points_norm=0
         categorie = None
@@ -228,7 +229,7 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None, config_
             categorie = "Vitalité"
             # Si tu n'as pas de poids pour la vita, on considère 1 par défaut ou 0
             points_cette_stat = val
-            points_norm = val
+            points_norm = val/2
         elif nom in poids_details:
             for cat, pts in poids_details[nom].items():
                 categorie = cat
@@ -265,7 +266,7 @@ def calculer_score_stats(liste_stats, scores_finaux, poids_details=None, config_
         "total": round(total_score, 2),
         "repartition": repartition,
         "details_points": details_points_total
-    }
+    }, liste_stats
 
 
 def enrichir_base_de_donnees(input_file, output_file, config_user=None):
@@ -274,12 +275,6 @@ def enrichir_base_de_donnees(input_file, output_file, config_user=None):
         data = json.load(f)
         
     scores_finaux,poids_details = executer_calcul_perso(config_user=config_user)
-    print("Scores finaux calculés :")
-    for cat, stats in scores_finaux.items():
-        print(f"  {cat}: {stats}")
-    print("Poids détaillés :")
-    for nom, poids in poids_details.items():
-        print(f"  {nom}: {poids}")
 
 
     for entry in data:
@@ -290,7 +285,7 @@ def enrichir_base_de_donnees(input_file, output_file, config_user=None):
             estimation_resistance_percentage= scores_finaux["% Rés."]["desir"]/global_sum*20 * config_user.get('lvl', 200)/20
             if estimation_resistance_percentage>35:
                 estimation_resistance_percentage=35
-            resultat = calculer_score_stats(entry["stats"], scores_finaux, poids_details,config_user=config_user)
+            resultat,entry["stats"] = calculer_score_stats(entry["stats"], scores_finaux, poids_details,config_user=config_user)
             if entry["nom"]=="Croum" or entry["nom"]=="El Scarador":
                 if estimation_resistance_percentage>9 and estimation_resistance_percentage<29:
                     croum_factor=2*(1-(estimation_resistance_percentage/40-0.225))
@@ -304,7 +299,7 @@ def enrichir_base_de_donnees(input_file, output_file, config_user=None):
         # Cas 2 : C'est un bonus de panoplie
         elif "type" in entry and entry["type"] == "bonus_panoplie":
             for palier in entry.get("paliers", []):
-                resultat_palier = calculer_score_stats(palier["bonus"], scores_finaux, poids_details,config_user=config_user)
+                resultat_palier, palier["bonus"] = calculer_score_stats(palier["bonus"], scores_finaux, poids_details,config_user=config_user)
                 palier["score"] = resultat_palier["total"]
                 palier["repartition_stats"] = resultat_palier["repartition"]
 
@@ -346,6 +341,7 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
     TYPES_ARMES = ["Épée", "Arc", "Dagues", "Bâton", "Marteau", "Pelle", "Hache", "Baguette", "Pioche", "Faux"]
     TYPES_CAPES = ["Cape", "Sac"]
     TYPES_MONTURE = ["Familier", "Dragodinde","Montilier"]
+    TYPES_TROPHEES = ["Trophée","Dofus"]
     
     # Filtrage : On exclut les items dans la blacklist SQLite
     items_valides = [
@@ -361,7 +357,8 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
         if type_nom in TYPES_ARMES: type_nom = "Armes"
         elif type_nom in TYPES_CAPES: type_nom = "Capes/Sacs"
         elif type_nom in TYPES_MONTURE: type_nom = "Montures"
-            
+        elif type_nom in TYPES_TROPHEES: type_nom = "Trophées/Dofus"
+
         if type_nom not in classement_par_type:
             classement_par_type[type_nom] = []
         classement_par_type[type_nom].append(item)
@@ -372,8 +369,12 @@ def extraire_top_3_par_type(input_file, lvl_max, exclus=None):
         
         resultat = []
         i = 0
+        if type_nom != "Trophées/Dofus":
+            n=3
+        else:
+            n=10
         # Sécurité : on s'arrête si on a 3 éléments OU si on a épuisé la liste
-        while len(resultat) < 3 and i < len(liste_triee):
+        while len(resultat) < n and i < len(liste_triee):
             it = liste_triee[i]
             sc_reel = it.get("score", 0)
             sc_arrondi = round(sc_reel, 2)
@@ -476,6 +477,43 @@ def calculer_poids_final(scores_finaux,poids_details):
             poids_final[nom] += round(rarete * desir, 4)
 
     return poids_final
+
+def mapper_points_vers_axes(points_par_stat):
+    """
+    Regroupe les points des caractéristiques précises vers les axes du radar
+    en utilisant un dictionnaire de mapping.
+    """
+    mapping = {
+        "Caractéristique(s) principale(s)": ["Force", "Intelligence", "Agilité", "Chance", "Dommages", "Dommages Terre", "Dommages Feu", "Dommages Eau", "Dommages Air", "Dommages Neutre", "Puissance"],
+        "Initiative": ["Initiative"],
+        "Dommages Poussée": ["Dommages Poussée"],
+        "Soins": ["Soins"],
+        "Critique": ["Critique"],
+        "Retrait PA": ["Retrait PA"],
+        "Retrait PM": ["Retrait PM"],
+        "Résistances": ["% Rés.", "Rés. fixe"],
+        "Vitalité": ["Vitalité"],
+        "PA": ["PA", "Esquive PA"],
+        "PM": ["PM", "Esquive PM"],
+        "PO": ["PO"],
+        "Invocations": ["Invocation"],
+        "Tacle": ["Tacle"],
+        "Fuite": ["Fuite"]
+    }
+
+    # Initialisation des points par axe à 0
+    # On utilise les clés du mapping pour s'assurer que tous nos axes existent
+    points_par_axe = {axe: 0 for axe in mapping.keys()}
+
+    # Parcours des statistiques reçues
+    for stat_nom, points in points_par_stat.items():
+        # On cherche à quel axe appartient la statistique 'stat_nom'
+        for axe, liste_stats_associees in mapping.items():
+            if stat_nom in liste_stats_associees:
+                points_par_axe[axe] += points
+                break # On a trouvé l'axe, on passe à la stat suivante
+    return points_par_axe
+
 
 # # --- EXEMPLE D'UTILISATION ---
 # ratios, vit_moy = calculer_stats_moyennes_relatives('database_scores.json', 10, 200)

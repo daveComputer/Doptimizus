@@ -146,6 +146,9 @@ h3 { color: #00ffc8; text-align: center; border-bottom: 1px solid #30363d; paddi
     margin-bottom: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 #config-bar {
@@ -372,9 +375,11 @@ input[type=number] {
 /* Conteneur des items dans un stuff */
 .stuff-equipment-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
     margin-top: 10px;
+    flex-grow: 1;
+    flex-wrap: wrap;        /* Les badges d'items, eux, peuvent passer à la ligne */
+    gap: 8px;               /* Espace entre les badges d'items */
+    flex: 1;
 }
 
 /* Badge individuel pour chaque item du stuff */
@@ -706,3 +711,37 @@ input[type=number] {
     color: #000;
     box-shadow: 0 0 15px #39FF14;
 }
+
+/* Style individuel des alertes */
+.stat-warning {
+    display: block;         /* Prend toute la largeur de sa colonne */
+    text-align: right;      /* Aligne le texte à l'extrémité droite */
+    white-space: nowrap;    /* Empêche le texte de revenir à la ligne */
+    background: rgba(255, 165, 0, 0.1);
+    border: 1px solid #ffae00;
+    color: #ffae00;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(255, 174, 0, 0.2);
+}
+
+
+@keyframes pulse-warning {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; box-shadow: 0 0 10px rgba(255, 174, 0, 0.5); }
+    100% { opacity: 0.8; }
+}
+
+.warning-container {
+    display: flex;
+    flex-direction: column; /* Force une alerte par ligne */
+    gap: 6px;               /* Espacement entre les lignes d'alerte */
+    margin-left: 20px;      /* Espace entre les items et les alertes */
+    flex-shrink: 0;         /* Empêche les alertes de s'écraser */
+    width: 100px;
+    border-left: 1px solid rgba(57, 255, 20, 0.1); /* Petite séparation visuelle */
+    padding-left: 10px;
+}
+

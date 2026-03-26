@@ -98,6 +98,11 @@ def get_results():
         
         # On transforme le résultat en une liste simple de noms
         items_bannis = [row['item_nom'] for row in rows]
+
+        row = conn.execute('SELECT poids_json FROM user_stats WHERE user_id = ?', (user_id,)).fetchone()
+        conn.close()
+
+        poids = json.loads(row['poids_json']) if row else {}
         
         # 2. Passage de la liste aux fonctions de calcul
         # IMPORTANT : Tu dois modifier la signature de ces deux fonctions 
@@ -111,14 +116,11 @@ def get_results():
         top_stuffs = extraire_top_n_solutions(
             scores_path, 
             lvl, 
+            poids,
             n=5, 
-            items_exclus=items_bannis
+            items_exclus=items_bannis,
         )
 
-        row = conn.execute('SELECT poids_json FROM user_stats WHERE user_id = ?', (user_id,)).fetchone()
-        conn.close()
-
-        poids = json.loads(row['poids_json']) if row else {}
         
         # 3. On renvoie tout au JS
         return jsonify({
@@ -127,10 +129,6 @@ def get_results():
             "top_stuffs": top_stuffs,
             "weights": poids
         })
-        
-    except Exception as e:
-        print(f"Erreur lors de la récupération des résultats : {e}")
-        return jsonify({"status": "error", "message": str(e)}), 500
         
     except Exception as e:
         # Debug : affiche l'erreur exacte dans tes logs Render
