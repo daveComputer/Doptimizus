@@ -7,7 +7,7 @@ CONTRAINTES={
     "PA": 5,
     "PM": 3,
     "PO": 6,
-    "Invocations": 5,
+    "Invocation": 5,
     "% Rés. Neutre": 35,
     "% Rés. Terre": 35,
     "% Rés. Feu": 35,
@@ -90,6 +90,25 @@ def extraire_top_n_solutions(json_file, lvl_max, poids,n=3, items_exclus=None):
     # 3. Calcul de la somme brute des stats (Items + Paliers)
     penalites = []
 
+    expr_items_par_stat = {}
+    expr_paliers_par_stat = {}
+
+    for stat, limite in CONTRAINTES.items():
+        # On définit les sommes (ce sont des objets LpSum)
+        somme_items = pulp.lpSum([
+            it.get("stats", {}).get(stat, 0) * item_vars[it["_lp_var"]] 
+            for it in items
+        ])
+        
+        somme_paliers = pulp.lpSum([
+            panoplie_scores[p_name][k].get("bonus", {}).get(stat, 0) * set_vars[p_name][k]
+            for p_name in set_vars for k in set_vars[p_name]
+        ])
+
+        # ON LES SAUVEGARDE ici
+        expr_items_par_stat[stat] = somme_items
+        expr_paliers_par_stat[stat] = somme_paliers
+    
     for stat, limite in CONTRAINTES.items():
         # Somme sur les items
         somme_items = pulp.lpSum([
@@ -99,7 +118,7 @@ def extraire_top_n_solutions(json_file, lvl_max, poids,n=3, items_exclus=None):
         
         # Somme sur les paliers de panoplie
         somme_paliers = pulp.lpSum([
-            panoplie_scores[p_name][k].get("stats", {}).get(stat, 0) * set_vars[p_name][k]
+            panoplie_scores[p_name][k].get("bonus", {}).get(stat, 0) * set_vars[p_name][k]
             for p_name in set_vars for k in set_vars[p_name]
         ])
 
@@ -112,7 +131,7 @@ def extraire_top_n_solutions(json_file, lvl_max, poids,n=3, items_exclus=None):
 
         # On calcule la pénalité : Excès * Poids de la stat
         if "Rés" not in stat:
-            poid = poids.get(stat, 1) # Par défaut 1 si non trouvé
+            poid = poids.get(stat) # Par défaut 1 si non trouvé
         else:
             poid=poids.get("% Rés.")
         penalites.append(excess_vars[stat] * poid)
@@ -136,8 +155,30 @@ def extraire_top_n_solutions(json_file, lvl_max, poids,n=3, items_exclus=None):
         prob.solve(pulp.PULP_CBC_CMD(msg=0))
         
         if pulp.LpStatus[prob.status] == 'Optimal':
+            recap_stats = {}
+            for stat in CONTRAINTES.keys():
+                # pulp.value() transforme la formule en résultat numérique
+                val_items = pulp.value(expr_items_par_stat[stat])
+                val_paliers = pulp.value(expr_paliers_par_stat[stat])
+                
+                recap_stats[stat] = {
+                    "via_items": round(val_items, 2),
+                    "via_paliers": round(val_paliers, 2),
+                    "total": round(val_items + val_paliers, 2)
+                }
+
+            # Affichage propre pour le débug
+            for s, v in recap_stats.items():
+                print(f"[{s}] Items: {v['via_items']} | Paliers: {v['via_paliers']} | Total: {v['total']}")
             stuff_actuel = [it for it in items if pulp.value(item_vars[it["_lp_var"]]) == 1]
             
+            details_exces = {}
+            for stat, var in excess_vars.items():
+                val_exces = pulp.value(var)
+                # On ne garde que les excès significatifs (supérieurs à 0.01 pour éviter les erreurs flottantes)
+                if val_exces and val_exces > 0.01:
+                    details_exces[stat] = round(val_exces, 2)
+            print(details_exces)
             # Somme des points réels par caractéristique
             points_par_stat = {}
             score_total_reel = 0 

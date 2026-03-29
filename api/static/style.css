@@ -276,7 +276,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 0 0 600px;
+    flex: 0 0 800px;
     position: relative;
     top: 20px;
 }
@@ -712,36 +712,94 @@ input[type=number] {
     box-shadow: 0 0 15px #39FF14;
 }
 
-/* Style individuel des alertes */
-.stat-warning {
-    display: block;         /* Prend toute la largeur de sa colonne */
-    text-align: right;      /* Aligne le texte à l'extrémité droite */
-    white-space: nowrap;    /* Empêche le texte de revenir à la ligne */
-    background: rgba(255, 165, 0, 0.1);
-    border: 1px solid #ffae00;
-    color: #ffae00;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
+.group-label-text {
+    font-family: 'Rajdhani', sans-serif; /* Une police tech/futuriste */
+}
+
+.group-membrane {
+    pointer-events: none; /* Par défaut, on ne clique pas dessus */
+}
+
+/* État par défaut (Arrière-plan) */
+.background-mode {
+    filter: blur(4px) opacity(0.7);
+    stroke-width: 1px;
+}
+
+/* État Actif (Sélectionné) */
+.active-mode {
+    filter: drop-shadow(0 0 10px #FF003C) opacity(1);
+    stroke-width: 3px;
+}
+
+
+/* Feedback au survol de l'anneau interne (Axes) */
+.global-zone-individual:hover {
+    fill: rgba(0, 255, 200, 0.03) !important;
+    transition: fill 0.3s ease;
+}
+
+/* Feedback au survol de l'anneau externe (Groupes) */
+.global-zone-group:hover {
+    fill: rgba(255, 0, 60, 0.03) !important;
+    transition: fill 0.3s ease;
+}
+/* Style du Tooltip */
+.radar-tooltip {
+    position: absolute;
+    padding: 8px 12px;
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #adbac7;
+    font-size: 12px;
+    pointer-events: none; /* Important : pour ne pas bloquer les clics */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.tooltip-title {
     font-weight: bold;
-    box-shadow: 0 0 5px rgba(255, 174, 0, 0.2);
+    display: block;
+    margin-bottom: 2px;
 }
 
-
-@keyframes pulse-warning {
-    0% { opacity: 0.8; }
-    50% { opacity: 1; box-shadow: 0 0 10px rgba(255, 174, 0, 0.5); }
-    100% { opacity: 0.8; }
+#global-input-val-0:focus, #global-input-val-1:focus, 
+#global-input-val-2:focus, #global-input-val-3:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+    border-color: #FF003C !important;
 }
 
-.warning-container {
-    display: flex;
-    flex-direction: column; /* Force une alerte par ligne */
-    gap: 6px;               /* Espacement entre les lignes d'alerte */
-    margin-left: 20px;      /* Espace entre les items et les alertes */
-    flex-shrink: 0;         /* Empêche les alertes de s'écraser */
-    width: 100px;
-    border-left: 1px solid rgba(57, 255, 20, 0.1); /* Petite séparation visuelle */
-    padding-left: 10px;
+.footer-discord {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    color: #adbac7;
 }
 
+.discord-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: transparent;
+    color: #5865F2; /* Couleur officielle Discord */
+    border: 2px solid #5865F2;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(88, 101, 242, 0.2);
+}
+
+.discord-btn:hover {
+    background: #5865F2;
+    color: white;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+    transform: translateY(-2px);
+}
